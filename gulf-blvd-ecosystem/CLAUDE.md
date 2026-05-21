@@ -30,7 +30,7 @@ O ecossistema está crescendo. Quando novos sites forem adicionados, atualizar e
 
 **Modo cross-site:** aplique a mesma mudança nos sites relevantes. Use sub-agentes paralelos (um por site) ou aplique sequencialmente. Documente por que é cross-site.
 
-**Fronteira de ecossistema:** Nunca toque em `murrieta-ecosystem/` quando trabalhando no Gulf Blvd ecosystem. São ecossistemas independentes — regiões diferentes, nichos diferentes, decisões de produto separadas.
+**Fronteira de ecossistema:** Este é um repositório dedicado exclusivamente ao Gulf Blvd Ecosystem (Pinellas County, FL). Outros ecossistemas geográficos (ex: Murrieta, CA) vivem em repositórios separados.
 
 ---
 
