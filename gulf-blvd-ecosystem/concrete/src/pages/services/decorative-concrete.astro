@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Decorative Concrete',
+  name: 'Decorative & Stamped Concrete — Gulf Blvd, FL',
+  description: 'Stamped, colored, and decorative concrete for driveways, patios, and pool decks along Gulf Boulevard, FL. Coastal-rated materials and sealers.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Decorative Concrete', item: `${SITE_CONFIG.domain}/services/decorative-concrete/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Decorative & Stamped Concrete Gulf Blvd FL | Driveways, Patios & Pool Decks"
+  description="Stamped, colored, and decorative concrete for driveways, patios, and pool decks along Gulf Boulevard, FL. Coastal-grade materials. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Decorative & Stamped Concrete on Gulf Blvd, FL"
+    subheadline="Achieve the look of travertine, brick, or natural stone at a fraction of the cost — using stamped concrete rated for Florida's coastal climate."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Decorative & Stamped Concrete</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Decorative Concrete for Gulf Coast Properties</h2>
+      <p>
+        Stamped concrete is one of the most popular choices for Gulf Blvd homeowners who
+        want a resort aesthetic without the cost of real travertine or brick. Properly sealed
+        stamped concrete is also more durable than natural stone in Florida's coastal environment —
+        because unlike travertine or limestone, it doesn't absorb chlorides from salt air.
+      </p>
+
+      <h2>Popular Stamped Patterns for Gulf Blvd Properties</h2>
+      <ul>
+        <li><strong>Travertine:</strong> Matches the look of natural travertine tile — extremely popular for pool decks in coastal FL</li>
+        <li><strong>Ashlar slate:</strong> Linear stone pattern, excellent for driveways and entry walkways</li>
+        <li><strong>Cobblestone:</strong> Old-world European look, popular for front walkways and drives</li>
+        <li><strong>Wood plank:</strong> Realistic wood grain texture for covered patios and lanai floors</li>
+        <li><strong>Random flagstone:</strong> Natural irregular stone appearance</li>
+      </ul>
+
+      <h2>Color Options</h2>
+      <p>
+        Integral color is added to the concrete mix itself — so color runs throughout the slab,
+        not just on the surface. Surface-released color (antiquing) adds depth and variation to
+        mimic natural stone. We work with you to select colors that complement your home's
+        exterior and the coastal environment.
+      </p>
+
+      <h2>Decorative Concrete Cost on Gulf Blvd</h2>
+      <p>
+        Stamped concrete costs $12–$20 per square foot installed depending on pattern complexity,
+        number of colors, and area size. This is typically 30–50% less than real natural stone
+        while delivering a comparable aesthetic.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/decorative-concrete').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Decorative Concrete Estimate" />
+    </div>
+  </div>
+</BaseLayout>

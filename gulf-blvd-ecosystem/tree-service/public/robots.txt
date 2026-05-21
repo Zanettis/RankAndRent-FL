@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gulfblvdtreeexperts.com/sitemap-index.xml

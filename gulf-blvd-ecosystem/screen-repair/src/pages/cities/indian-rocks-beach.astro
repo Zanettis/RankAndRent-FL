@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Indian Rocks Beach';
+const citySlug = 'indian-rocks-beach';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `How much does pool cage rescreening cost in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Pool cage rescreening in ${city} typically costs $1,200–$3,500 depending on cage size, mesh type, and frame condition. Individual panel repairs run $75–$200 per panel. Salt air along Gulf Blvd accelerates screen degradation, so we recommend coastal-grade materials on all ${city} jobs. Free on-site estimates available.` } },
+    { '@type': 'Question', name: `Do you offer storm damage screen repair in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — storm damage repair is one of our most common emergency services in ${city}. After tropical storms or hurricanes, we prioritize Gulf Blvd properties from ${city} southward. Call us as soon as possible after a storm for the fastest response.` } },
+    { '@type': 'Question', name: `Can you replace rusted screws on my pool cage in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. Rusted steel fasteners are a common structural concern in ${city} due to the salt air environment. We replace corroded screws with Nylo-Tec or stainless steel fasteners rated for coastal conditions. This is often the most important upgrade you can make to extend your cage's structural life.` } },
+    { '@type': 'Question', name: `Do you serve Airbnb properties in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Absolutely. We work with vacation rental managers and Airbnb hosts in ${city} and throughout the Gulf Beaches. We offer priority scheduling to turn around repairs between guest stays.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Screen Repair ${city} FL | Pool Cage & Lanai Rescreening`}
+  description={`Pool cage rescreening and lanai screen repair in ${city}, FL. Coastal-grade materials, storm damage repair, pet screen, and fastener replacement. Free estimates on Gulf Blvd.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Pool Cage & Screen Repair in ${city}, FL`}
+    subheadline={`Trusted screen repair for ${city} homeowners and vacation rental properties. Pool cage rescreening, lanai screen repair, and storm damage service along Gulf Blvd.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Screen Repair in {city}, FL</h2>
+      <p>
+        {city} sits at the northern end of the Gulf Boulevard corridor, where the Gulf of Mexico
+        meets the barrier island communities of Pinellas County. The combination of salt air,
+        intense UV exposure, and tropical weather systems makes pool cage and lanai screen
+        maintenance a regular necessity for {city} homeowners.
+      </p>
+
+      <h2>Why Gulf Blvd Screen Repair?</h2>
+      <p>
+        We're the screen repair company that {city} property owners call because we do three
+        things that most contractors don't: we answer the phone, we show up when scheduled,
+        and we use materials actually rated for coastal environments. Standard hardware store
+        mesh fails in 18–24 months in the salt air — we stock coastal-grade mesh and Nylo-Tec
+        fasteners that last.
+      </p>
+
+      <h2>Services Available in {city}</h2>
+      <ul>
+        <li><a href="/services/pool-cage-rescreening">Full Pool Cage Rescreening</a> — Complete enclosure rescreen using 18×14 or 20×20 coastal mesh</li>
+        <li><a href="/services/screen-panel-repair">Individual Panel Repair</a> — Fix specific damaged panels without rescreening the whole cage</li>
+        <li><a href="/services/lanai-porch-screening">Lanai & Porch Screening</a> — Keep no-see-ums and mosquitoes out of your outdoor living area</li>
+        <li><a href="/services/pet-screen-installation">Pet Screen Installation</a> — 7× stronger than standard for dog and cat households</li>
+        <li><a href="/services/storm-damage-repair">Storm Damage Repair</a> — Emergency response after tropical storms and hurricanes</li>
+        <li><a href="/services/screw-fastener-replacement">Screw & Fastener Replacement</a> — Replace rusted steel screws with Nylo-Tec or stainless coastal fasteners</li>
+      </ul>
+
+      <h2>Vacation Rental & Airbnb Screen Repair in {city}</h2>
+      <p>
+        {city}'s Gulf Blvd corridor has a high concentration of vacation rental properties.
+        We offer priority scheduling for Airbnb hosts and property managers — fast turnaround
+        between guest check-outs and check-ins to keep your pool area in 5-star condition.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.slice(0, 6).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {[
+          { q: `How much does pool cage rescreening cost in ${city}?`, a: `Pool cage rescreening in ${city} typically costs $1,200–$3,500 depending on cage size, mesh type, and frame condition. Individual panel repairs run $75–$200 per panel. Salt air along Gulf Blvd accelerates screen degradation, so we recommend coastal-grade materials on all ${city} jobs. Free on-site estimates available.` },
+          { q: `Do you offer storm damage screen repair in ${city}?`, a: `Yes — storm damage repair is one of our most common emergency services in ${city}. After tropical storms or hurricanes, we prioritize Gulf Blvd properties from ${city} southward. Call us as soon as possible after a storm for the fastest response.` },
+          { q: `Can you replace rusted screws on my pool cage in ${city}?`, a: `Yes. Rusted steel fasteners are a common structural concern in ${city} due to the salt air environment. We replace corroded screws with Nylo-Tec or stainless steel fasteners rated for coastal conditions. This is often the most important upgrade you can make to extend your cage's structural life.` },
+          { q: `Do you serve Airbnb properties in ${city}?`, a: `Absolutely. We work with vacation rental managers and Airbnb hosts in ${city} and throughout the Gulf Beaches. We offer priority scheduling to turn around repairs between guest stays.` },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

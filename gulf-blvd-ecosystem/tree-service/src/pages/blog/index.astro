@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Tree Service Blog | Gulf Blvd Homeowner Guides"
+  description="Expert tree care advice for Gulf Blvd homeowners — hurricane prep, Sabal Palm trimming, Live Oak pruning, Pinellas County permits, and more. ISA-certified arborists writing for Gulf Coast Florida."
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-10">
+      <h1 class="text-4xl font-bold text-primary mb-4">Tree Service Blog</h1>
+      <p class="text-gray-600 text-lg">
+        Expert guides from our ISA-certified arborists — covering hurricane season prep,
+        Florida native species, Pinellas County permits, and everything else Gulf Blvd
+        homeowners need to know about coastal tree care.
+      </p>
+    </div>
+
+    {posts.length === 0 ? (
+      <p class="text-gray-500">No posts yet. Check back soon!</p>
+    ) : (
+      <div class="grid gap-6">
+        {posts.map((post) => (
+          <BlogPostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            slug={post.slug}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  headline: string;
+  subheadline: string;
+  ctaText?: string;
+  ctaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  backgroundImage?: string | ImageMetadata;
+  badges?: string[];
+}
+
+const {
+  headline,
+  subheadline,
+  ctaText = 'Get a Free Quote',
+  ctaHref = '/contact',
+  secondaryCtaText,
+  secondaryCtaHref,
+  backgroundImage,
+  badges = ['Licensed & Insured', 'Free Estimates', 'ISA-Certified Arborists', 'Gulf Blvd Local'],
+} = Astro.props;
+---
+
+<section class="relative bg-primary text-white py-24 px-4 overflow-hidden">
+  {backgroundImage && (
+    <>
+      {typeof backgroundImage === 'object' ? (
+        <Image
+          src={backgroundImage}
+          alt=""
+          aria-hidden="true"
+          fetchpriority="high"
+          loading="eager"
+          class="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      ) : (
+        <img
+          src={backgroundImage}
+          alt=""
+          aria-hidden="true"
+          fetchpriority="high"
+          loading="eager"
+          class="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      )}
+      <div class="absolute inset-0 bg-primary/80"></div>
+    </>
+  )}
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+      {headline}
+    </h1>
+    <p class="text-xl text-white/85 mb-8 max-w-2xl mx-auto leading-relaxed">
+      {subheadline}
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href={ctaHref}
+        class="bg-cta text-white px-8 py-4 rounded-lg text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
+      >
+        {ctaText}
+      </a>
+      {secondaryCtaText && secondaryCtaHref && (
+        <a
+          href={secondaryCtaHref}
+          class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-colors"
+        >
+          {secondaryCtaText}
+        </a>
+      )}
+    </div>
+    <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/80">
+      {badges.map((badge) => (
+        <span class="flex items-center gap-2">✅ {badge}</span>
+      ))}
+    </div>
+  </div>
+</section>

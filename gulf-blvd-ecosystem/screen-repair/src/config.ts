@@ -1,0 +1,28 @@
+export const SITE_CONFIG = {
+  name: 'Gulf Blvd Screen Repair',
+  shortName: 'Gulf Blvd Screen Repair',
+  phone: '(727) 555-0100',
+  email: 'leads@gulfblvdscreenrepair.com',
+  address: 'Indian Rocks Beach, FL 33785',
+  domain: 'https://gulfblvdscreenrepair.com',
+  description: 'Pool cage rescreening, lanai screen repair, and screen panel replacement along Gulf Blvd — Indian Rocks Beach to St. Pete Beach. Licensed & insured. Free estimates.',
+  services: [
+    { title: 'Pool Cage Rescreening', href: '/services/pool-cage-rescreening', description: 'Full pool enclosure rescreening using 18×14 or 20×20 mesh. Rated for Florida coastal conditions.' },
+    { title: 'Screen Panel Repair', href: '/services/screen-panel-repair', description: 'Fast individual panel replacement — no need to rescreening the whole cage for minor damage.' },
+    { title: 'Lanai & Porch Screening', href: '/services/lanai-porch-screening', description: 'Keep mosquitoes and debris out of your lanai with durable coastal-grade screen systems.' },
+    { title: 'Pet Screen Installation', href: '/services/pet-screen-installation', description: 'Ultra-tough pet-resistant screen that holds up to dogs and cats — 7× stronger than standard.' },
+    { title: 'Storm Damage Repair', href: '/services/storm-damage-repair', description: 'Emergency screen repair after tropical storms and hurricanes. Fast response along Gulf Blvd.' },
+    { title: 'Screen Door Repair', href: '/services/screen-door-repair', description: 'Pool cage and lanai door rescreening, frame straightening, and hardware replacement.' },
+    { title: 'Screw & Fastener Replacement', href: '/services/screw-fastener-replacement', description: 'Replace rusted steel screws with Nylo-Tec or stainless fasteners rated for salt-air environments.' },
+  ],
+  locations: [
+    { city: 'Indian Rocks Beach', href: '/cities/indian-rocks-beach' },
+    { city: 'Indian Shores', href: '/cities/indian-shores' },
+    { city: 'Redington Shores', href: '/cities/redington-shores' },
+    { city: 'Redington Beach', href: '/cities/redington-beach' },
+    { city: 'Madeira Beach', href: '/cities/madeira-beach' },
+    { city: 'Treasure Island', href: '/cities/treasure-island' },
+    { city: 'St. Pete Beach', href: '/cities/st-pete-beach' },
+    { city: 'Clearwater Beach', href: '/cities/clearwater-beach' },
+  ],
+};

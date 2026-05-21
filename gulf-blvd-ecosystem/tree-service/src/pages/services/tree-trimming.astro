@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Tree Trimming',
+  name: 'Tree Trimming — Gulf Blvd, FL',
+  description: 'Crown reduction and tree trimming to reduce hurricane wind resistance along Gulf Boulevard, FL. ISA-certified arborists. Species-specific approach for Live Oak, Sabal Palm, and Sea Grape. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+  offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: '200', maxPrice: '1200', priceCurrency: 'USD' } },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Tree Trimming', item: `${SITE_CONFIG.domain}/services/tree-trimming/` },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'When should I trim my trees before hurricane season on Gulf Blvd?', acceptedAnswer: { '@type': 'Answer', text: 'We recommend trimming 6–8 weeks before hurricane season starts on June 1st. Trimming immediately before a storm stresses the tree and can increase wind sail effect. Early-season trimming gives trees time to seal cuts and allows you to identify and remove dead limbs while conditions are calm.' } },
+    { '@type': 'Question', name: 'What is "lion\'s tailing" and why is it bad?', acceptedAnswer: { '@type': 'Answer', text: 'Lion\'s tailing refers to removing interior branches and leaving foliage only at the branch tips. It creates a heavy outer canopy that swings violently in wind, actually increasing storm damage risk. ISA pruning standards specifically prohibit this practice. We never lion\'s tail trees.' } },
+    { '@type': 'Question', name: 'How much does tree trimming cost on Gulf Blvd?', acceptedAnswer: { '@type': 'Answer', text: 'Tree trimming on Gulf Blvd typically costs $200–$1,200 per tree depending on size, species, and access. Palm trimming tends to be faster than Live Oak crown reduction. We provide free on-site estimates that include all trees on your property.' } },
+  ],
+};
+---
+
+<BaseLayout
+  title="Tree Trimming Gulf Blvd FL | Hurricane Season Prep | Crown Reduction"
+  description="Professional tree trimming and crown reduction along Gulf Boulevard, FL. ISA-certified arborists. Hurricane season prep — book 6–8 weeks before June 1st. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Hero
+    headline="Tree Trimming on Gulf Blvd — Hurricane Season Prep Done Right"
+    subheadline="Crown reduction and dead limb removal to reduce wind resistance before storm season. ISA-certified arborists serving Indian Rocks Beach to St. Pete Beach."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Tree Trimming</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Hurricane Season Tree Trimming on Gulf Blvd</h2>
+      <p>
+        The single most important thing Gulf Blvd homeowners can do before June 1st is get their
+        trees trimmed properly. Not over-trimmed — properly trimmed. There's a critical difference,
+        and it determines whether your trees stand up to a storm or contribute to the damage.
+      </p>
+      <p>
+        We perform crown reduction (reducing the overall size and weight of the canopy) and dead limb
+        removal. Dead branches are projectiles in wind. Unbalanced canopies act as sails. Both create
+        risk for your property and neighbors.
+      </p>
+
+      <h2>The Right Time to Trim</h2>
+      <p>
+        Book 6–8 weeks before hurricane season starts. This gives trees time to seal pruning cuts
+        before storm stress hits. Trimming right before a storm does the opposite — it stresses the
+        tree and can actually increase wind load by removing interior structure that would have
+        dissipated wind energy.
+      </p>
+
+      <h2>Species-Specific Trimming</h2>
+      <p>
+        Different Gulf Blvd species require different trimming approaches:
+      </p>
+      <ul>
+        <li><strong>Live Oak:</strong> Crown cleaning and selective crown reduction. Avoid removing large scaffold branches — Live Oaks develop structural strength from their branching architecture over decades.</li>
+        <li><strong>Sabal Palm:</strong> Remove only brown fronds. Never remove green fronds — doing so weakens the palm's heart and makes it more vulnerable in wind. The 9-3 rule: if fronds point below the 9 o'clock and 3 o'clock positions, they can be removed.</li>
+        <li><strong>Sea Grape:</strong> Can be selectively shaped; tolerates trimming well and resprouts quickly in FL heat.</li>
+        <li><strong>Slash Pine:</strong> Crown clean to remove dead branches; avoid heavy crown reduction — Slash Pine does not re-sprout well from major pruning cuts.</li>
+      </ul>
+
+      <h2>Tree Trimming Cost on Gulf Blvd</h2>
+      <p>
+        Tree trimming on Gulf Boulevard typically costs $200–$1,200 per tree depending on size,
+        species, and access. We provide free on-site estimates that cover all trees on your property,
+        so you can budget for a full pre-season preparation visit.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'When should I trim my trees before hurricane season on Gulf Blvd?', a: 'We recommend trimming 6–8 weeks before hurricane season starts on June 1st. Trimming immediately before a storm stresses the tree and can increase wind sail effect. Early-season trimming gives trees time to seal cuts and reduces storm risk properly.' },
+          { q: 'What is "lion\'s tailing" and why is it bad?', a: 'Lion\'s tailing removes interior branches and leaves foliage only at the branch tips, creating a heavy outer canopy that swings violently in wind. ISA pruning standards specifically prohibit this practice. We never lion\'s tail trees.' },
+          { q: 'How much does tree trimming cost on Gulf Blvd?', a: 'Tree trimming on Gulf Blvd typically costs $200–$1,200 per tree depending on size, species, and access. We provide free on-site estimates that include all trees on your property.' },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/tree-trimming').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Tree Trimming Estimate" />
+    </div>
+  </div>
+</BaseLayout>

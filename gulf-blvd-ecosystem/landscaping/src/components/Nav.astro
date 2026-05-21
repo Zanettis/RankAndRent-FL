@@ -1,0 +1,157 @@
+---
+import { SITE_CONFIG } from '../config';
+---
+
+<header class="bg-primary text-white shadow-md sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="text-xl font-bold tracking-tight hover:text-accent transition-colors">
+      {SITE_CONFIG.name}
+    </a>
+
+    <button
+      id="menu-toggle"
+      class="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-accent"
+      aria-label="Toggle menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <nav id="nav-menu" class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="/" class="hover:text-accent transition-colors">Home</a>
+
+      <!-- Services dropdown -->
+      <div class="relative group">
+        <button class="flex items-center gap-1 hover:text-accent transition-colors cursor-default">
+          Services
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="absolute top-full left-0 hidden group-hover:block bg-primary border border-white/20 rounded shadow-lg py-2 min-w-48 z-50">
+          {SITE_CONFIG.services.map((s) => (
+            <a href={s.href} class="block px-4 py-2 text-sm hover:text-accent hover:bg-white/10 transition-colors whitespace-nowrap">
+              {s.title}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Locations dropdown -->
+      <div class="relative group">
+        <button class="flex items-center gap-1 hover:text-accent transition-colors cursor-default">
+          Locations
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="absolute top-full left-0 hidden group-hover:block bg-primary border border-white/20 rounded shadow-lg py-2 min-w-40 z-50">
+          {SITE_CONFIG.locations.map((loc) => (
+            <a href={loc.href} class="block px-4 py-2 text-sm hover:text-accent hover:bg-white/10 transition-colors whitespace-nowrap">
+              {loc.city}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a href="/blog" class="hover:text-accent transition-colors">Blog</a>
+      <a href="/contact" class="hover:text-accent transition-colors">Contact</a>
+      <a
+        href={`tel:${SITE_CONFIG.phone}`}
+        class="border border-white/50 text-white px-4 py-2 rounded font-semibold hover:bg-white/10 transition-colors"
+        data-phone-link
+      >
+        {SITE_CONFIG.phone}
+      </a>
+      <a
+        href="/contact"
+        class="bg-cta text-white px-4 py-2 rounded font-semibold hover:opacity-90 transition-opacity"
+      >
+        Free Quote
+      </a>
+    </nav>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-primary border-t border-white/20">
+    <nav class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="/" class="hover:text-accent transition-colors py-2">Home</a>
+
+      <!-- Mobile Services accordion -->
+      <div>
+        <button id="mobile-services-toggle" class="w-full flex items-center justify-between py-2 hover:text-accent transition-colors">
+          Services
+          <svg id="mobile-services-chevron" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="mobile-services-menu" class="hidden pl-4 flex flex-col gap-1 pb-1">
+          {SITE_CONFIG.services.map((s) => (
+            <a href={s.href} class="hover:text-accent transition-colors py-1">{s.title}</a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Mobile Locations accordion -->
+      <div>
+        <button id="mobile-locations-toggle" class="w-full flex items-center justify-between py-2 hover:text-accent transition-colors">
+          Locations
+          <svg id="mobile-locations-chevron" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="mobile-locations-menu" class="hidden pl-4 flex flex-col gap-1 pb-1">
+          {SITE_CONFIG.locations.map((loc) => (
+            <a href={loc.href} class="hover:text-accent transition-colors py-1">{loc.city}</a>
+          ))}
+        </div>
+      </div>
+
+      <a href="/blog" class="hover:text-accent transition-colors py-2">Blog</a>
+      <a href="/contact" class="hover:text-accent transition-colors py-2">Contact</a>
+      <a
+        href={`tel:${SITE_CONFIG.phone}`}
+        class="border border-white/50 text-white px-4 py-2 rounded font-semibold text-center hover:bg-white/10 transition-colors mt-2"
+        data-phone-link
+      >
+        {SITE_CONFIG.phone}
+      </a>
+      <a
+        href="/contact"
+        class="bg-cta text-white px-4 py-2 rounded font-semibold text-center hover:opacity-90 transition-opacity"
+      >
+        Free Quote
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  function setupAccordion(btnId: string, menuId: string, chevronId: string) {
+    const btn = document.getElementById(btnId);
+    const submenu = document.getElementById(menuId);
+    const chevron = document.getElementById(chevronId);
+    btn?.addEventListener('click', () => {
+      submenu?.classList.toggle('hidden');
+      chevron?.classList.toggle('rotate-180');
+    });
+  }
+
+  setupAccordion('mobile-services-toggle', 'mobile-services-menu', 'mobile-services-chevron');
+  setupAccordion('mobile-locations-toggle', 'mobile-locations-menu', 'mobile-locations-chevron');
+
+  document.querySelectorAll('[data-phone-link]').forEach((el) => {
+    el.addEventListener('click', () => {
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', 'phone_click', { event_category: 'contact', event_label: 'nav' });
+      }
+    });
+  });
+</script>

@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'HomeAndConstructionBusiness',
+  name: 'Mulching & Ground Cover — Gulf Blvd, FL',
+  description: 'Eucalyptus, pine bark, and rubber mulch installation for Gulf Blvd properties. Salt-tolerant ground covers for beachfront beds. Suppresses weeds, retains moisture, protects roots from Florida heat.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Mulching & Ground Cover', item: `${SITE_CONFIG.domain}/services/mulching-ground-cover/` },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What type of mulch is best for Gulf Coast Florida?', acceptedAnswer: { '@type': 'Answer', text: 'Eucalyptus mulch is the most common and practical choice for Gulf Coast FL — good color retention, aromatic, widely available, and performs well in the subtropical climate. Pine bark nuggets (larger pieces) stay in place better in wind and are slightly acidic, which suits acid-loving tropical plants. Rubber mulch is the most storm-resistant option — significantly heavier and does not decompose. Avoid cypress mulch: it is sourced from threatened Florida wetland forests and most FL landscape professionals refuse to specify it.' } },
+    { '@type': 'Question', name: 'How deep should mulch be applied in Florida?', acceptedAnswer: { '@type': 'Answer', text: 'The correct depth is 2 to 3 inches. More than 4 inches of mulch causes root suffocation, excessive moisture retention, and fungal disease — especially problematic in Florida\'s humid summers. The most common mulching error we correct is "volcano mulching" — piling mulch against the base of plants and tree trunks. This causes stem rot and crown rot. Mulch should always be kept 2–4 inches away from plant stems and tree trunks.' } },
+    { '@type': 'Question', name: 'What are the best salt-tolerant ground covers for Gulf Blvd?', acceptedAnswer: { '@type': 'Answer', text: 'The most reliably salt-tolerant ground covers for Gulf Blvd beachfront and canal-front properties include: Asiatic jasmine (dense, low maintenance, tolerates moderate salt), Perennial peanut (Arachis glabrata — drought-tolerant, pest-free, excellent for sun), Beach Sunflower (Helianthus debilis — FL native, yellow flowers, very salt-tolerant), Lantana (butterfly attractor, highly salt-tolerant, full sun), and Mondo grass (shade-tolerant, salt-tolerant, good under palms).' } },
+    { '@type': 'Question', name: 'How often should mulch be refreshed in Florida?', acceptedAnswer: { '@type': 'Answer', text: 'Organic mulch (eucalyptus, pine bark) typically needs refreshing once per year in Florida — the subtropical climate decomposes it faster than in northern states. We recommend refreshing in early spring before the rainy season begins. Rubber mulch lasts 10+ years and rarely needs replacing.' } },
+  ],
+};
+---
+
+<BaseLayout
+  title="Mulching Gulf Blvd FL | Landscape Mulch & Salt-Tolerant Ground Cover"
+  description="Eucalyptus, pine bark, and rubber mulch installation along Gulf Boulevard, FL. Salt-tolerant ground covers for beachfront beds. No volcano mulching. SWFWMD-conscious plant selection. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Hero
+    headline="Mulching & Ground Cover for Gulf Blvd, FL"
+    subheadline="Eucalyptus, pine bark, and rubber mulch for Gulf Coast properties. Salt-tolerant ground covers for beachfront beds. Correct depth, no volcano mulching. Free estimates."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Mulching & Ground Cover</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Mulch Selection for the Gulf Coast Climate</h2>
+      <p>
+        Mulch choices matter more on Gulf Blvd than almost anywhere else in Florida. You're dealing
+        with salt air that accelerates decomposition, summer storms that wash fine mulch off beds
+        and into storm drains, and hurricane-force winds that turn loose mulch into a projectile.
+        The right mulch type depends on your priorities.
+      </p>
+
+      <h2>Mulch Types We Install</h2>
+      <ul>
+        <li><strong>Eucalyptus mulch:</strong> Most common choice in Gulf Coast FL. Aromatic, good visual color retention, available in large quantities. Decomposes in about 12 months — plan for annual refresh. Moderate wind resistance.</li>
+        <li><strong>Pine bark nuggets:</strong> Larger pieces stay in place better than shredded mulch in wind and rain. Slightly acidic — a good match for acid-loving tropical plants like Ixora and Bougainvillea. Decomposes more slowly than eucalyptus.</li>
+        <li><strong>Rubber mulch:</strong> Best option for hurricane-prone properties and storm-resistant beds. Significantly heavier than organic mulch — won't blow in wind. Does not decompose, eliminating annual refresh cost. More expensive upfront but lowest long-term cost. Available in natural brown, black, or terra cotta colors.</li>
+      </ul>
+      <p>
+        <strong>Avoid cypress mulch:</strong> Most Florida landscape professionals refuse to specify it.
+        Cypress mulch is sourced from harvesting Florida's bald cypress and pond cypress wetlands —
+        threatened coastal ecosystems. It offers no performance advantage over eucalyptus and contributes
+        to the destruction of wetlands that buffer Gulf Coast communities from storm surge.
+      </p>
+
+      <h2>The Volcano Mulching Problem</h2>
+      <p>
+        The most common mulching error on the Gulf Blvd corridor — and one we correct on almost every
+        new property we service — is volcano mulching: piling mulch directly against plant stems and
+        tree trunks in a cone shape. It looks dramatic. It destroys plants.
+      </p>
+      <p>
+        Mulch piled against a stem holds constant moisture against the bark, causing stem rot, crown
+        rot, and fungal disease at the base of the plant. We always maintain a 2–4 inch clear zone
+        around every plant base and tree trunk, regardless of what the previous landscaper did.
+      </p>
+
+      <h2>Salt-Tolerant Ground Covers for Gulf Blvd</h2>
+      <p>
+        Ground covers provide an alternative to mulch in beds under palms, along walkways, and in
+        narrow strips where grass doesn't establish well. Salt-tolerant options that work on the
+        Gulf Blvd corridor:
+      </p>
+      <ul>
+        <li><strong>Asiatic jasmine (<em>Trachelospermum asiaticum</em>):</strong> Dense, low-maintenance, tolerates moderate salt spray. Spreads slowly to fill beds completely. Good for shaded areas under palms.</li>
+        <li><strong>Perennial peanut (<em>Arachis glabrata</em>):</strong> FL-native, drought-tolerant, small yellow flowers. One of the best no-maintenance ground covers for full-sun Gulf Coast beds. Does not need mowing.</li>
+        <li><strong>Beach Sunflower (<em>Helianthus debilis</em>):</strong> Florida native, bright yellow flowers, highly salt-tolerant. Excellent for Gulf-front and near-beach properties.</li>
+        <li><strong>Lantana:</strong> Full sun, butterfly attractor, very salt-tolerant, drought-tolerant once established. Available in red, orange, yellow, and purple varieties.</li>
+        <li><strong>Mondo grass (<em>Ophiopogon japonicus</em>):</strong> Shade-tolerant, salt-tolerant, low-growing. Excellent under Sabal palms where nothing else will grow.</li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'What type of mulch is best for Gulf Coast Florida?', a: 'Eucalyptus is the practical everyday choice. Pine bark nuggets (larger) stay in place better in wind. Rubber mulch is most storm-resistant and longest-lasting. Avoid cypress — it comes from threatened FL wetland forests.' },
+          { q: 'How deep should mulch be applied in Florida?', a: '2 to 3 inches. Never more than 4 inches — it causes root suffocation and fungal disease in Florida\'s humid climate. Always keep 2–4 inches away from plant stems and tree trunks. Volcano mulching destroys plants.' },
+          { q: 'What are the best salt-tolerant ground covers for Gulf Blvd?', a: 'Asiatic jasmine, perennial peanut, Beach Sunflower, Lantana, and Mondo grass are all proven on the Gulf Blvd corridor. We select based on your sun exposure and salt spray intensity.' },
+          { q: 'How often should mulch be refreshed in Florida?', a: 'Organic mulch (eucalyptus, pine bark) typically needs refreshing once per year in Florida\'s subtropical climate. Rubber mulch lasts 10+ years and rarely needs replacing.' },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/mulching-ground-cover').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Mulching Estimate" />
+    </div>
+  </div>
+</BaseLayout>

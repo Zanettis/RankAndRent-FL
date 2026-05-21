@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Tree Removal',
+  name: 'Tree Removal — Gulf Blvd, FL',
+  description: 'Safe tree removal on tight coastal lots along Gulf Boulevard, FL. Rigging specialists for narrow barrier island properties near pools, seawalls, and structures. Licensed and insured. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+  offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: '400', maxPrice: '2500', priceCurrency: 'USD' } },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Tree Removal', item: `${SITE_CONFIG.domain}/services/tree-removal/` },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'How much does tree removal cost on Gulf Blvd, FL?', acceptedAnswer: { '@type': 'Answer', text: 'Tree removal along Gulf Boulevard ranges from $400 to $2,500 depending on tree size, species, and property access. Tight coastal lots near pools, seawalls, or neighboring structures often require rigging rather than felling, which adds to the cost. Pinellas County permit fees ($100–$250) may also apply. We provide free on-site estimates.' } },
+    { '@type': 'Question', name: 'Do I need a permit to remove a tree in Pinellas County?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Pinellas County requires permits for most tree removals, especially for protected species like Live Oak and Sabal Palm (Florida\'s state tree). Mangrove removal requires a separate DEP authorization. We handle the permit paperwork as part of our service.' } },
+    { '@type': 'Question', name: 'Can you remove a tree near my pool or seawall?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — we specialize in exactly this type of job. We use rigging techniques to lower sections of the tree in controlled pieces when felling is not possible due to nearby structures. We protect pool enclosures, decking, and seawalls throughout the process.' } },
+  ],
+};
+---
+
+<BaseLayout
+  title="Tree Removal Gulf Blvd FL | Coastal Lot Specialists | Indian Rocks Beach to St. Pete Beach"
+  description="Professional tree removal along Gulf Boulevard, FL. Rigging specialists for tight coastal lots near pools, seawalls, and structures. Pinellas County permits handled. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Hero
+    headline="Tree Removal on Gulf Blvd, FL — Coastal Lot Specialists"
+    subheadline="Safe tree removal on tight barrier island properties near pools, seawalls, and structures. Rigging specialists serving Indian Rocks Beach to St. Pete Beach."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Tree Removal</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Tree Removal on Gulf Blvd Is Different</h2>
+      <p>
+        Removing a tree on a standard suburban lot is straightforward. Removing a tree on a Gulf
+        Blvd barrier island property — with a pool cage three feet away, a seawall six feet behind,
+        and a neighbor's lanai just past the property line — requires a completely different skill set.
+        That's our specialty.
+      </p>
+      <p>
+        We use rigging systems to lower sections of the tree in controlled pieces, protecting your pool
+        enclosure, pool deck, and seawall throughout the process. We assess every job before we start
+        and never proceed with a felling cut when rigging is the safer approach.
+      </p>
+
+      <h2>Pinellas County Tree Removal Permits</h2>
+      <p>
+        Pinellas County's tree ordinance requires a permit for most tree removals, particularly for
+        large canopy trees and protected species. Live Oak (<em>Quercus virginiana</em>) and Sabal
+        Palm (<em>Sabal palmetto</em>, Florida's state tree) are both protected under the Pinellas
+        County Unified Land Development Code. Mangrove removal requires separate authorization from
+        the Florida DEP.
+      </p>
+      <p>
+        We handle the permit application paperwork as part of our service. You don't need to navigate
+        the county portal — we do it for you and factor the permit timeline into the job schedule.
+      </p>
+
+      <h2>HOA and Waterfront Property Considerations</h2>
+      <p>
+        Gulf-front and waterfront properties on Gulf Blvd often have HOA covenants that include tree
+        removal review requirements. We're familiar with the major HOA processes along the corridor
+        and can advise on documentation needed for HOA approval alongside county permits.
+      </p>
+
+      <h2>Tree Removal Cost on Gulf Blvd</h2>
+      <p>
+        Tree removal on Gulf Boulevard typically ranges from $400 to $2,500. The primary cost
+        factors are: tree size (height and diameter), species, location on the property (open area
+        vs. near structures), whether rigging is required, debris disposal, and Pinellas County
+        permit fees. Stump grinding is quoted separately — ask about bundling for a discount.
+        We always provide written, itemized estimates before starting.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'How much does tree removal cost on Gulf Blvd, FL?', a: 'Tree removal along Gulf Boulevard ranges from $400 to $2,500 depending on tree size, species, and property access. Tight coastal lots near pools, seawalls, or neighboring structures often require rigging rather than felling. Pinellas County permit fees may also apply. We provide free on-site estimates.' },
+          { q: 'Do I need a permit to remove a tree in Pinellas County?', a: 'Yes. Pinellas County requires permits for most tree removals, especially for protected species like Live Oak and Sabal Palm. Mangrove removal requires a separate DEP authorization. We handle the permit paperwork as part of our service.' },
+          { q: 'Can you remove a tree near my pool or seawall?', a: 'Yes — we specialize in exactly this type of job. We use rigging techniques to lower sections of the tree in controlled pieces when felling is not possible due to nearby structures. We protect pool enclosures, decking, and seawalls throughout the process.' },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/tree-removal').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Tree Removal Estimate" />
+    </div>
+  </div>
+</BaseLayout>

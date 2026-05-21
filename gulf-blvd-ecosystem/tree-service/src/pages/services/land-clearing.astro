@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Land Clearing',
+  name: 'Land Clearing — Gulf Blvd, FL',
+  description: 'Lot clearing for coastal construction projects along Gulf Boulevard, FL. Mangrove-aware — we work within Pinellas County and Florida DEP permit requirements.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+  offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: '800', maxPrice: '5000', priceCurrency: 'USD' } },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Land Clearing', item: `${SITE_CONFIG.domain}/services/land-clearing/` },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'Do I need permits for land clearing in Pinellas County?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Large-scale land clearing in Pinellas County requires permits under the tree ordinance. Additionally, if your property includes or is adjacent to mangroves, you will need separate Florida DEP authorization before any clearing work begins. We are familiar with both permit processes and can advise on your specific property.' } },
+    { '@type': 'Question', name: 'Can you clear land near mangroves on Gulf Blvd?', acceptedAnswer: { '@type': 'Answer', text: 'We can clear land up to the permitting boundary near mangrove fringe areas. Any work within or affecting mangroves requires a DEP Mangrove Alteration permit. We will not perform work that violates DEP boundaries — we advise clients on where those boundaries are and what is permittable before any clearing begins.' } },
+    { '@type': 'Question', name: 'What happens to the cleared material?', acceptedAnswer: { '@type': 'Answer', text: 'All cleared vegetation is chipped and hauled off-site. We do not burn debris on Gulf Blvd properties — open burning is not permitted in coastal Pinellas County. Wood chips can be left on-site as mulch for landscaping if preferred.' } },
+  ],
+};
+---
+
+<BaseLayout
+  title="Land Clearing Gulf Blvd FL | Coastal Construction | Mangrove-Aware Clearing"
+  description="Professional land clearing for coastal construction along Gulf Boulevard, FL. Pinellas County permit and DEP mangrove compliance. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Hero
+    headline="Land Clearing on Gulf Blvd — Coastal & Regulatory Expertise"
+    subheadline="Full lot clearing for coastal construction projects. Mangrove-aware and DEP-compliant. Pinellas County permit navigation included. Indian Rocks Beach to St. Pete Beach."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Land Clearing</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Land Clearing on Gulf Blvd Requires Regulatory Expertise</h2>
+      <p>
+        Clearing a Gulf Blvd coastal lot is not like clearing an inland lot. Properties here are
+        subject to Pinellas County's tree ordinance, Florida DEP jurisdiction over mangrove and
+        wetland fringe areas, and local floodplain regulations. Hiring a contractor who doesn't
+        understand this regulatory landscape is how projects get stopped by stop-work orders —
+        or result in fines that cost more than the entire clearing job.
+      </p>
+
+      <h2>Common Land Clearing Projects We Serve</h2>
+      <ul>
+        <li>Lot clearing for new construction</li>
+        <li>Backyard clearing for pool additions and seawall replacements</li>
+        <li>Vegetation removal for dock and boathouse construction</li>
+        <li>Guest house and carport clearing</li>
+        <li>Selective clearing to reclaim overgrown coastal lots</li>
+      </ul>
+
+      <h2>Mangrove Compliance</h2>
+      <p>
+        Mangroves are a protected species under Florida law. Any clearing within or adjacent to
+        a mangrove fringe requires a DEP Mangrove Alteration permit. We identify mangrove boundaries
+        on your property as part of the estimate process and advise exactly what can and cannot be
+        cleared under existing permits. We will not perform work that violates DEP boundaries.
+      </p>
+
+      <h2>Protected Species Preservation</h2>
+      <p>
+        Pinellas County's ordinance protects Live Oak and Sabal Palm. Selective clearing that
+        preserves these species while removing undesirable vegetation is often the optimal approach —
+        it satisfies county requirements, preserves mature trees that add property value, and reduces
+        permit complexity.
+      </p>
+
+      <h2>Land Clearing Cost on Gulf Blvd</h2>
+      <p>
+        Land clearing costs range from $800 to $5,000+ depending on lot size, vegetation density,
+        species present, and permit complexity. We provide free on-site estimates that include an
+        honest assessment of permit requirements before any work is quoted.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'Do I need permits for land clearing in Pinellas County?', a: 'Yes. Large-scale land clearing requires permits under the Pinellas County tree ordinance. If your property includes or is adjacent to mangroves, you will also need Florida DEP authorization. We are familiar with both permit processes and advise on your specific property.' },
+          { q: 'Can you clear land near mangroves on Gulf Blvd?', a: 'We can clear land up to the permitting boundary near mangrove fringe areas. Any work within or affecting mangroves requires a DEP Mangrove Alteration permit. We identify those boundaries as part of the estimate process.' },
+          { q: 'What happens to the cleared material?', a: 'All cleared vegetation is chipped and hauled off-site. We do not burn debris on Gulf Blvd properties. Wood chips can be left on-site as mulch for landscaping if preferred.' },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/land-clearing').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Land Clearing Estimate" />
+    </div>
+  </div>
+</BaseLayout>

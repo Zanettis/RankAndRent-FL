@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Redington Beach';
+const citySlug = 'redington-beach';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `Do you offer screen enclosure repair in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — we serve ${city} for all screen enclosure and pool cage repair needs including full rescreening, individual panel repair, storm damage repair, lanai screening, pet screen installation, and screw replacement. Free estimates available.` } },
+    { '@type': 'Question', name: `How much does screen repair cost in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Individual panel repairs in ${city} run $75–$200 per panel. Full pool cage rescreening costs $1,200–$3,500 depending on size and mesh type. We provide written estimates before any work begins.` } },
+    { '@type': 'Question', name: `Do you serve ${city} for pet screen installation?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — pet screen installation is available in ${city}. Pet screen is a heavy-duty vinyl-coated polyester mesh that is 7× stronger than standard fiberglass screen and resists claw damage from dogs and cats. We can install it in the lower panels of your pool cage or lanai where pets are most active.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Screen Repair ${city} FL | Pool Cage & Screen Enclosure Repair`}
+  description={`Pool cage rescreening and screen enclosure repair in ${city}, FL along Gulf Blvd. Pet screen, storm damage, and fastener replacement. Licensed & insured. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Pool Cage & Screen Repair in ${city}, FL`}
+    subheadline={`Screen enclosure repair for ${city} homeowners along Gulf Blvd. Pool cage rescreening, panel repair, pet screen, and storm damage service — coastal-grade materials and written estimates.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Screen Repair in {city}, FL</h2>
+      <p>
+        {city} is a small residential community along Gulf Blvd between Redington Shores and
+        Madeira Beach. With Gulf of Mexico frontage and a predominantly residential character,
+        {city} homeowners rely on pool cages and screened lanais for year-round outdoor living —
+        and salt air conditions mean regular maintenance is essential.
+      </p>
+
+      <h2>Services We Provide in {city}</h2>
+      <ul>
+        <li><a href="/services/pool-cage-rescreening">Full Pool Cage Rescreening</a> — Complete rescreen using coastal-grade mesh</li>
+        <li><a href="/services/screen-panel-repair">Individual Panel Repair</a> — Fast, affordable single panel fixes</li>
+        <li><a href="/services/lanai-porch-screening">Lanai & Porch Screening</a> — Mosquito-free outdoor areas</li>
+        <li><a href="/services/pet-screen-installation">Pet Screen Installation</a> — 7× stronger than standard mesh</li>
+        <li><a href="/services/storm-damage-repair">Storm Damage Repair</a> — Emergency response after tropical weather</li>
+        <li><a href="/services/screw-fastener-replacement">Fastener Replacement</a> — Nylo-Tec and stainless screws</li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.slice(0, 6).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((item) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {item.name}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{item.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

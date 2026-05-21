@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Screen Panel Repair',
+  name: 'Pool Cage Screen Panel Repair — Gulf Blvd, FL',
+  description: 'Individual screen panel repair and replacement for pool cages and lanais along Gulf Boulevard, FL. Same-day service available. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+  offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: '75', maxPrice: '200', priceCurrency: 'USD' } },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Screen Panel Repair', item: `${SITE_CONFIG.domain}/services/screen-panel-repair/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Screen Panel Repair Gulf Blvd FL | Same-Day Pool Cage Panel Fix"
+  description="Individual pool cage screen panel repair along Gulf Blvd, FL. Same-day service available. Torn panels, holes, and sagging mesh fixed fast. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Screen Panel Repair Along Gulf Blvd — Fast & Affordable"
+    subheadline="Don't pay for a full rescreen when you only need a few panels fixed. We repair individual pool cage and lanai screen panels quickly — often the same day."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Screen Panel Repair</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>When Panel Repair Makes More Sense Than Full Rescreening</h2>
+      <p>
+        If your pool cage frame is in good condition and fewer than 30% of your panels are damaged,
+        individual panel repair is almost always the more cost-effective option. A single panel
+        repair along Gulf Blvd typically costs $75–$200, compared to $1,200–$3,500 for a full
+        rescreen. We'll assess your cage honestly and only recommend what you actually need.
+      </p>
+
+      <h2>Common Panel Repair Situations</h2>
+      <ul>
+        <li>Storm-blown tears or punctures in 1–4 panels</li>
+        <li>Pet or wildlife damage to specific sections</li>
+        <li>Sagging or loose mesh where the spline has pulled away</li>
+        <li>Small holes that let in mosquitoes and no-see-ums</li>
+        <li>New panel installations after frame repair or replacement</li>
+      </ul>
+
+      <h2>Our Panel Repair Process</h2>
+      <p>
+        We remove the damaged panel's old spline and mesh, clean the channel, and install fresh
+        mesh pulled tight and held in place with new spline. We match the mesh type and weave
+        to your existing panels as closely as possible — or upgrade to a better material if you prefer.
+      </p>
+
+      <h2>Same-Day Service Available</h2>
+      <p>
+        For vacation rental owners and homeowners who need quick turnaround, we offer same-day
+        panel repair appointments when our schedule allows. Call early in the day for the best
+        chance of same-day service along Gulf Blvd.
+      </p>
+
+      <h2>Cost of Screen Panel Repair</h2>
+      <p>
+        Individual panel repairs typically run $75–$200 per panel depending on size and mesh type.
+        Multiple panel discounts apply when repairing 5 or more panels in a single visit.
+        All estimates are written and provided before any work begins.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/screen-panel-repair').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Panel Repair Estimate" />
+    </div>
+  </div>
+</BaseLayout>

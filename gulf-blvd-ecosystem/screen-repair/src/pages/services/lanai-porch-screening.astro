@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Lanai & Porch Screening',
+  name: 'Lanai & Porch Screening — Gulf Blvd, FL',
+  description: 'Lanai and screened porch installation and repair along Gulf Boulevard, FL. Keep mosquitoes and coastal insects out of your outdoor living space. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Lanai & Porch Screening', item: `${SITE_CONFIG.domain}/services/lanai-porch-screening/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Lanai & Porch Screening Gulf Blvd FL | Mosquito-Free Outdoor Living"
+  description="Lanai and screened porch repair and new screening along Gulf Blvd, FL. Keep mosquitoes, no-see-ums, and coastal insects out of your outdoor living area. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Lanai & Porch Screening Along Gulf Blvd, FL"
+    subheadline="Enjoy your outdoor living space without mosquitoes and no-see-ums. We repair and install screening for lanais, patios, and screened porches throughout the Gulf Beaches."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Lanai & Porch Screening</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Lanai Screening on the Gulf Coast</h2>
+      <p>
+        A screened lanai isn't a luxury on the Gulf Coast — it's a necessity. No-see-ums, mosquitoes,
+        and coastal flying insects make unscreened outdoor spaces unusable for much of the year,
+        particularly at dawn and dusk. A properly screened lanai lets you enjoy waterfront living
+        without the bugs.
+      </p>
+
+      <h2>Services We Provide</h2>
+      <ul>
+        <li><strong>Lanai Rescreening</strong> — Replace old, torn, or UV-degraded screen on your existing frame</li>
+        <li><strong>New Screen Installation</strong> — Install screening on an open lanai or porch with an existing aluminum frame</li>
+        <li><strong>Panel-by-Panel Repair</strong> — Fix individual damaged sections without rescreening the entire lanai</li>
+        <li><strong>Screen Door Replacement</strong> — Rescreen or replace lanai door panels and hardware</li>
+        <li><strong>20×20 No-See-Um Mesh</strong> — Finest available mesh, ideal for coastal properties where tiny midges are a problem</li>
+      </ul>
+
+      <h2>No-See-Um Screen: Is It Worth It?</h2>
+      <p>
+        Standard 18×14 mesh blocks mosquitoes but allows the tiny biting midges (locally called
+        "no-see-ums") that are common along the Gulf Coast to pass through. If you've ever sat
+        on your lanai and gotten bitten despite having a screen, this is why. Our 20×20 mesh
+        blocks them while still providing reasonable airflow — a significant upgrade for coastal properties.
+      </p>
+
+      <h2>Serving Gulf Blvd Condos and HOA Communities</h2>
+      <p>
+        We work with condo associations, HOA communities, and individual homeowners throughout
+        the Gulf Beaches. We're familiar with local community requirements and can work within
+        HOA color and material specifications.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/lanai-porch-screening').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Lanai Screening Estimate" />
+    </div>
+  </div>
+</BaseLayout>

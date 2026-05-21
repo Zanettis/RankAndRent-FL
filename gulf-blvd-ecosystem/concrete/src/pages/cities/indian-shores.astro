@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Indian Shores';
+const citySlug = 'indian-shores';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `How much does concrete driveway installation cost in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Concrete driveway installation in ${city} typically costs $8–$15 per square foot — a 2-car driveway runs approximately $4,000–$9,000. We provide free written estimates after measuring your specific project.` } },
+    { '@type': 'Question', name: `Do you do pool deck work in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — pool deck resurfacing and new pool deck installation are among our most common services in ${city}. We use marine-grade overlay systems and sealers rated for coastal Florida's salt air and UV conditions.` } },
+    { '@type': 'Question', name: `What concrete finish works best for ${city} properties?`, acceptedAnswer: { '@type': 'Answer', text: `For Gulf-front and Gulf-access ${city} properties, we typically recommend a brushed or stamped finish sealed with a penetrating silane/siloxane sealer that blocks chloride penetration. For pool decks specifically, Kool Deck or a stamped overlay with a UV-stable topcoat sealer is popular.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Concrete Contractor ${city} FL | Pool Decks, Driveways & Patios`}
+  description={`Concrete driveways, pool decks, patios, and foundations in ${city}, FL. Marine-grade coastal materials. Licensed & insured. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Concrete Contractor in ${city}, FL`}
+    subheadline={`Pool decks, driveways, patios, and concrete work in ${city} — coastal-grade materials, licensed & insured, free written estimates.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Concrete Services in {city}, FL</h2>
+      <p>
+        {city} is a small, predominantly residential beach community between Indian Rocks Beach
+        and Redington Shores on Gulf Blvd. The community has a high percentage of Gulf-front
+        and Gulf-view properties with pool cages and lanais — making concrete pool deck work
+        particularly common here. Salt air exposure is comparable to its neighbors, requiring
+        the same coastal-grade approach to concrete installation and sealing.
+      </p>
+
+      <h2>Services We Provide in {city}</h2>
+      <ul>
+        <li><a href="/services/pool-deck-resurfacing">Pool Deck Resurfacing</a> — Overlay systems for weathered and salt-damaged pool decks</li>
+        <li><a href="/services/concrete-driveways">Concrete Driveways</a> — New installation with proper coastal sealing</li>
+        <li><a href="/services/concrete-patios">Concrete Patios</a> — Custom outdoor living spaces</li>
+        <li><a href="/services/marine-grade-concrete-sealing">Marine-Grade Sealing</a> — Protection against salt air chloride penetration</li>
+        <li><a href="/services/concrete-repair">Concrete Repair</a> — Surface restoration for salt-damaged concrete</li>
+        <li><a href="/services/mudjacking-slab-leveling">Slab Leveling</a> — Restore settled slabs without full replacement</li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.slice(0, 6).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((item) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {item.name}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{item.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

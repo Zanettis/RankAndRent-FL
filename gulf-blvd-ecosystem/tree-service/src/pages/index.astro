@@ -1,0 +1,361 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { SITE_CONFIG } from '../config';
+
+const serviceIcons = [
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3l14 9-14 9V3z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9.5 14.5c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.83 8 21v-5c0-.83.67-1.5 1.5-1.5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a5 5 0 015 5c0 3-5 11-5 11S7 10 7 7a5 5 0 015-5z"/><circle cx="12" cy="7" r="1.5" fill="currentColor"/></svg>`,
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does tree removal cost on Gulf Blvd, FL?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Tree removal on Gulf Blvd typically ranges from $400 to $2,500 depending on the size of the tree, its location on the property, and whether rigging is required. Tight coastal lots near pools, seawalls, or neighboring structures often require rigging rather than felling, which adds to the cost. We provide free on-site estimates so you know the exact price before any work begins.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you offer 24/7 emergency tree service after a hurricane?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes — 24/7 emergency tree service is available after hurricanes and tropical storms along the Gulf Blvd corridor. We prioritize trees that have fallen on structures, power lines, or are blocking access. After a named storm, we work the full corridor from Indian Rocks Beach to St. Pete Beach. Call as soon as it is safe — our schedule fills fast after major storms.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need a permit to remove a tree in Pinellas County?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. Pinellas County\'s tree ordinance requires permits for most tree removals, particularly for large canopy trees and protected species like Live Oak and Sabal Palm (Florida\'s state tree). Mangrove removal requires a separate DEP authorization. We handle the permit paperwork — it\'s included in our service so you don\'t have to navigate the process alone.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Which trees are most vulnerable to hurricane damage on Gulf Blvd?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Slash Pine is most vulnerable due to shallow root systems and tall trunks that act as sails in high winds. Royal Palms weakened by salt stress are also high-risk. Any tree that has been "lion\'s tailed" (over-thinned interior) is more vulnerable because the heavy outer canopy swings more in wind. Our arborists will assess risk during a pre-season inspection.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long before a hurricane should I trim my trees?',
+      acceptedAnswer: { '@type': 'Answer', text: 'We recommend trimming 6 to 8 weeks before hurricane season starts on June 1st. Trimming immediately before a storm actually stresses the tree and can increase wind sail effect rather than reducing it. Early-season trimming gives trees time to seal cuts and allows you to identify and remove dead or structurally weak limbs before conditions become dangerous.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can you plant Florida-native trees after tree removal?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes — we recommend and plant salt-tolerant Florida-native species: Sabal Palm, Live Oak, Sea Grape, and Slash Pine are our top recommendations for Gulf Blvd properties. We can advise on species selection based on your lot size, soil conditions, and Pinellas County landscaping ordinances. The best planting window in FL is fall through early spring.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are you insured for tree work on waterfront and Gulf-front properties?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. We carry full general liability and workers\' compensation insurance. Gulf-front and waterfront properties in Pinellas County are specifically covered under our policy. We can provide a certificate of insurance before any work begins — just ask when you schedule your estimate.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you serve Airbnb and vacation rental properties on Gulf Blvd?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. We work with property managers and Airbnb hosts throughout Indian Rocks Beach, Treasure Island, Madeira Beach, and St. Pete Beach. We offer priority scheduling for rental properties — storm cleanup between guest stays and pre-season trimming before summer rental season.' },
+    },
+  ],
+};
+
+const testimonials = [
+  {
+    quote: "They came out two days after Tropical Storm Debby and cleared a big slash pine off our fence line. Fair price, fast work, cleaned up everything.",
+    name: "Dave R.",
+    location: "St. Pete Beach, FL",
+  },
+  {
+    quote: "Had them trim our live oaks and palms before hurricane season. They knew exactly how much to take without stressing the trees. Great arborists.",
+    name: "Patricia M.",
+    location: "Treasure Island, FL",
+  },
+  {
+    quote: "I manage rentals on Madeira Beach and these guys are my go-to after every storm. They always make it out within a couple days and leave the property spotless.",
+    name: "Tom H.",
+    location: "Madeira Beach, FL",
+  },
+];
+---
+
+<BaseLayout
+  title="Tree Service Gulf Blvd FL | Tree Removal, Trimming & Storm Service | Indian Rocks Beach to St. Pete Beach"
+  description="Professional tree removal, trimming, stump grinding, and 24/7 emergency storm tree service along Gulf Boulevard — Indian Rocks Beach to St. Pete Beach. ISA-certified arborists. Licensed & insured. Free estimates."
+  aggregateRating={{ ratingValue: "4.9", reviewCount: "87" }}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Hero
+    headline="Gulf Blvd's Most Trusted Tree Service — Hurricane Season Ready"
+    subheadline="Tree removal, trimming, stump grinding, and 24/7 emergency storm service from Indian Rocks Beach to St. Pete Beach. ISA-certified arborists. We answer the phone. We show up on time."
+    ctaText="Get a Free Quote"
+    secondaryCtaText={`Call ${SITE_CONFIG.phone}`}
+    secondaryCtaHref={`tel:${SITE_CONFIG.phone}`}
+    badges={["ISA-Certified Arborists", "Free Estimates", "Hurricane Season Ready", "24/7 Emergency Line"]}
+  />
+
+  <!-- Trust Bar -->
+  <div class="bg-white border-b border-gray-100 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-gray-600">
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        We Pick Up The Phone
+      </span>
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        We Show Up On Time
+      </span>
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        FL Licensed & Insured
+      </span>
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        Free Written Estimates
+      </span>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-primary text-center mb-4">Our Tree Services</h2>
+    <p class="text-gray-600 text-center max-w-2xl mx-auto mb-10">
+      From emergency storm removal to pre-hurricane season trimming — we cover every tree service
+      need along Gulf Boulevard, with arborists who understand Florida's coastal species and weather.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {SITE_CONFIG.services.map((service, i) => (
+        <ServiceCard
+          title={service.title}
+          description={service.description}
+          href={service.href}
+          icon={serviceIcons[i] ?? serviceIcons[0]}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Hurricane Season Prep Pitch -->
+  <section class="bg-accent/10 border-y border-accent/20 py-16 px-4">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="inline-block bg-accent/20 text-primary font-semibold text-sm px-3 py-1 rounded-full mb-4">Hurricane Season Starts June 1st</span>
+        <h2 class="text-3xl font-bold text-primary mb-4">Is Your Property Ready for Hurricane Season?</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          A dead limb on a Slash Pine or an unbalanced Live Oak canopy can become a projectile
+          in a Category 1 storm. On Gulf Blvd — with properties tight against the water and
+          neighbors close — one fallen tree can mean $20,000+ in damage.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          We recommend booking a pre-season tree inspection and trimming 6–8 weeks before June 1st.
+          Our ISA-certified arborists identify high-risk limbs, remove deadwood, and reduce canopy
+          wind resistance — without over-trimming in ways that stress the tree.
+        </p>
+        <a href="/contact" class="inline-block bg-cta text-white font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
+          Book Pre-Season Inspection →
+        </a>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl p-5 shadow-sm text-center">
+          <div class="text-3xl font-bold text-primary mb-1">4 Trees</div>
+          <div class="text-sm text-gray-600">Inspected per visit on average</div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm text-center">
+          <div class="text-3xl font-bold text-primary mb-1">6–8 Wks</div>
+          <div class="text-sm text-gray-600">Lead time before storm season</div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm text-center">
+          <div class="text-3xl font-bold text-primary mb-1">8 Cities</div>
+          <div class="text-sm text-gray-600">Served along Gulf Blvd</div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm text-center">
+          <div class="text-3xl font-bold text-primary mb-1">24/7</div>
+          <div class="text-sm text-gray-600">Emergency storm response</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Salt Air / Environmental Awareness -->
+  <section class="max-w-5xl mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-primary mb-4">Salt Air and Wind Load Are Constant Threats to Gulf Blvd Trees</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Gulf Coast salt air causes osmotic stress on tree bark and weakens root systems over time.
+          Combined with the shallow sandy soils found on barrier islands, many Gulf Blvd trees
+          are more vulnerable to wind failure than they appear.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Species selection matters enormously here. <strong>Sabal Palm and Live Oak</strong> are
+          FL-native species with hurricane-resistant characteristics when properly maintained.
+          Non-native species and improperly trimmed trees are the ones that fail in storms.
+        </p>
+        <a href="/services/tree-planting" class="text-cta font-semibold hover:underline">
+          Learn about salt-tolerant species →
+        </a>
+      </div>
+      <div class="space-y-4">
+        <div class="flex items-start gap-4 bg-gray-50 rounded-xl p-4">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-primary mb-1">Storm Prep Trimming</h3>
+            <p class="text-gray-600 text-sm">Crown reduction and dead limb removal before hurricane season. Reduces wind resistance without damaging the tree.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 bg-gray-50 rounded-xl p-4">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a5 5 0 015 5c0 3-5 11-5 11S7 10 7 7a5 5 0 015-5z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-primary mb-1">Salt-Tolerant Replanting</h3>
+            <p class="text-gray-600 text-sm">We recommend and plant FL-native, salt-tolerant species suited for barrier island conditions.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 bg-gray-50 rounded-xl p-4">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-primary mb-1">Pinellas County Permit Handling</h3>
+            <p class="text-gray-600 text-sm">We navigate the Pinellas County tree ordinance and DEP permit requirements — so you don't have to.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="bg-gray-50 py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-primary text-center mb-10">Why Gulf Blvd Homeowners Choose Us</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="flex justify-center mb-4">
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center">
+              <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-bold text-primary text-lg mb-2">We Answer the Phone</h3>
+          <p class="text-gray-600 text-sm">No voicemail maze, no unanswered texts. When you call after a storm, a real person picks up and gets you on the schedule.</p>
+        </div>
+        <div class="text-center">
+          <div class="flex justify-center mb-4">
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center">
+              <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-bold text-primary text-lg mb-2">ISA-Certified Arborists</h3>
+          <p class="text-gray-600 text-sm">Our arborists are ISA-certified and trained in Florida's subtropical species — not just chainsaw operators. We know the difference between crown cleaning and lion's tailing.</p>
+        </div>
+        <div class="text-center">
+          <div class="flex justify-center mb-4">
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center">
+              <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-bold text-primary text-lg mb-2">Free Written Estimates</h3>
+          <p class="text-gray-600 text-sm">No verbal quotes that change on arrival. We provide written estimates before any work begins — including permit costs if applicable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-primary text-center mb-4">What Gulf Blvd Homeowners Say</h2>
+    <p class="text-gray-600 text-center mb-10">Real customers, real results.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {testimonials.map((t) => (
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col gap-4">
+          <div class="flex gap-1">
+            {Array.from({ length: 5 }).map(() => (
+              <svg class="w-4 h-4 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            ))}
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed flex-1">"{t.quote}"</p>
+          <div>
+            <p class="font-semibold text-primary text-sm">{t.name}</p>
+            <p class="text-gray-500 text-xs">{t.location}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Service Areas -->
+  <section class="bg-gray-50 py-16 px-4">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-primary mb-4">Serving All of Gulf Boulevard</h2>
+      <p class="text-gray-600 max-w-3xl mx-auto mb-10">
+        We cover the full stretch of Gulf Blvd — from Indian Rocks Beach in the north to St. Pete Beach
+        in the south. If you're on or near the Gulf in Pinellas County, we serve you.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {SITE_CONFIG.locations.map((loc) => (
+          <a
+            href={loc.href}
+            class="bg-white border border-gray-200 rounded-xl px-4 py-4 text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-all shadow-sm"
+          >
+            {loc.city}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-4xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-primary text-center mb-10">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: "How much does tree removal cost on Gulf Blvd, FL?",
+          a: "Tree removal on Gulf Blvd typically ranges from $400 to $2,500 depending on tree size, location on the property, and whether rigging is required. Coastal lots near pools, seawalls, or neighboring structures add complexity. We provide free on-site estimates."
+        },
+        {
+          q: "Do you offer 24/7 emergency tree service after a hurricane?",
+          a: "Yes — we're available 24/7 after hurricanes and tropical storms along the Gulf Blvd corridor. We prioritize trees fallen on structures or blocking access. Call as soon as it's safe — our schedule fills fast after major storms."
+        },
+        {
+          q: "Do I need a permit to remove a tree in Pinellas County?",
+          a: "Yes. Most tree removals in Pinellas County require a permit, especially for protected species like Live Oak and Sabal Palm. We handle the permit paperwork as part of our service."
+        },
+        {
+          q: "How long before hurricane season should I trim my trees?",
+          a: "Book 6–8 weeks before June 1st. Trimming right before a storm stresses the tree and can actually increase wind sail effect. Early-season trimming gives trees time to seal cuts and reduces storm risk properly."
+        },
+        {
+          q: "Can you plant Florida-native trees after removal?",
+          a: "Yes — we recommend and plant salt-tolerant FL-native species: Sabal Palm, Live Oak, Sea Grape, and Slash Pine. We advise on species selection based on your lot, soil, and Pinellas County landscaping ordinances."
+        },
+        {
+          q: "Are you insured for Gulf-front and waterfront properties?",
+          a: "Yes. We carry full general liability and workers' compensation insurance covering Gulf-front and waterfront properties in Pinellas County. We provide a certificate of insurance before any work begins."
+        },
+      ].map(({ q, a }) => (
+        <details class="border border-gray-200 rounded-xl overflow-hidden group">
+          <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+            {q}
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 py-16">
+    <LeadForm heading="Ready to Get Started? Get Your Free Quote" />
+  </section>
+</BaseLayout>

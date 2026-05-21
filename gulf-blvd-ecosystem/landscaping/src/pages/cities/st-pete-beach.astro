@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'St. Pete Beach';
+const citySlug = 'st-pete-beach';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `Do you service hotels and commercial properties in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${city} anchors the southern end of the Gulf Blvd corridor with a large concentration of hotels, resorts, restaurants, and commercial beach properties. We service commercial landscapes on the schedule that operations require — early morning start times, work completed before guests arrive, fast cleanup. We carry the commercial general liability coverage that hotel and resort operators require before any contractor works on their property.` } },
+    { '@type': 'Question', name: `Do you offer annual maintenance contracts for snowbird properties in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${city} has a significant snowbird population — property owners who are away September through May and need their landscape maintained without being on-site to manage it. We offer annual contracts that cover year-round mowing, irrigation monitoring, storm response, and post-storm cleanup. We provide photo documentation of the property after each major service so absent owners can confirm the work remotely.` } },
+    { '@type': 'Question', name: `How does SWFWMD affect irrigation for ${city} properties?`, acceptedAnswer: { '@type': 'Answer', text: `${city} properties fall under SWFWMD (Southwest Florida Water Management District) irrigation restrictions — twice per week based on odd/even address, no irrigation between 10am and 4pm, and no irrigation within 24 hours following half an inch or more of rainfall. Violations carry fines from Pinellas County code enforcement. We program all systems we install to SWFWMD compliance from day one. For existing systems, we offer a programming inspection and update as a standalone service.` } },
+    { '@type': 'Question', name: `What landscaping does a ${city} beachfront property need after salt damage?`, acceptedAnswer: { '@type': 'Answer', text: `Salt damage after storms in ${city} typically causes browning of leaf tissue on tropical ornamentals — it looks like drought damage but is caused by osmotic stress from salt-laden spray. Most salt-burned plants recover with new growth once the salt has been washed off by regular rain. We assess each affected plant: cosmetic damage recovers on its own; severe crown or stem damage may require replacement. When replacing, we always upgrade to higher-salt-tolerance species appropriate for your proximity to the Gulf.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Landscaping ${city} FL | Commercial, Snowbird & SWFWMD Compliance`}
+  description={`Professional landscaping in ${city}, FL. Commercial property grounds maintenance, snowbird annual contracts, SWFWMD-compliant irrigation, post-storm salt damage recovery. Licensed & insured. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Landscaping in ${city}, FL — Commercial & Year-Round Service`}
+    subheadline={`Commercial grounds maintenance for hotels and resorts, annual contracts for snowbird properties, SWFWMD-compliant irrigation. ${city}'s full Gulf Blvd corridor. Free estimates.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Landscaping in {city}, FL</h2>
+      <p>
+        {city} anchors the southern end of the Gulf Boulevard corridor — the most commercially
+        active stretch of the barrier island chain. Hotels, resorts, restaurants, and commercial
+        beach properties line the Gulf side, while a mix of year-round residents, snowbirds, and
+        vacation rental owners occupies the residential side. The range of customer types in {city}
+        means we work across a wider variety of landscape maintenance situations than anywhere
+        else on the corridor.
+      </p>
+      <p>
+        For commercial accounts, we work on operations schedules — early morning starts, minimal
+        disruption, fast cleanup. For snowbird annual contracts, we handle everything while owners
+        are away and provide remote photo documentation. For residential customers, we offer the
+        same year-round lawn care, landscape design, and storm services we deliver throughout
+        Gulf Blvd.
+      </p>
+
+      <h2>Snowbird Annual Maintenance Contracts in {city}</h2>
+      <p>
+        {city} has one of the largest snowbird populations on Gulf Blvd — homeowners who spend
+        winters in Florida and summers elsewhere, or the reverse. Annual maintenance contracts
+        keep these properties looking maintained year-round without requiring the owner to
+        manage it from a distance. We provide photo documentation after each major service
+        so you can confirm the work remotely. Storm response is included — if a named storm
+        affects {city} while you're away, we're on it.
+      </p>
+
+      <h2>Services Available in {city}</h2>
+      <ul>
+        <li><a href="/services/lawn-care">Lawn Care & Grass Cutting</a> — Commercial grounds and residential lawn maintenance, annual contracts</li>
+        <li><a href="/services/landscape-design">Landscape Design & Installation</a> — Tropical design for commercial properties and residential Gulf-front lots</li>
+        <li><a href="/services/hurricane-storm-prep">Hurricane & Storm Prep</a> — Pre-season commercial hardening and post-storm cleanup</li>
+        <li><a href="/services/irrigation-systems">Irrigation Systems</a> — SWFWMD-compliant installation, programming inspection, and repair</li>
+        <li><a href="/services/mulching-ground-cover">Mulching & Ground Cover</a> — Commercial and residential mulching, salt-tolerant ground covers</li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {[
+          { q: `Do you service hotels and commercial properties in ${city}?`, a: `Yes — commercial grounds maintenance on operations schedules. Early morning starts, work completed before guests arrive, commercial liability insurance documentation. Hotels, resorts, restaurants, and beach properties.` },
+          { q: `Do you offer annual maintenance contracts for snowbird properties in ${city}?`, a: `Yes — year-round mowing, irrigation monitoring, storm response, and post-storm cleanup. Photo documentation after each major service so you can confirm the work remotely while away.` },
+          { q: `How does SWFWMD affect irrigation for ${city} properties?`, a: `Twice per week based on odd/even address, no irrigation 10am–4pm, no irrigation within 24 hours of ½ inch of rainfall. Violations carry fines. We program all systems to SWFWMD compliance. Existing system programming inspections available as a standalone service.` },
+          { q: `What landscaping does a ${city} beachfront property need after salt damage?`, a: `Most salt-burned plants recover with new growth once rain washes the salt off. We assess each plant — cosmetic damage recovers on its own; severe damage needs replacement. Replacements are always higher-salt-tolerance species appropriate for your Gulf proximity.` },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

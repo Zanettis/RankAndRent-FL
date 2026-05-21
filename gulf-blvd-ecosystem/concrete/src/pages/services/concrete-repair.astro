@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Concrete Repair',
+  name: 'Concrete Repair & Restoration — Gulf Blvd, FL',
+  description: 'Concrete crack repair, spalling restoration, and joint sealing for Gulf Coast Florida properties. Address salt damage before it becomes structural. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Concrete Repair', item: `${SITE_CONFIG.domain}/services/concrete-repair/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Concrete Repair Gulf Blvd FL | Crack Repair, Spalling & Restoration"
+  description="Concrete crack repair, spalling restoration, and joint sealing along Gulf Boulevard, FL. Address salt air damage before it becomes structural. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Concrete Repair & Restoration on Gulf Blvd, FL"
+    subheadline="Fix cracks, spalling, and salt-air surface damage before it becomes a structural problem. We restore driveways, pool decks, and patios throughout the Gulf Blvd corridor."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Concrete Repair & Restoration</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Common Concrete Damage on Gulf Blvd Properties</h2>
+      <p>
+        Gulf Coast properties experience specific types of concrete deterioration that
+        inland Florida rarely sees. Identifying the right repair method depends on
+        understanding the cause.
+      </p>
+      <ul>
+        <li><strong>Salt crystallization scaling:</strong> Surface pitting and flaking caused by salt crystals expanding inside concrete pores. Treated with surface preparation and marine-grade overlay or sealer.</li>
+        <li><strong>Chloride-induced spalling:</strong> Surface concrete breaking off as embedded rebar corrodes and expands. Requires rebar treatment, concrete removal, and patching with proper mortar.</li>
+        <li><strong>Shrinkage and control joint cracks:</strong> Common in Florida heat. Treated with flexible sealant or rigid patching compound depending on joint width and movement.</li>
+        <li><strong>Settlement cracks:</strong> Caused by soil movement under the slab. May require slab lifting before surface repair.</li>
+      </ul>
+
+      <h2>Our Repair Process</h2>
+      <p>
+        We start with a thorough assessment to identify the underlying cause before
+        recommending a repair method. Covering a crack without addressing its cause
+        is a cosmetic fix that fails — we don't do that.
+      </p>
+
+      <h2>When Repair vs. Replacement Makes Sense</h2>
+      <p>
+        If the structural integrity of the slab is sound and damage is confined to the
+        surface, repair is almost always the better value. If the slab has multiple
+        settlement sections, widespread spalling below the surface, or deteriorated
+        subbase, replacement may be more cost-effective long-term. We'll give you
+        an honest assessment.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/concrete-repair').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Repair Assessment" />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Concrete Blog | Tips for Gulf Blvd FL Homeowners"
+  description="Expert concrete advice for Gulf Blvd homeowners — pool deck care, driveway installation, coastal sealing, and hurricane-season prep. Indian Rocks Beach to Clearwater Beach."
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-10">
+      <h1 class="text-4xl font-bold text-primary mb-4">Concrete Tips for Gulf Blvd Homeowners</h1>
+      <p class="text-gray-600 text-lg">
+        Expert advice from our Gulf Blvd concrete crew — covering pool deck resurfacing,
+        coastal salt air protection, hurricane-ready foundations, and everything in between.
+      </p>
+    </div>
+
+    {posts.length === 0 ? (
+      <p class="text-gray-500">No posts yet. Check back soon!</p>
+    ) : (
+      <div class="grid gap-6">
+        {posts.map((post) => (
+          <BlogPostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            slug={post.slug}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

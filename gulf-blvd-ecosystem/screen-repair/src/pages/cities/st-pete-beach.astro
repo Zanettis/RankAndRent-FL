@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'St. Pete Beach';
+const citySlug = 'st-pete-beach';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `How much does pool cage rescreening cost in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Pool cage rescreening in ${city} typically costs $1,200–$3,500 depending on cage size and mesh type selected. Individual panel repairs run $75–$200. ${city} sits directly on the Gulf and experiences the most intense salt air exposure on the Gulf Blvd corridor — we recommend coastal-grade mesh and Nylo-Tec fasteners for all ${city} properties.` } },
+    { '@type': 'Question', name: `Do you serve Airbnb and vacation rental properties in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — ${city} is one of our most active vacation rental markets. We work with Airbnb hosts and property managers who need reliable, fast-turnaround screen repair between guest stays. A torn screen panel costs you reviews; we fix it before the next guest arrives.` } },
+    { '@type': 'Question', name: `How soon can you respond to storm damage in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `After a tropical storm or hurricane, we prioritize ${city} and the southern Gulf Blvd corridor. We work down the coast systematically and typically reach ${city} properties within 2–5 days of a major storm, depending on the scale of regional damage. Call immediately after a storm to get on our priority list.` } },
+    { '@type': 'Question', name: `What's the best mesh for a pool cage in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `For ${city}'s direct Gulf Coast exposure, we recommend 20×20 no-see-um mesh — it blocks the tiny biting midges common on ${city}'s beaches while maintaining reasonable airflow. For households with pets, pet screen (7× stronger than standard) is the best long-term value.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Screen Repair ${city} FL | Pool Cage Rescreening St Pete Beach`}
+  description={`Pool cage rescreening and screen repair in ${city}, FL. Storm damage repair, lanai screening, pet screen, and fastener replacement. Serving vacation rentals along Gulf Blvd. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Pool Cage & Screen Repair in ${city}, FL`}
+    subheadline={`Trusted screen repair for ${city} homeowners and vacation rental properties. Pool cage rescreening, lanai screen repair, and storm damage service — we answer the phone and show up on time.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Pool Cage & Screen Repair in {city}, FL</h2>
+      <p>
+        {city} is at the southern end of the Gulf Boulevard corridor — and one of Florida's most
+        popular vacation rental destinations. With direct Gulf of Mexico exposure, {city} properties
+        face the harshest salt air conditions on the barrier island chain. Pool cage screens degrade
+        faster here than almost anywhere else in Pinellas County, and the demand for reliable
+        screen repair contractors is constant.
+      </p>
+
+      <h2>Screen Repair for {city}'s Vacation Rental Market</h2>
+      <p>
+        {city}'s Gulf Blvd is lined with vacation rental properties — condos, beach houses, and
+        resort-style homes that command $400–$900 per night during peak season. A torn pool screen
+        or mosquito-filled lanai is a quick way to lose a 5-star review and a rebooking. We offer
+        priority scheduling for property managers who need fast turnaround between guest stays.
+      </p>
+
+      <h2>Services Available in {city}</h2>
+      <ul>
+        <li><a href="/services/pool-cage-rescreening">Full Pool Cage Rescreening</a> — Complete enclosure rescreen with coastal-grade mesh</li>
+        <li><a href="/services/screen-panel-repair">Individual Panel Repair</a> — Fix specific panels without a full rescreen</li>
+        <li><a href="/services/lanai-porch-screening">Lanai & Porch Screening</a> — Mosquito-free outdoor living</li>
+        <li><a href="/services/pet-screen-installation">Pet Screen Installation</a> — 7× stronger than standard screen</li>
+        <li><a href="/services/storm-damage-repair">Storm Damage Repair</a> — Emergency response after tropical storms</li>
+        <li><a href="/services/screw-fastener-replacement">Fastener Replacement</a> — Nylo-Tec and stainless screws for coastal longevity</li>
+      </ul>
+
+      <h2>The Salt Air Problem in {city}</h2>
+      <p>
+        {city}'s direct Gulf of Mexico frontage means maximum salt air exposure. Standard steel
+        fasteners in pool cages can begin to show significant corrosion within 2–3 years of
+        installation. We always inspect fastener condition during our free estimate visit and
+        recommend Nylo-Tec or stainless replacements when we see structural rust.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.slice(0, 6).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {[
+          { q: `How much does pool cage rescreening cost in ${city}?`, a: `Pool cage rescreening in ${city} typically costs $1,200–$3,500 depending on cage size and mesh type selected. Individual panel repairs run $75–$200. ${city} sits directly on the Gulf and experiences the most intense salt air exposure on the Gulf Blvd corridor — we recommend coastal-grade mesh and Nylo-Tec fasteners for all ${city} properties.` },
+          { q: `Do you serve Airbnb and vacation rental properties in ${city}?`, a: `Yes — ${city} is one of our most active vacation rental markets. We work with Airbnb hosts and property managers who need reliable, fast-turnaround screen repair between guest stays. A torn screen panel costs you reviews; we fix it before the next guest arrives.` },
+          { q: `How soon can you respond to storm damage in ${city}?`, a: `After a tropical storm or hurricane, we prioritize ${city} and the southern Gulf Blvd corridor. We work down the coast systematically and typically reach ${city} properties within 2–5 days of a major storm. Call immediately after a storm to get on our priority list.` },
+          { q: `What's the best mesh for a pool cage in ${city}?`, a: `For ${city}'s direct Gulf Coast exposure, we recommend 20×20 no-see-um mesh — it blocks the tiny biting midges common on ${city}'s beaches while maintaining reasonable airflow. For households with pets, pet screen (7× stronger than standard) is the best long-term value.` },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

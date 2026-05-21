@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Concrete Overlay',
+  name: 'Concrete Overlay & Resurfacing — Gulf Blvd, FL',
+  description: 'Transform old, stained, or damaged concrete with a fresh overlay along Gulf Boulevard, FL. A fraction of the cost of replacement. Marine-grade materials. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Concrete Overlay', item: `${SITE_CONFIG.domain}/services/concrete-overlay/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Concrete Overlay & Resurfacing Gulf Blvd FL | Transform Tired Concrete"
+  description="Concrete overlay and resurfacing along Gulf Boulevard, FL — transform old, stained, or worn concrete without replacement. Marine-grade materials rated for coastal FL. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Concrete Overlay & Resurfacing on Gulf Blvd, FL"
+    subheadline="Transform worn, stained, or salt-damaged concrete surfaces with a fresh overlay — without the cost or disruption of full replacement."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Concrete Overlay & Resurfacing</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>What Is a Concrete Overlay?</h2>
+      <p>
+        A concrete overlay is a thin layer of polymer-modified cementitious material
+        applied over existing concrete. When the existing surface is structurally sound
+        but visually worn — stained by oil, weathered gray, surface-scaled from salt
+        crystallization — an overlay restores the appearance at 20–40% of the cost
+        of a full replacement.
+      </p>
+
+      <h2>What Overlays Can Achieve</h2>
+      <ul>
+        <li>Cover oil stains, rust marks, and discoloration on driveways</li>
+        <li>Resurface a bleached, scaled pool deck to look new</li>
+        <li>Apply a new decorative pattern (stamped, slate texture, smooth) over plain concrete</li>
+        <li>Create a uniform appearance across a patio repaired in sections over the years</li>
+      </ul>
+
+      <h2>Overlay vs. Full Replacement — When Each Makes Sense</h2>
+      <p>
+        Overlay works when the existing concrete is structurally intact (no settled sections,
+        no significant cracking from below). If the substrate has movement cracks, the overlay
+        will eventually reflect those cracks — we'll tell you honestly if your surface is a
+        good candidate. When it is, an overlay is significantly better value than tearing out
+        and repourinh.
+      </p>
+
+      <h2>Overlay Cost on Gulf Blvd</h2>
+      <p>
+        Concrete overlays cost $3–$8 per square foot for standard micro-topping systems.
+        Decorative stamped overlays run $8–$14 per square foot. Surface preparation —
+        pressure washing, crack filling, mechanical grinding — is included in our estimates.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/concrete-overlay').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Overlay Assessment" />
+    </div>
+  </div>
+</BaseLayout>

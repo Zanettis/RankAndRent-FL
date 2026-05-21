@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "installCommand": "cd ../.. && npm install",
+  "framework": "astro",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.gulfblvdscreenrepair.com" }],
+      "destination": "https://gulfblvdscreenrepair.com/:path*",
+      "permanent": true
+    }
+  ]
+}

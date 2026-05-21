@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Indian Shores';
+const citySlug = 'indian-shores';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `How much does tree removal cost in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Tree removal in ${city} typically ranges from $400 to $2,500 depending on tree size, species, and property access. ${city} lots are among the narrowest on the corridor — most jobs require rigging. Pinellas County permit fees may also apply. Free on-site estimates available.` } },
+    { '@type': 'Question', name: `Do you offer emergency tree service in ${city} after a storm?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — we provide 24/7 emergency tree service in ${city} after hurricanes and tropical storms. Trees fallen on structures get priority response. Call as soon as conditions are safe.` } },
+    { '@type': 'Question', name: `Does ${city} have its own tree ordinance for removals?`, acceptedAnswer: { '@type': 'Answer', text: `${city} falls under Pinellas County's unified tree ordinance, which requires permits for most tree removals and protects species like Live Oak and Sabal Palm. We handle all permit paperwork as part of our service.` } },
+    { '@type': 'Question', name: `Can you trim Sabal Palms in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — Sabal Palm trimming is one of our most common services in ${city}. We follow ISA standards: remove only brown fronds, never green fronds. Over-trimming weakens the palm's heart and increases storm vulnerability. We take a conservative approach that keeps your palms healthy and hurricane-resistant.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Tree Service ${city} FL | Sabal Palm Care & Tree Removal`}
+  description={`Professional tree removal, Sabal Palm trimming, and emergency storm tree service in ${city}, FL. ISA-certified arborists. Pinellas County permit experts. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Tree Service in ${city}, FL — Sabal Palm Experts`}
+    subheadline={`Tree removal, Sabal Palm trimming, and emergency storm service for ${city} homes. ISA-certified arborists who follow the right pruning standards — not just whoever charges the least.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Tree Service in {city}, FL</h2>
+      <p>
+        {city} is one of the smallest municipalities on the Gulf Boulevard corridor — a quiet,
+        primarily residential community where the iconic Sabal Palm corridor lines the road.
+        Sabal Palm trimming is recurring work in {city}: without proper care, dead fronds accumulate
+        and become hazards, and improperly trimmed palms become structurally weaker over time.
+      </p>
+      <p>
+        Our ISA-certified arborists follow the correct standard: remove brown fronds only.
+        Never remove green fronds. Never "hurricane cut" a Sabal Palm — it does not improve
+        hurricane resistance and actually weakens the palm.
+      </p>
+
+      <h2>Why {city} Homeowners Choose Us</h2>
+      <p>
+        {city} has a strict tree removal ordinance. We know the Pinellas County permit process
+        and which species are protected in this municipality. When we give you an estimate, we
+        include permit requirements and fees upfront — no surprises.
+      </p>
+
+      <h2>Services Available in {city}</h2>
+      <ul>
+        <li><a href="/services/tree-removal">Tree Removal</a> — Narrow lot specialists with rigging experience</li>
+        <li><a href="/services/tree-trimming">Tree Trimming</a> — Pre-hurricane season crown reduction, booked early</li>
+        <li><a href="/services/tree-pruning">Tree Pruning</a> — ISA-certified pruning for Live Oak and Sabal Palm</li>
+        <li><a href="/services/stump-grinding">Stump Grinding</a> — Fast sandy-soil grinding, no regrowth</li>
+        <li><a href="/services/emergency-tree-service">Emergency Tree Service</a> — 24/7 storm response</li>
+        <li><a href="/services/tree-planting">Tree Planting</a> — Salt-tolerant natives to replace storm losses</li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.slice(0, 6).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {[
+          { q: `How much does tree removal cost in ${city}?`, a: `Tree removal in ${city} ranges from $400 to $2,500. Narrow lots typically require rigging. Pinellas County permit fees may apply. Free on-site estimates available.` },
+          { q: `Do you offer emergency tree service in ${city} after a storm?`, a: `Yes — 24/7 emergency service after hurricanes and tropical storms. Trees on structures get priority response.` },
+          { q: `Does ${city} have its own tree ordinance?`, a: `${city} falls under Pinellas County's unified tree ordinance, requiring permits for most removals and protecting Live Oak and Sabal Palm. We handle all permit paperwork.` },
+          { q: `Can you trim Sabal Palms in ${city}?`, a: `Yes — we remove only brown fronds, never green. Over-trimming weakens the palm and increases storm vulnerability. Our approach keeps your palms healthy and hurricane-resistant.` },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

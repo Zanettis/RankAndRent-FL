@@ -1,0 +1,30 @@
+---
+const partners = [
+  {
+    name: 'Gulf Blvd Screen Repair',
+    href: 'https://gulfblvdscreenrepair.com',
+    description: 'Pool cage rescreening, lanai screen repair, and panel replacement along Gulf Blvd.',
+  },
+];
+---
+
+{partners.length > 0 && (
+  <section class="bg-gray-50 border-y border-gray-200 py-10 px-4">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-xs text-gray-400 uppercase tracking-widest text-center mb-4">Other Gulf Blvd Services</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        {partners.map((p) => (
+          <a
+            href={p.href}
+            target="_blank"
+            rel="noopener"
+            class="bg-white border border-gray-200 rounded-xl px-5 py-4 text-sm shadow-sm hover:shadow-md hover:border-accent transition-all text-center max-w-xs"
+          >
+            <p class="font-bold text-primary mb-1">{p.name}</p>
+            <p class="text-gray-500 text-xs">{p.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

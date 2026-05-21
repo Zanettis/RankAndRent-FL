@@ -1,0 +1,61 @@
+---
+import { SITE_CONFIG } from '../config';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-primary text-white mt-16">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-lg font-bold mb-3">{SITE_CONFIG.name}</h3>
+        <p class="text-sm text-white/80 leading-relaxed">
+          Professional lawn care, landscape design, hurricane prep, and irrigation along Gulf Blvd —
+          Indian Rocks Beach to St. Pete Beach. Year-round service. Licensed & insured.
+        </p>
+        <div class="mt-4 space-y-1 text-sm text-white/80">
+          <p>📞 <a href={`tel:${SITE_CONFIG.phone}`} class="hover:text-accent">{SITE_CONFIG.phone}</a></p>
+          <p>✉️ <a href={`mailto:${SITE_CONFIG.email}`} class="hover:text-accent">{SITE_CONFIG.email}</a></p>
+          <p>📍 {SITE_CONFIG.address}</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold mb-3">Our Services</h3>
+        <ul class="space-y-2 text-sm text-white/80">
+          {SITE_CONFIG.services.map((s) => (
+            <li><a href={s.href} class="hover:text-accent transition-colors">{s.title}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold mb-3">Gulf Blvd Service Area</h3>
+        <ul class="space-y-2 text-sm text-white/80">
+          {SITE_CONFIG.locations.map((loc) => (
+            <li>
+              <a href={loc.href} class="hover:text-accent transition-colors">{loc.city}</a>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-6">
+          <h4 class="text-sm font-semibold mb-2 text-white/60 uppercase tracking-wider">Other Gulf Blvd Services</h4>
+          <ul class="space-y-2 text-sm text-white/80">
+            <li><a href="https://gulfblvdscreenrepair.com" class="hover:text-accent transition-colors">Gulf Blvd Screen Repair</a></li>
+            <li><a href="https://gulfblvdtreeexperts.com" class="hover:text-accent transition-colors">Gulf Blvd Tree Experts</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/20 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
+      <div class="flex flex-col md:flex-row items-center gap-3">
+        <p>© {year} {SITE_CONFIG.name}. All rights reserved.</p>
+        <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+      </div>
+      <div class="flex gap-4">
+        <span class="flex items-center gap-1">✅ Licensed & Insured</span>
+        <span class="flex items-center gap-1">✅ Free Estimates</span>
+      </div>
+    </div>
+  </div>
+</footer>

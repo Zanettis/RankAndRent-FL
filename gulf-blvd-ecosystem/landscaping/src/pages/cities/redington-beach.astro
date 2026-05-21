@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Redington Beach';
+const citySlug = 'redington-beach';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `Do you service condo associations and HOAs in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${city} has a significant concentration of condo buildings and HOA-managed properties along the Gulf Blvd corridor. We bid on and manage HOA landscape maintenance contracts — regular mowing, bed maintenance, mulching, irrigation maintenance, and seasonal plant programs. We provide documentation and reporting formatted for HOA board meetings and property management companies.` } },
+    { '@type': 'Question', name: `What landscape plants handle the high salt exposure in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `${city} beachfront and near-beach properties face some of the highest salt spray concentrations on the Gulf Blvd corridor. Species that reliably perform here include Bougainvillea (extremely salt-tolerant once established), Lantana (very salt-tolerant, full sun, drought-tolerant), Beach Sunflower (FL native, highly salt-tolerant, yellow blooms), Plumbago (light blue flowers, butterfly attractor), and Sago Palm (architectural, extremely hardy). We avoid species with low salt tolerance regardless of visual appeal.` } },
+    { '@type': 'Question', name: `How do you handle mulching for ${city} condo properties?`, acceptedAnswer: { '@type': 'Answer', text: `For ${city} condo common areas, we typically recommend eucalyptus mulch for standard beds (annual refresh) or rubber mulch for high-visibility areas where maintenance cost matters more than upfront cost. Rubber mulch is significantly heavier and won't blow in Gulf winds — important for maintained common areas that need to look good year-round. We never use cypress mulch (sourced from threatened FL wetlands).` } },
+    { '@type': 'Question', name: `Can you repair irrigation for a condo complex in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. We repair all irrigation issues for both residential and commercial/condo properties in ${city}. Common repairs include broken rotary heads, corroded fittings from salt air exposure, cracked PVC lines, and controller failures from lightning damage. For condo associations, we provide written repair reports formatted for property management records and insurance purposes.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Landscaping ${city} FL | HOA Condo Grounds Maintenance & Salt-Tolerant Design`}
+  description={`Professional landscaping in ${city}, FL. HOA and condo association landscape maintenance, salt-tolerant design for high-exposure beachfront properties. Irrigation repair. Licensed & insured. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Landscaping in ${city}, FL — HOA & Condo Grounds Specialists`}
+    subheadline={`Landscape maintenance for ${city} condo associations and HOAs. Salt-tolerant design, irrigation repair, mulching. Documentation for board meetings. Free estimates.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Landscaping in {city}, FL</h2>
+      <p>
+        {city} is a compact Gulf Blvd municipality with significant condo density and one of
+        the highest salt spray exposures on the entire barrier island chain. Properties here
+        need landscaping approaches specifically calibrated for this environment — species that
+        don't just look good in the nursery but survive a full Gulf Coast summer with its
+        combination of heat, humidity, and constant salt-laden air.
+      </p>
+      <p>
+        We work with {city}'s condo associations and HOAs on both ongoing maintenance contracts
+        and landscape redesign projects. HOA work requires its own process: proposals formatted
+        for board review, scheduling that accounts for approval timelines, and documentation that
+        property managers can use for records and insurance purposes.
+      </p>
+
+      <h2>Services Available in {city}</h2>
+      <ul>
+        <li><a href="/services/lawn-care">Lawn Care & Grass Cutting</a> — HOA common area mowing and residential lawn maintenance</li>
+        <li><a href="/services/landscape-design">Landscape Design & Installation</a> — Salt-tolerant species for high-exposure beachfront properties</li>
+        <li><a href="/services/hurricane-storm-prep">Hurricane & Storm Prep</a> — Pre-season hardening and post-storm cleanup for condo grounds</li>
+        <li><a href="/services/irrigation-systems">Irrigation Systems</a> — Repair and installation for residential and condo common areas</li>
+        <li><a href="/services/mulching-ground-cover">Mulching & Ground Cover</a> — Eucalyptus and rubber mulch for condo common areas</li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {[
+          { q: `Do you service condo associations and HOAs in ${city}?`, a: `Yes — we bid on and manage HOA landscape maintenance contracts. Regular mowing, bed maintenance, mulching, and irrigation maintenance. Documentation formatted for board meetings and property management companies.` },
+          { q: `What landscape plants handle the high salt exposure in ${city}?`, a: `Bougainvillea, Lantana, Beach Sunflower, Plumbago, and Sago Palm are our core palette for high-exposure ${city} properties. We specify species proven to survive the Gulf salt spray, not just the nursery.` },
+          { q: `How do you handle mulching for ${city} condo properties?`, a: `Eucalyptus mulch for standard beds (annual refresh), rubber mulch for high-visibility common areas where maintenance cost matters. Rubber won't blow in Gulf winds. We never use cypress (sourced from threatened FL wetlands).` },
+          { q: `Can you repair irrigation for a condo complex in ${city}?`, a: `Yes — broken rotary heads, corroded fittings, cracked PVC, controller failures. For condo associations, we provide written repair reports for property management records and insurance purposes.` },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

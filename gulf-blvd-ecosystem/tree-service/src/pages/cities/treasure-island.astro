@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Treasure Island';
+const citySlug = 'treasure-island';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `How much does tree removal cost in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Tree removal in ${city} typically ranges from $400 to $2,500 depending on tree size, species, and access. Condo and HOA common areas with mature trees may require coordination with property management. Pinellas County permit fees may also apply. Free on-site estimates available — we work directly with HOA property managers.` } },
+    { '@type': 'Question', name: `Do you serve condo associations and HOAs in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — ${city}'s condo associations and HOAs are some of our most regular commercial tree service clients. We provide written estimates formatted for HOA board approval, coordinate scheduling with property management, and handle all Pinellas County permit paperwork for common area trees. We work on HOA timelines, not just individual homeowner schedules.` } },
+    { '@type': 'Question', name: `Do Banyan trees in ${city} require special permits?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — Banyan trees in Pinellas County are typically classified as specimen trees and may require additional review beyond the standard removal permit. We assess each Banyan situation individually, advise on the most cost-effective permit strategy, and handle the full paperwork. In some cases, significant pruning can address safety concerns without requiring a full removal permit.` } },
+    { '@type': 'Question', name: `Do you offer emergency tree service in ${city} after a hurricane?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — 24/7 emergency service in ${city} after storms. We prioritize trees on structures and access blockages. For condo associations with post-storm damage, we provide written damage assessments formatted for insurance claims. Call as soon as conditions are safe.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Tree Service ${city} FL | HOA, Condo & Banyan Tree Specialists`}
+  description={`Professional tree removal, trimming, and emergency storm service in ${city}, FL. HOA and condo association specialists. Banyan tree permit experts. ISA-certified arborists. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Tree Service in ${city}, FL — HOA & Condo Specialists`}
+    subheadline={`Tree removal, trimming, and emergency storm service for ${city} condo associations and homeowners. Banyan tree permit experts. Written estimates for HOA board approval.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Tree Service in {city}, FL</h2>
+      <p>
+        {city} has a distinctive Gulf Blvd mix — vacation rentals, long-term residents, and a
+        significant concentration of condo associations and HOAs managing shared common area
+        landscapes. Tree service in this environment is different from single-family residential
+        work: decisions go through property managers or boards, budgets are approved in advance,
+        and multiple stakeholders need to sign off.
+      </p>
+      <p>
+        We work within HOA processes. We provide written estimates formatted for board approval,
+        work on the scheduling timelines that property managers need, and coordinate with your
+        association's insurance carrier when storm damage documentation is required.
+      </p>
+
+      <h2>Banyan Tree Service in {city}</h2>
+      <p>
+        {city} is home to some remarkable mature Banyan trees — iconic but challenging. Their
+        aerial root systems and canopy spread make trimming and removal technically demanding.
+        Under Pinellas County's tree ordinance, significant specimen Banyans may require a
+        separate review process. We've navigated this process many times. If your Banyan is
+        a safety concern, we can often manage it through aggressive structural pruning rather
+        than removal, saving you from the permit challenge entirely.
+      </p>
+
+      <h2>Services Available in {city}</h2>
+      <ul>
+        <li><a href="/services/tree-removal">Tree Removal</a> — HOA common areas and condo grounds, permit coordination included</li>
+        <li><a href="/services/tree-trimming">Tree Trimming</a> — Seasonal crown reduction, pre-hurricane season priority scheduling</li>
+        <li><a href="/services/tree-pruning">Tree Pruning</a> — Banyan tree structural management, ISA-certified Live Oak pruning</li>
+        <li><a href="/services/stump-grinding">Stump Grinding</a> — Complete stump removal for common area replanting</li>
+        <li><a href="/services/emergency-tree-service">Emergency Tree Service</a> — 24/7 storm response with insurance documentation</li>
+        <li><a href="/services/tree-planting">Tree Planting</a> — Native species for HOA common area landscaping</li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.slice(0, 6).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {[
+          { q: `How much does tree removal cost in ${city}?`, a: `Tree removal in ${city} ranges from $400 to $2,500. HOA common areas with mature trees may require additional coordination. Pinellas County permit fees may apply. We provide written estimates formatted for HOA board approval.` },
+          { q: `Do you serve condo associations and HOAs in ${city}?`, a: `Yes — we're regular service providers for ${city}'s HOAs. We provide HOA-formatted written estimates, coordinate with property management, and handle all Pinellas County permit paperwork for common area trees.` },
+          { q: `Do Banyan trees require special permits in ${city}?`, a: `Yes — significant specimen Banyans require additional review under Pinellas County's ordinance. We handle the full process. In many cases, structural pruning can address safety concerns without a full removal permit.` },
+          { q: `Do you offer emergency tree service in ${city} after a hurricane?`, a: `Yes — 24/7 emergency service after storms. For condo associations, we provide written damage assessments formatted for insurance claims. Call as soon as conditions are safe.` },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

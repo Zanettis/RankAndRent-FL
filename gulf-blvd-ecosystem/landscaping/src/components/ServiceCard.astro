@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  icon?: string;
+}
+
+const { title, description, href, icon = '🌳' } = Astro.props;
+---
+
+<a
+  href={href}
+  class="block p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-accent transition-all group"
+>
+  <div class="mb-3 text-primary">
+    {icon.startsWith('<svg')
+      ? <Fragment set:html={icon} />
+      : <span class="text-3xl">{icon}</span>
+    }
+  </div>
+  <h3 class="text-lg font-bold text-primary mb-2 group-hover:text-accent transition-colors">
+    {title}
+  </h3>
+  <p class="text-gray-600 text-sm leading-relaxed mb-4">{description}</p>
+  <span class="text-cta font-semibold text-sm flex items-center gap-1">
+    Learn More <span aria-hidden="true">→</span>
+  </span>
+</a>

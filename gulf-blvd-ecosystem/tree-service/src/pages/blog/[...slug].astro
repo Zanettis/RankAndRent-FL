@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { getCollection } from 'astro:content';
+import { SITE_CONFIG } from '../../config';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric'
+}).format(post.data.pubDate);
+
+const postUrl = new URL(`/blog/${post.slug}/`, SITE_CONFIG.domain).href;
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: post.data.pubDate.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.domain,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.domain,
+  },
+  url: postUrl,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+  keywords: post.data.tags?.join(', '),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_CONFIG.domain}/blog/` },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: postUrl },
+  ],
+};
+
+const howToSchema = post.data.howToSteps?.length ? {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: post.data.title,
+  description: post.data.description,
+  step: post.data.howToSteps.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: s.name,
+    text: s.text,
+  })),
+} : null;
+---
+
+<BaseLayout title={`${post.data.title} | ${SITE_CONFIG.name}`} description={post.data.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  {howToSchema && <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}
+  <article class="max-w-3xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-6" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/blog" class="hover:text-primary">Blog</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{post.data.title}</span>
+    </nav>
+
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold text-primary leading-tight mb-4">{post.data.title}</h1>
+      <div class="flex items-center gap-4 text-sm text-gray-500">
+        <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
+        <span>·</span>
+        <span>By {post.data.author}</span>
+      </div>
+    </header>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary prose-a:text-cta prose-a:no-underline hover:prose-a:underline">
+      <Content />
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <LeadForm heading="Need Tree Service on Gulf Blvd? Get a Free Estimate" />
+    </div>
+  </article>
+</BaseLayout>

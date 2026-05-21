@@ -1,0 +1,100 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_CONFIG } from '../config';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  aggregateRating?: { ratingValue: string; reviewCount: string };
+}
+
+const { title, description, canonicalUrl, ogImage = '/images/hero.jpg', aggregateRating } = Astro.props;
+const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).href;
+const ogImageAbsolute = new URL(ogImage, SITE_CONFIG.domain).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: SITE_CONFIG.name,
+  url: SITE_CONFIG.domain,
+  telephone: SITE_CONFIG.phone,
+  email: SITE_CONFIG.email,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Indian Rocks Beach',
+    addressRegion: 'FL',
+    postalCode: '33785',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 27.8948,
+    longitude: -82.8386,
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Indian Rocks Beach' },
+    { '@type': 'City', name: 'Indian Shores' },
+    { '@type': 'City', name: 'Redington Shores' },
+    { '@type': 'City', name: 'Redington Beach' },
+    { '@type': 'City', name: 'Madeira Beach' },
+    { '@type': 'City', name: 'Treasure Island' },
+    { '@type': 'City', name: 'St. Pete Beach' },
+    { '@type': 'City', name: 'Clearwater Beach' },
+  ],
+  priceRange: '$$',
+  description: SITE_CONFIG.description,
+  ...(aggregateRating ? { aggregateRating: { '@type': 'AggregateRating', ...aggregateRating } } : {}),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_CONFIG.name} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+
+    <!-- Google tag (gtag.js) — replace G-XXXXXXXXXX with real GA4 ID before go-live -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){window.dataLayer.push(arguments);}
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body class="font-sans text-gray-800 bg-white">
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

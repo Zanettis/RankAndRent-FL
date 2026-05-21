@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'North Redington Beach';
+const citySlug = 'north-redington-beach';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `What premium tropical landscaping options are available for ${city} properties?`, acceptedAnswer: { '@type': 'Answer', text: `${city} has a high concentration of high-value properties where landscape design quality matters for both aesthetics and property value. Our premium tropical palette for ${city} includes architectural specimens like Sago Palms, Bismarck Palms, and Alexander Palms as focal points, combined with layered plantings of Bougainvillea, Ixora, Plumbago, and Croton for color and structure. We also design formal bed layouts and geometric hardscape integration for properties with HOA design standards.` } },
+    { '@type': 'Question', name: `Do you work with HOA design standards in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${city} has several HOA-managed communities with architectural review requirements for landscape changes. We provide written plant lists, species descriptions, and design specs in the format most HOA review committees require. We've worked with condo and residential HOA boards throughout the Gulf Blvd corridor and understand the typical approval timelines and documentation formats.` } },
+    { '@type': 'Question', name: `How do you maintain a high-end tropical landscape in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Premium tropical landscapes in ${city} require regular maintenance: weekly or bi-weekly mowing at correct height (St. Augustine at 3.5–4 inches), quarterly trimming of ornamentals, annual mulch refresh, and irrigation system inspection before and after storm season. We offer full-service annual maintenance contracts that include all of these elements plus priority post-storm cleanup — so your landscape is always guest or showing ready.` } },
+    { '@type': 'Question', name: `Can you replace salt-damaged plants at my ${city} property?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. Salt damage from storm events is common in ${city} — ocean spray during storms can cause browning of leaf tissue on tropical plants. We assess whether damage is cosmetic (plants recover with new growth) or whether replacement is necessary. When replacement is needed, we recommend species with proven salt-tolerance appropriate for your specific exposure zone, rather than repeating the same species that failed.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Landscaping ${city} FL | Premium Tropical Design & HOA Compliance`}
+  description={`Professional landscaping in ${city}, FL. Premium tropical landscape design for high-value properties, HOA approval support, full-service maintenance contracts. Licensed & insured. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Landscaping in ${city}, FL — Premium Tropical Design`}
+    subheadline={`High-end tropical landscape design and full-service maintenance for ${city} properties. HOA compliance support. Salt-tolerant species that last. Free estimates.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Landscaping in {city}, FL</h2>
+      <p>
+        {city} is a high-value residential community on the Gulf Blvd corridor — properties here
+        demand landscaping that meets a higher standard than functional minimums. Curb appeal,
+        HOA compliance, and the long-term health of premium tropical species all matter more
+        here than in communities with lower property values and less design expectation.
+      </p>
+      <p>
+        We work with {city} homeowners on complete landscape redesigns, full-service maintenance
+        contracts, and priority storm response. Our design consultations include a detailed site
+        assessment — sun/shade mapping, salt spray zone analysis, HOA design guideline review —
+        before we specify a single plant. Getting the design right from the start prevents the
+        costly cycle of replacing underperforming species every season.
+      </p>
+
+      <h2>Services Available in {city}</h2>
+      <ul>
+        <li><a href="/services/lawn-care">Lawn Care & Grass Cutting</a> — Precision mowing for premium residential lawns, year-round contracts</li>
+        <li><a href="/services/landscape-design">Landscape Design & Installation</a> — Premium tropical design with architectural specimen palms and layered ornamentals</li>
+        <li><a href="/services/hurricane-storm-prep">Hurricane & Storm Prep</a> — Pre-season hardening and priority post-storm response</li>
+        <li><a href="/services/irrigation-systems">Irrigation Systems</a> — Smart controllers and zone optimization for premium properties</li>
+        <li><a href="/services/mulching-ground-cover">Mulching & Ground Cover</a> — Premium mulch and salt-tolerant ground covers for formal bed design</li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {[
+          { q: `What premium tropical landscaping options are available for ${city} properties?`, a: `Architectural specimens: Sago Palms, Bismarck Palms, Alexander Palms as focal points. Layered plantings: Bougainvillea, Ixora, Plumbago, Croton for color. Formal bed layouts and hardscape integration for HOA design standards.` },
+          { q: `Do you work with HOA design standards in ${city}?`, a: `Yes — we provide plant lists, species descriptions, and design specs in the format HOA review committees require. We know the typical approval timelines for Gulf Blvd corridor HOAs.` },
+          { q: `How do you maintain a high-end tropical landscape in ${city}?`, a: `Weekly/bi-weekly mowing at correct height, quarterly ornamental trimming, annual mulch refresh, irrigation inspection before and after storm season. Full-service annual contracts available with priority post-storm cleanup.` },
+          { q: `Can you replace salt-damaged plants at my ${city} property?`, a: `Yes — we assess whether damage is cosmetic (recovers with new growth) or needs replacement. When replacing, we recommend species with proven salt tolerance for your specific exposure zone, not the same species that failed.` },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

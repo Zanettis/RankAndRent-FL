@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="6" fill="#0D5C8A"/>
+  <!-- Screen mesh grid pattern -->
+  <line x1="8" y1="8" x2="8" y2="24" stroke="#29B5E8" stroke-width="1.5"/>
+  <line x1="13" y1="8" x2="13" y2="24" stroke="#29B5E8" stroke-width="1.5"/>
+  <line x1="18" y1="8" x2="18" y2="24" stroke="#29B5E8" stroke-width="1.5"/>
+  <line x1="23" y1="8" x2="23" y2="24" stroke="#29B5E8" stroke-width="1.5"/>
+  <line x1="8" y1="11" x2="24" y2="11" stroke="#29B5E8" stroke-width="1.5"/>
+  <line x1="8" y1="16" x2="24" y2="16" stroke="#29B5E8" stroke-width="1.5"/>
+  <line x1="8" y1="21" x2="24" y2="21" stroke="#29B5E8" stroke-width="1.5"/>
+  <!-- Frame border -->
+  <rect x="6" y="7" width="20" height="18" rx="1" stroke="#FF6B35" stroke-width="1.5" fill="none"/>
+</svg>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Indian Rocks Beach';
+const citySlug = 'indian-rocks-beach';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `How much does a concrete pool deck cost in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Pool deck installation in ${city} typically costs $8–$18 per square foot depending on finish and size. Resurfacing an existing deck costs $3–$8 per square foot. We provide free on-site written estimates — no obligation.` } },
+    { '@type': 'Question', name: `Does salt air damage concrete in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — ${city}'s salt air environment is harder on concrete than inland Florida. Chloride ions penetrate the surface and corrode embedded steel, causing spalling and cracking. Marine-grade sealing applied every 3–5 years significantly slows this process.` } },
+    { '@type': 'Question', name: `Do you need a permit for a concrete driveway in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Most concrete driveway replacements in ${city} (Pinellas County) require a permit. We handle permit applications as part of our service and coordinate required inspections. All work is performed to Florida Building Code standards.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Concrete Contractor ${city} FL | Driveways, Pool Decks & Patios`}
+  description={`Concrete driveways, pool decks, patios, and foundations in ${city}, FL. Marine-grade materials for coastal salt air. Licensed & insured. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Concrete Contractor in ${city}, FL`}
+    subheadline={`Pool decks, driveways, patios, and foundations in ${city} — marine-grade materials rated for Gulf Coast salt air. Licensed & insured. Free written estimates.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Concrete Services in {city}, FL</h2>
+      <p>
+        {city} is the northernmost Gulf Blvd community in our service area — a tight-knit
+        beach community known for its family-friendly character and high concentration of
+        Gulf-front and Gulf-access homes. Like all barrier island communities in Pinellas
+        County, {city} properties experience significant salt-air exposure that demands
+        coastal-grade concrete materials and proper sealing.
+      </p>
+
+      <h2>Services We Provide in {city}</h2>
+      <ul>
+        <li><a href="/services/pool-deck-resurfacing">Pool Deck Resurfacing</a> — Restore bleached, scaled pool decks without full replacement</li>
+        <li><a href="/services/concrete-driveways">Concrete Driveways</a> — New driveway installation with marine-grade sealing</li>
+        <li><a href="/services/concrete-patios">Concrete Patios & Outdoor Living</a> — Stamped, colored, and brushed finish options</li>
+        <li><a href="/services/marine-grade-concrete-sealing">Marine-Grade Sealing</a> — Penetrating and topcoat sealers rated for coastal conditions</li>
+        <li><a href="/services/concrete-repair">Concrete Repair & Restoration</a> — Crack repair, spalling, and surface restoration</li>
+        <li><a href="/services/concrete-foundations">Concrete Foundations</a> — Hurricane-ready foundations to FL Building Code</li>
+      </ul>
+
+      <h2>Concrete Pool Deck Resurfacing in {city}</h2>
+      <p>
+        Pool deck resurfacing is our most common service in {city}. The combination of
+        Gulf-front salt air, intense UV, and pool water chlorine degrades pool deck concrete
+        faster here than almost anywhere in Pinellas County. A concrete overlay or Kool Deck
+        resurfacing job restores the surface for a fraction of replacement cost.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.slice(0, 6).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((item) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {item.name}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{item.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

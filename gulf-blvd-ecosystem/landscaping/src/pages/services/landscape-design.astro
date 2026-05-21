@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'LandscapeArchitecture',
+  name: 'Landscape Design & Installation — Gulf Blvd, FL',
+  description: 'Tropical, salt-tolerant landscape design for Gulf Coast properties. Bougainvillea, Bird of Paradise, Ixora, Plumbago, Sago Palm, and Croton installations. HOA approval support.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Landscape Design', item: `${SITE_CONFIG.domain}/services/landscape-design/` },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What plants survive salt spray on Gulf Blvd beachfront properties?', acceptedAnswer: { '@type': 'Answer', text: 'The most reliably salt-tolerant ornamentals for Gulf Blvd beachfront are Bougainvillea (full sun, extremely salt-tolerant once established), Ixora (red/orange flowers, heat-loving), Plumbago (light blue flowers, butterfly attractor), Sago Palm (very slow-growing, extremely hardy), Croton (bold color, partial shade tolerance), and Bird of Paradise (dramatic tropical form). For ground covers: Asiatic jasmine, perennial peanut, and Beach Sunflower.' } },
+    { '@type': 'Question', name: 'Do you help with HOA approval for landscape redesigns?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Many properties along the Gulf Blvd corridor are in HOA communities that require approval before landscape changes. We provide written plant lists, species descriptions, and design specs in the format most HOA architectural review committees require. We\'ve worked with condo association boards in Indian Rocks Beach, Treasure Island, and St. Pete Beach.' } },
+    { '@type': 'Question', name: 'Are there invasive plants I should avoid in Pinellas County?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Florida\'s Exotic Pest Plant Council maintains a list of invasive species. For Pinellas County, do not plant: Brazilian Pepper (Schinus terebinthifolia), Schefflera (Brassaia actinophylla), Air Potato (Dioscorea bulbifera), or Climbing Fern (Lygodium microphyllum). These are invasive and their planting can result in fines. We specify only compliant species on every project.' } },
+    { '@type': 'Question', name: 'How long does a landscape installation take?', acceptedAnswer: { '@type': 'Answer', text: 'A typical residential landscape redesign (one or two beds with new plantings) takes 1–2 days for installation. Larger projects with irrigation integration, mulching, and new ground covers may take 3–5 days. We provide a timeline estimate at the design consultation. We schedule around any HOA review periods to prevent delays.' } },
+  ],
+};
+---
+
+<BaseLayout
+  title="Landscape Design Gulf Blvd FL | Tropical Salt-Tolerant Plantings"
+  description="Tropical landscape design and installation for Gulf Coast, FL properties. Salt-tolerant species: Bougainvillea, Ixora, Plumbago, Sago Palm, Croton, Bird of Paradise. HOA approval support. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Hero
+    headline="Tropical Landscape Design for Gulf Blvd, FL"
+    subheadline="Salt-tolerant tropical landscape design and installation for beachfront and canal-front properties. Species that survive Gulf Coast conditions. HOA approval support included."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Landscape Design</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Why Salt Tolerance Is Non-Negotiable on Gulf Blvd</h2>
+      <p>
+        Gulf Blvd properties face salt spray from the Gulf on one side and salt-laden breezes from
+        Tampa Bay on the other. Most ornamental plants installed by inland landscapers fail within
+        one season — the salt spray causes osmotic stress that looks like drought damage: brown leaf
+        tips, wilting, and progressive die-off even in well-watered beds.
+      </p>
+      <p>
+        We design exclusively with species proven to handle Gulf Coast salt exposure. The design
+        consultation includes a site assessment — sun/shade mapping, salt spray intensity by
+        zone (Gulf-front vs. street-facing), soil condition, and HOA requirements — before we
+        specify a single plant.
+      </p>
+
+      <h2>Our Salt-Tolerant Species Palette</h2>
+      <p>The following species form the core of our Gulf Blvd landscape palette:</p>
+      <ul>
+        <li><strong>Bougainvillea:</strong> Full sun, drought-tolerant once established, brilliant color, extremely salt-tolerant. Ideal for trellises, fences, and large accent plantings.</li>
+        <li><strong>Ixora:</strong> Dense red or orange flower clusters, loves heat, thrives in Gulf Coast humidity. Sensitive to cold snaps below 35°F but highly reliable in the Pinellas microclimate.</li>
+        <li><strong>Plumbago:</strong> Light blue flowers, butterfly attractor, very salt-tolerant, fast-growing ground cover or hedge. One of the best all-around choices for Gulf Blvd.</li>
+        <li><strong>Sago Palm:</strong> Extremely slow-growing cycad, very salt-tolerant, architectural form. Excellent for structured bed design in HOA communities.</li>
+        <li><strong>Croton:</strong> Bold multicolored foliage (red, yellow, orange, green), partial shade tolerance, dramatic year-round color without relying on seasonal blooms.</li>
+        <li><strong>Bird of Paradise (<em>Strelitzia reginae</em>):</strong> Dramatic tropical form, orange flowers, moderate salt tolerance. Best placed 50+ feet from direct Gulf-front spray.</li>
+      </ul>
+
+      <h2>HOA Approval Support</h2>
+      <p>
+        Many Gulf Blvd properties — especially condo complexes in Treasure Island, Indian Rocks Beach,
+        and St. Pete Beach — require HOA architectural review committee approval before landscape
+        changes. We provide written plant lists, species descriptions, and design specs in the format
+        most associations require. We've worked with HOA boards throughout the corridor and understand
+        the typical approval timelines.
+      </p>
+
+      <h2>Pinellas County Invasive Plant Rules</h2>
+      <p>
+        Florida prohibits planting several common nursery species that are now classified as invasive.
+        Brazilian Pepper (<em>Schinus terebinthifolia</em>), Schefflera (<em>Brassaia actinophylla</em>),
+        Air Potato (<em>Dioscorea bulbifera</em>), and Climbing Fern (<em>Lygodium microphyllum</em>)
+        must not be planted in Pinellas County. We specify only compliant species on every project.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'What plants survive salt spray on Gulf Blvd beachfront properties?', a: 'Bougainvillea, Ixora, Plumbago, Sago Palm, Croton, and Bird of Paradise are our core palette. For ground covers: Asiatic jasmine, perennial peanut, and Beach Sunflower all handle salt spray well.' },
+          { q: 'Do you help with HOA approval for landscape redesigns?', a: 'Yes. We provide written plant lists and design specs in the format most HOA architectural review committees require. We\'ve worked with boards in Indian Rocks Beach, Treasure Island, and St. Pete Beach.' },
+          { q: 'Are there invasive plants I should avoid in Pinellas County?', a: 'Yes: Brazilian Pepper, Schefflera, Air Potato, and Climbing Fern are all invasive and prohibited. We specify only compliant, non-invasive species on every project.' },
+          { q: 'How long does a landscape installation take?', a: 'A typical residential redesign takes 1–2 days. Larger projects with irrigation, mulching, and ground covers may take 3–5 days. We provide a timeline at the design consultation.' },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/landscape-design').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Landscape Design Consultation" />
+    </div>
+  </div>
+</BaseLayout>

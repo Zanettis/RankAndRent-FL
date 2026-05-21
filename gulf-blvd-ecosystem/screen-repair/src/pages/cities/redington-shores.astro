@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Redington Shores';
+const citySlug = 'redington-shores';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `Do you replace rusted pool cage screws in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — replacing rusted steel screws with Nylo-Tec or stainless fasteners is one of our most common services in ${city} and throughout the Redington area. Salt air along Gulf Blvd accelerates steel corrosion, and rusted fasteners compromise the structural integrity of your pool cage. We inspect fasteners during every estimate visit.` } },
+    { '@type': 'Question', name: `How much does pool cage rescreening cost in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Full pool cage rescreening in ${city} typically costs $1,200–$3,500 depending on cage size and mesh type. Individual panel repairs run $75–$200. Written estimates provided before any work begins.` } },
+    { '@type': 'Question', name: `Do you serve ${city} for screen enclosure repair?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — ${city} is within our primary service area along Gulf Blvd. We serve all screen enclosure and pool cage repair needs in ${city} including rescreening, panel repair, storm damage, and fastener replacement.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Screen Repair ${city} FL | Pool Cage Rescreening Redington`}
+  description={`Pool cage rescreening and screen enclosure repair in ${city}, FL. Replace rusted pool cage screws. Storm damage repair and lanai screening along Gulf Blvd. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Pool Cage & Screen Repair in ${city}, FL`}
+    subheadline={`Trusted screen repair for ${city} homeowners. Pool cage rescreening, screw replacement, and storm damage repair along Gulf Blvd — coastal-grade materials, written estimates.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Screen Repair in {city}, FL</h2>
+      <p>
+        {city} is a small Gulf Blvd barrier island community in Pinellas County with many
+        waterfront homes that feature pool cages and screened lanais. Like all communities
+        on the Gulf Blvd corridor, {city} properties face significant salt air exposure from
+        the Gulf of Mexico that accelerates screen degradation and fastener corrosion.
+      </p>
+
+      <h2>Replace Rusted Pool Cage Screws in {city}</h2>
+      <p>
+        Rusted fasteners are the most common hidden structural problem we find in {city} pool
+        cages. Standard steel screws begin to oxidize within 2–3 years of installation in coastal
+        salt air. We replace them with Nylo-Tec or stainless steel hardware specifically rated
+        for Gulf Coast environments, significantly extending the structural life of your enclosure.
+      </p>
+
+      <h2>Services We Provide in {city}</h2>
+      <ul>
+        <li><a href="/services/pool-cage-rescreening">Full Pool Cage Rescreening</a></li>
+        <li><a href="/services/screen-panel-repair">Individual Panel Repair</a></li>
+        <li><a href="/services/lanai-porch-screening">Lanai & Porch Screening</a></li>
+        <li><a href="/services/storm-damage-repair">Storm Damage Repair</a></li>
+        <li><a href="/services/screw-fastener-replacement">Screw & Fastener Replacement</a></li>
+        <li><a href="/services/pet-screen-installation">Pet Screen Installation</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.slice(0, 6).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((item) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {item.name}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{item.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

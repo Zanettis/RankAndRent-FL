@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Screen Door Repair',
+  name: 'Screen Door Repair & Replacement — Gulf Blvd, FL',
+  description: 'Pool cage and lanai screen door repair along Gulf Boulevard, FL. Frame straightening, rescreening, spring and latch hardware replacement. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Screen Door Repair', item: `${SITE_CONFIG.domain}/services/screen-door-repair/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Screen Door Repair Gulf Blvd FL | Pool Cage Door Rescreening"
+  description="Pool cage and lanai screen door repair along Gulf Blvd, FL. Rescreening, frame straightening, spring and latch replacement. Licensed & insured. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Screen Door Repair & Replacement on Gulf Blvd"
+    subheadline="Pool cage and lanai screen doors take more abuse than any other part of the enclosure. We repair torn door screens, bent frames, broken springs, and failed latches."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Screen Door Repair</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Why Screen Doors Fail First</h2>
+      <p>
+        The screen door is the highest-traffic part of your pool cage or lanai enclosure. It's
+        opened and closed dozens of times a day, pushed by dogs, slammed in the wind, and
+        subjected to more mechanical stress than any static panel. On the Gulf Coast, salt air
+        corrodes the spring tension hardware and latches faster than in inland areas, making
+        door failures even more common.
+      </p>
+
+      <h2>Screen Door Services We Provide</h2>
+      <ul>
+        <li><strong>Door Rescreening</strong> — Remove old mesh and install fresh screen with new spline</li>
+        <li><strong>Frame Straightening</strong> — Bend back warped aluminum door frames from impact or wind</li>
+        <li><strong>Spring Replacement</strong> — Replace worn or broken door closing springs</li>
+        <li><strong>Latch & Hardware Replacement</strong> — Install new corrosion-resistant door latches and hinges</li>
+        <li><strong>Full Door Replacement</strong> — Supply and install a complete new screen door when the frame is beyond repair</li>
+        <li><strong>Pet Door Panels</strong> — Install pet screen in doors for households with dogs</li>
+      </ul>
+
+      <h2>Salt Air & Door Hardware</h2>
+      <p>
+        Standard steel door hardware corrodes rapidly in Gulf Coast salt air. We use
+        stainless steel and powder-coated aluminum hardware on all door repairs to extend
+        the life of the repair. A door spring that fails in 6 months in a coastal environment
+        because of salt corrosion is a warranty problem we'd rather avoid by using the right
+        materials from the start.
+      </p>
+
+      <h2>Cost of Screen Door Repair</h2>
+      <p>
+        Door rescreening alone typically runs $75–$150. With frame or hardware work, expect
+        $100–$250 depending on what's needed. Full door replacement (supply and install) runs
+        $200–$400. All estimates are written and provided before any work starts.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/screen-door-repair').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Screen Door Repair Estimate" />
+    </div>
+  </div>
+</BaseLayout>

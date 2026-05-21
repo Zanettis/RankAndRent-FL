@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Storm Damage Screen Repair',
+  name: 'Storm Damage Screen Repair — Gulf Blvd, FL',
+  description: 'Emergency storm damage screen repair for pool cages and lanais along Gulf Boulevard, FL after tropical storms and hurricanes. Fast response. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Storm Damage Repair', item: `${SITE_CONFIG.domain}/services/storm-damage-repair/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Storm Damage Screen Repair Gulf Blvd FL | After Hurricane & Tropical Storm"
+  description="Emergency screen repair after tropical storms and hurricanes along Gulf Blvd, FL. Pool cage and lanai screen restoration. Fast response, free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Storm Damage Screen Repair Along Gulf Blvd"
+    subheadline="After a tropical storm or hurricane hits the Gulf Beaches, we're ready. We prioritize screen repair calls from Indian Rocks Beach to St. Pete Beach following major weather events."
+    ctaText="Call for Emergency Service"
+    ctaHref={`tel:${SITE_CONFIG.phone}`}
+    secondaryCtaText="Get a Free Estimate"
+    secondaryCtaHref="/contact"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Storm Damage Repair</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>What Happens to Pool Cages in a Tropical Storm</h2>
+      <p>
+        Gulf Boulevard properties are directly in the path of tropical weather systems that move
+        through the Gulf of Mexico. Even a tropical storm — not a full hurricane — can generate
+        sustained winds of 40–70 mph that blow out multiple screen panels, bend frame sections,
+        and launch debris that tears through enclosures. After a storm, the window between
+        "get it fixed" and "mosquito season starts" is short.
+      </p>
+
+      <h2>Common Storm Damage We Repair</h2>
+      <ul>
+        <li>Multiple blown-out screen panels across the enclosure</li>
+        <li>Panels torn by flying debris (branches, lawn furniture, neighboring debris)</li>
+        <li>Screen door frames bent by wind pressure</li>
+        <li>Spline popped out of channels from wind stress</li>
+        <li>Full cage rescreening after catastrophic storm damage</li>
+        <li>Frame straightening and fastener replacement following structural stress</li>
+      </ul>
+
+      <h2>Why Fast Response Matters After a Storm</h2>
+      <p>
+        A torn pool cage screen is an open invitation for mosquitoes, no-see-ums, and
+        debris to enter your pool area. After a storm, standing water accumulates everywhere —
+        exactly the conditions mosquitoes breed in. The sooner you get your enclosure
+        resealed, the better.
+      </p>
+      <p>
+        For vacation rental owners along Gulf Blvd, storm damage means lost bookings and
+        potential negative reviews if guests arrive to a compromised pool area. We offer
+        priority scheduling for rental properties after major weather events.
+      </p>
+
+      <h2>Insurance Documentation</h2>
+      <p>
+        We provide written damage assessments that can be submitted to your homeowner's or
+        flood insurance carrier. Document damage with photos before we begin repairs — most
+        carriers require a photo record of pre-repair condition.
+      </p>
+    </div>
+
+    <div class="mt-12 p-6 bg-accent/10 border border-accent/30 rounded-xl">
+      <h3 class="text-xl font-bold text-primary mb-2">Storm Damage? Call Us Now</h3>
+      <p class="text-gray-700 mb-4">We prioritize storm repair calls following major weather events along Gulf Blvd. The sooner you call, the faster we can get you scheduled.</p>
+      <a href={`tel:${SITE_CONFIG.phone}`} class="inline-block bg-cta text-white font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
+        Call {SITE_CONFIG.phone}
+      </a>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/storm-damage-repair').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Storm Damage Assessment" />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Landscaping Blog | Gulf Blvd Homeowner Guides"
+  description="Lawn care, landscape design, and hurricane prep advice for Gulf Blvd homeowners — St. Augustine grass, SWFWMD irrigation rules, salt-tolerant plants, mulching, and more for Gulf Coast Florida."
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-10">
+      <h1 class="text-4xl font-bold text-primary mb-4">Landscaping Blog</h1>
+      <p class="text-gray-600 text-lg">
+        Practical landscape guides for Gulf Blvd homeowners — covering St. Augustine grass care,
+        hurricane season prep, SWFWMD irrigation rules, salt-tolerant plant selection, and
+        everything else Gulf Coast Florida homeowners need to know about maintaining and
+        improving their landscape.
+      </p>
+    </div>
+
+    {posts.length === 0 ? (
+      <p class="text-gray-500">No posts yet. Check back soon!</p>
+    ) : (
+      <div class="grid gap-6">
+        {posts.map((post) => (
+          <BlogPostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            slug={post.slug}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

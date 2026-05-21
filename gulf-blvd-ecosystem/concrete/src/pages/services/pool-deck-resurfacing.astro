@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Pool Deck Resurfacing',
+  name: 'Pool Deck Resurfacing — Gulf Blvd, FL',
+  description: 'Pool deck resurfacing, installation, and repair along Gulf Boulevard, FL. Concrete overlays, marine-grade sealers, and slip-resistant finishes for coastal Florida properties.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+  offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: '3', maxPrice: '18', priceCurrency: 'USD' } },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Pool Deck Resurfacing', item: `${SITE_CONFIG.domain}/services/pool-deck-resurfacing/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Pool Deck Resurfacing Gulf Blvd FL | Overlay, Repair & New Installation"
+  description="Pool deck resurfacing and installation along Gulf Boulevard, FL. Concrete overlays, stamped finishes, and marine-grade sealing. Serving Indian Rocks Beach to Clearwater Beach. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Pool Deck Resurfacing on Gulf Blvd, FL"
+    subheadline="Transform your tired, salt-damaged pool deck without the cost of full replacement. Concrete overlays and marine-grade finishes built for Florida's coastal environment."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Pool Deck Resurfacing</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>When Is Resurfacing the Right Choice?</h2>
+      <p>
+        Full pool deck replacement costs $15,000–$30,000+ on a typical Gulf Blvd property.
+        If the existing concrete is structurally sound — no major cracking, no settled sections,
+        no spalling that exposes the base — resurfacing with a concrete overlay is a
+        cost-effective alternative that achieves the same visual result for $3–$8 per square foot.
+      </p>
+
+      <h2>Our Pool Deck Resurfacing Process</h2>
+      <ol>
+        <li><strong>Surface assessment:</strong> We inspect the existing deck for structural integrity, determine crack patterns, and identify whether the surface can accept an overlay</li>
+        <li><strong>Surface prep:</strong> Pressure washing, crack repair, and mechanical preparation to ensure proper adhesion</li>
+        <li><strong>Overlay application:</strong> Marine-grade cementitious overlay applied to manufacturer spec thickness</li>
+        <li><strong>Finish:</strong> Broom, stamped, slate texture, or exposed aggregate based on your preference</li>
+        <li><strong>Sealing:</strong> Marine-grade penetrating or topcoat sealer applied after full cure</li>
+      </ol>
+
+      <h2>Finish Options for Gulf Coast Pool Decks</h2>
+      <ul>
+        <li><strong>Kool Deck / Sundek:</strong> Cool-to-touch acrylic coating popular in FL for bare-foot comfort</li>
+        <li><strong>Stamped overlay:</strong> Mimics travertine, brick, or stone at a fraction of the cost</li>
+        <li><strong>Exposed aggregate:</strong> Natural stone look with excellent slip resistance</li>
+        <li><strong>Spray texture:</strong> Economical and durable non-slip finish</li>
+      </ul>
+
+      <h2>Pool Deck Resurfacing Cost on Gulf Blvd</h2>
+      <p>
+        Resurfacing costs $3–$8 per square foot depending on the overlay system chosen and
+        condition of the existing surface. New pool deck installation runs $8–$18 per square foot.
+        We provide free written estimates after assessing your specific deck.
+      </p>
+
+      <h2>Serving All of Gulf Boulevard</h2>
+      <p>
+        We resurface pool decks throughout Indian Rocks Beach, Indian Shores, Redington Shores,
+        Redington Beach, Madeira Beach, Treasure Island, St. Pete Beach, and Clearwater Beach.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/pool-deck-resurfacing').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Pool Deck Estimate" />
+    </div>
+  </div>
+</BaseLayout>

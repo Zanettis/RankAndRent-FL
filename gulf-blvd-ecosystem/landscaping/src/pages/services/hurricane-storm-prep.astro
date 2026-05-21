@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'HomeAndConstructionBusiness',
+  name: 'Hurricane & Storm Landscape Prep — Gulf Blvd, FL',
+  description: '24/7 storm cleanup and pre-season landscape hardening. Palm frond trimming, securing loose mulch, cutting back overgrowth before June 1st. Post-storm debris removal.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Hurricane & Storm Prep', item: `${SITE_CONFIG.domain}/services/hurricane-storm-prep/` },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'When should I book hurricane landscape prep on Gulf Blvd?', acceptedAnswer: { '@type': 'Answer', text: 'Book in April or May — at least 6 weeks before June 1st. Booking in late May means you\'re competing with every other homeowner on the corridor for the same limited pre-season slots. We typically sell out by mid-May. Earlier is always better.' } },
+    { '@type': 'Question', name: 'Should I trim my palms before a hurricane?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — but only dead fronds. Never remove green fronds from a palm before a hurricane. Green fronds protect the bud (growing point at the top of the trunk). Remove only brown, dead fronds that are hanging or pulling down. Over-trimming a palm causes stress and doesn\'t improve wind performance.' } },
+    { '@type': 'Question', name: 'What type of mulch is best for hurricane-prone properties?', acceptedAnswer: { '@type': 'Answer', text: 'Rubber mulch is the most storm-resistant option — it\'s heavier and stays in place at higher wind speeds. Pine bark nuggets (larger pieces) also perform better than fine mulch in wind. Standard fine-shredded wood mulch becomes airborne above 45 mph. We can replace existing mulch with rubber or larger-format options as part of pre-season prep.' } },
+    { '@type': 'Question', name: 'What does post-storm landscape cleanup include?', acceptedAnswer: { '@type': 'Answer', text: 'Post-storm cleanup includes debris removal (fallen branches, scattered mulch, blown-in material), salt burn assessment (salt-spray on leaves is usually temporary — we advise on whether plants need to be replaced or just recovered), irrigation system inspection (storm surge can damage heads and valves), and re-mulching beds that were washed out.' } },
+  ],
+};
+---
+
+<BaseLayout
+  title="Hurricane Landscape Prep Gulf Blvd FL | Storm Cleanup & Pre-Season Service"
+  description="Pre-hurricane season landscape prep and post-storm cleanup along Gulf Boulevard, FL. Palm trimming, mulch securing, overgrowth cutback. Book April–May. 24/7 storm response. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Hero
+    headline="Hurricane Landscape Prep for Gulf Blvd, FL"
+    subheadline="Pre-season landscape hardening and 24/7 post-storm cleanup for Gulf Blvd properties. Palm trimming, mulch securing, overgrowth cutback. Book April–May before slots fill."
+    ctaText="Book Pre-Season Prep"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Hurricane & Storm Prep</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Why Gulf Blvd Landscapes Need Special Hurricane Prep</h2>
+      <p>
+        On Gulf Blvd, your landscape is your first line of defense in a hurricane — and also
+        your biggest liability if it isn't prepared. Loose mulch becomes a high-speed projectile
+        at 45+ mph winds. An overgrown Bougainvillea with its full leaf canopy acts as a sail
+        that can tear entire beds out of the ground. A heavy-frond palm adjacent to a pool cage
+        can fail onto the screen in a Category 1 storm.
+      </p>
+      <p>
+        The pre-season prep window is April through May. By June 1st — the official start of
+        hurricane season — the work should be done. We typically sell out our pre-season schedule
+        by mid-May. Book early.
+      </p>
+
+      <h2>What Pre-Season Prep Includes</h2>
+      <ul>
+        <li><strong>Palm frond trimming:</strong> Dead fronds only — never remove green fronds. Green fronds protect the bud at the top of the trunk. Dead fronds hanging down are a storm hazard and should be removed annually.</li>
+        <li><strong>Ornamental and shrub cutback:</strong> Reducing canopy size on Bougainvillea, Bird of Paradise, and other large ornamentals reduces their wind resistance significantly. This is not the same as pruning for aesthetics — it's strategic canopy reduction.</li>
+        <li><strong>Mulch assessment:</strong> We evaluate whether your current mulch type will stay in place. If you have fine shredded wood mulch, we can replace it with rubber mulch or pine bark nuggets before the season.</li>
+        <li><strong>Irrigation head protection:</strong> We mark and protect irrigation heads in areas vulnerable to storm surge or heavy runoff.</li>
+        <li><strong>Potted plant inventory:</strong> We advise on which potted plants and outdoor planters need to be moved inside or staked before a named storm.</li>
+      </ul>
+
+      <h2>Post-Storm Landscape Cleanup</h2>
+      <p>
+        After a hurricane or tropical storm, we're available 24/7 for cleanup. Post-storm service
+        includes debris removal, salt burn assessment, re-mulching, and irrigation system inspection.
+        Salt spray during a storm can burn leaf tissue on tropical plants — we assess whether the
+        damage is cosmetic (plants recover with new growth) or whether replacement is necessary.
+        We document everything photographically for property insurance purposes on request.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'When should I book hurricane landscape prep on Gulf Blvd?', a: 'Book in April or May — at least 6 weeks before June 1st. Pre-season slots fill by mid-May. Earlier is always better.' },
+          { q: 'Should I trim my palms before a hurricane?', a: 'Yes — dead fronds only. Never remove green fronds before a hurricane. Green fronds protect the bud. Remove only brown, dead fronds that are hanging or pulling down.' },
+          { q: 'What type of mulch is best for hurricane-prone properties?', a: 'Rubber mulch is most storm-resistant — heavier and stays in place at higher wind speeds. Pine bark nuggets also perform better than fine shredded mulch in wind. Fine mulch becomes airborne above 45 mph.' },
+          { q: 'What does post-storm landscape cleanup include?', a: 'Debris removal, salt burn assessment, irrigation system inspection, and re-mulching washed-out beds. We document damage photographically for insurance purposes on request.' },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/hurricane-storm-prep').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Book Your Hurricane Prep — Slots Fill Fast" />
+    </div>
+  </div>
+</BaseLayout>

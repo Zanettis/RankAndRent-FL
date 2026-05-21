@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Concrete Foundations',
+  name: 'Hurricane-Ready Concrete Foundations — Gulf Blvd, FL',
+  description: 'Concrete foundations poured to Florida Building Code standards for hurricane-zone Pinellas County. Proper mix design, reinforcement, and inspection compliance.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Concrete Foundations', item: `${SITE_CONFIG.domain}/services/concrete-foundations/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Concrete Foundations Gulf Blvd FL | Hurricane-Ready, FL Building Code"
+  description="Concrete foundations for Pinellas County's hurricane zone — poured to Florida Building Code, proper reinforcement and mix design for salt-air coastal environments. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Hurricane-Ready Concrete Foundations on Gulf Blvd, FL"
+    subheadline="Foundations poured to Florida Building Code standards — designed for Pinellas County's hurricane zone wind loads and coastal soil conditions."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Hurricane-Ready Concrete Foundations</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Foundations Built for Pinellas County's Hurricane Zone</h2>
+      <p>
+        Pinellas County sits in one of Florida's most active hurricane corridors. Foundations
+        here must meet Florida Building Code requirements for high-wind zones, which exceed
+        the standards used in most other states. Every foundation we pour is designed to
+        meet or exceed these requirements — not the minimum standard from a catalog.
+      </p>
+
+      <h2>What We Pour Foundations For</h2>
+      <ul>
+        <li>Residential additions and room expansions</li>
+        <li>Pool cage and screen enclosure concrete bases</li>
+        <li>Accessory structures (sheds, garages, workshops)</li>
+        <li>Outdoor kitchen and pergola footings</li>
+        <li>Generator pads and mechanical equipment bases</li>
+        <li>Seawall and dock approach slabs</li>
+      </ul>
+
+      <h2>Pool Cage Concrete Bases</h2>
+      <p>
+        Pool cage foundations are a specialty of ours on Gulf Blvd. The base anchors and
+        foundation posts of a pool cage are exposed to constant salt-air and must be poured
+        with appropriate mix design to resist chloride-induced corrosion of embedded anchor
+        bolts and hardware. We use non-ferrous or hot-dipped galvanized hardware in
+        foundation work near the coast.
+      </p>
+
+      <h2>Permitting and Inspections</h2>
+      <p>
+        Foundation work in Pinellas County requires permits and inspections. We handle the
+        permit process and schedule required inspections to ensure your project is fully
+        code-compliant and insurable.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/concrete-foundations').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Foundation Estimate" />
+    </div>
+  </div>
+</BaseLayout>

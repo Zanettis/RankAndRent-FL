@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Madeira Beach';
+const citySlug = 'madeira-beach';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `Do you offer landscape cleanup for vacation rental properties in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — ${city} has one of the highest vacation rental densities on the Gulf Blvd corridor. We offer priority post-storm cleanup for property managers with tight turnaround requirements. Post-storm service includes debris removal, salt burn assessment, re-mulching, and irrigation inspection. We understand the deadline pressure between guest check-out and check-in.` } },
+    { '@type': 'Question', name: `How quickly can you respond after a hurricane in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `${city} is one of our priority service areas after named storms. We typically reach ${city} properties within 24–48 hours of storm clearance. Properties with fallen material on structures or blocking access get priority. If you manage multiple rental properties in ${city}, contact us before storm season to set up a priority response agreement.` } },
+    { '@type': 'Question', name: `What landscaping services are available near John's Pass in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `We serve all of ${city} including the John's Pass area. Services include lawn care, landscape design (salt-tolerant tropical species for the high-salt-exposure environment near the Pass), hurricane prep, irrigation installation and repair, and mulching. The mixed commercial and residential character of the John's Pass corridor means we have experience with both commercial property grounds and residential lots.` } },
+    { '@type': 'Question', name: `Do you service ${city} condo associations and HOAs?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${city} has several condo associations with HOA-managed common area landscaping. We bid on and manage HOA maintenance contracts — regular mowing, bed maintenance, irrigation maintenance, and seasonal plant programs. We provide documentation and reporting suitable for HOA board meetings and property management company requirements.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Landscaping ${city} FL | Vacation Rental Landscape Maintenance & Storm Cleanup`}
+  description={`Professional landscaping in ${city}, FL. Priority post-storm cleanup for vacation rentals, HOA grounds maintenance, tropical design near John's Pass. Licensed & insured. Free estimates.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Landscaping in ${city}, FL — Fast, Reliable, After Every Storm`}
+    subheadline={`Post-storm landscape cleanup, year-round lawn maintenance, and tropical design in ${city}. Priority scheduling for vacation rental property managers. Free estimates.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Landscaping in {city}, FL</h2>
+      <p>
+        {city} is the most active vacation rental community on the Gulf Blvd corridor — home to
+        John's Pass Village and Boardwalk, and with a higher density of short-term rentals than
+        any other municipality on the stretch. After every named storm, we get more calls from
+        {city} property managers than anywhere else on Gulf Blvd.
+      </p>
+      <p>
+        Post-storm landscape cleanup timing is critical for rental properties: scattered debris,
+        blown-out mulch, and damaged ornamentals mean a bad first impression for arriving guests
+        and potential negative reviews. Our priority scheduling for rental property managers in
+        {city} is designed to clear and restore properties quickly between guest stays. We also
+        offer year-round lawn maintenance contracts and pre-season hurricane prep to minimize
+        post-storm cleanup work in the first place.
+      </p>
+
+      <h2>Services Available in {city}</h2>
+      <ul>
+        <li><a href="/services/lawn-care">Lawn Care & Grass Cutting</a> — Year-round St. Augustine maintenance with priority scheduling for rentals</li>
+        <li><a href="/services/landscape-design">Landscape Design & Installation</a> — Salt-tolerant tropical plantings for Gulf-front and John's Pass properties</li>
+        <li><a href="/services/hurricane-storm-prep">Hurricane & Storm Prep</a> — Pre-season prep and 24/7 post-storm cleanup</li>
+        <li><a href="/services/irrigation-systems">Irrigation Systems</a> — Installation, repair, and SWFWMD-compliant programming</li>
+        <li><a href="/services/mulching-ground-cover">Mulching & Ground Cover</a> — Storm-resistant rubber mulch and pine bark for rental properties</li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {[
+          { q: `Do you offer landscape cleanup for vacation rental properties in ${city}?`, a: `Yes — priority post-storm cleanup for rental property managers. Debris removal, salt burn assessment, re-mulching, and irrigation inspection on a tight turnaround timeline.` },
+          { q: `How quickly can you respond after a hurricane in ${city}?`, a: `${city} is a priority service area. We typically reach properties within 24–48 hours of storm clearance. Contact us before storm season to set up a priority response agreement for multiple rentals.` },
+          { q: `What landscaping services are available near John's Pass in ${city}?`, a: `All services: lawn care, landscape design, hurricane prep, irrigation, and mulching. We serve the full city including the John's Pass corridor's mix of commercial and residential properties.` },
+          { q: `Do you service ${city} condo associations and HOAs?`, a: `Yes — we bid on and manage HOA maintenance contracts. Regular mowing, bed maintenance, irrigation, and seasonal plants. Documentation and reporting suitable for HOA board requirements.` },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>

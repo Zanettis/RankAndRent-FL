@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Screw & Fastener Replacement',
+  name: 'Pool Cage Screw & Fastener Replacement — Gulf Blvd, FL',
+  description: 'Replace rusted steel pool cage screws with Nylo-Tec or stainless fasteners rated for Gulf Coast salt air. Structural safety upgrade. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Screw & Fastener Replacement', item: `${SITE_CONFIG.domain}/services/screw-fastener-replacement/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Pool Cage Screw Replacement Gulf Blvd FL | Nylo-Tec & Stainless Fasteners"
+  description="Replace rusted pool cage screws with Nylo-Tec or stainless steel fasteners rated for Gulf Coast salt air. Structural safety upgrade along Gulf Blvd, FL. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Pool Cage Screw & Fastener Replacement on Gulf Blvd"
+    subheadline="Rusted steel screws are the hidden structural threat in Gulf Coast pool cages. We replace corroded fasteners with Nylo-Tec or stainless steel hardware rated for salt-air environments."
+    ctaText="Get a Free Inspection"
+    ctaHref="/contact"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Screw & Fastener Replacement</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>The Hidden Danger: Rusted Pool Cage Fasteners</h2>
+      <p>
+        Most homeowners focus on the screen mesh when assessing their pool cage — but the real
+        structural risk is in the fasteners. Standard pool cage frames use steel screws at every
+        joint connection. In Gulf Coast salt air, those steel screws begin to oxidize within
+        months and can lose 60–80% of their holding strength within a few years.
+      </p>
+      <p>
+        A pool cage held together by severely rusted fasteners can separate or partially collapse
+        in a tropical storm — turning your enclosure into airborne debris. This is not a cosmetic
+        issue. It's a structural safety issue.
+      </p>
+
+      <h2>Signs Your Fasteners Need Replacement</h2>
+      <ul>
+        <li>Orange or brown rust staining around screw heads on the frame</li>
+        <li>Screws that spin freely without gripping (stripped corrosion)</li>
+        <li>Frame sections that move or flex at connection points</li>
+        <li>Your cage is more than 8–10 years old and has never had fasteners inspected</li>
+        <li>Recent storm damage or frame movement that suggests structural weakness</li>
+      </ul>
+
+      <h2>Nylo-Tec vs. Stainless Steel Fasteners</h2>
+      <p>
+        We use two types of coastal-rated fasteners depending on your cage and budget:
+      </p>
+      <ul>
+        <li>
+          <strong>Nylo-Tec Fasteners:</strong> Nylon-coated screws specifically designed for
+          aluminum screen enclosures in coastal environments. Dramatically more corrosion-resistant
+          than standard steel. Industry standard for Florida pool cage work.
+        </li>
+        <li>
+          <strong>Stainless Steel Screws:</strong> Maximum corrosion resistance, ideal for the
+          most severe salt air exposure (direct beachfront properties). Higher cost than Nylo-Tec
+          but virtually immune to rust.
+        </li>
+      </ul>
+
+      <h2>When We Replace Fasteners</h2>
+      <p>
+        We inspect and can replace fasteners as a standalone service, or as part of a screen
+        repair or rescreening job. We always inspect fastener condition during our free estimate
+        and will flag any structural concerns before beginning screen work.
+      </p>
+    </div>
+
+    <div class="mt-8 p-5 bg-yellow-50 border border-yellow-200 rounded-xl">
+      <h3 class="font-bold text-gray-800 mb-2">⚠️ Structural Safety Note</h3>
+      <p class="text-gray-700 text-sm">
+        If your cage shows significant rust staining or frame movement at joints, we recommend
+        a fastener inspection before the next storm season. A free estimate takes 15–20 minutes
+        and gives you a clear picture of your cage's structural integrity.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/screw-fastener-replacement').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Fastener Inspection & Estimate" />
+    </div>
+  </div>
+</BaseLayout>

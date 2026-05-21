@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gulfblvdconcrete.com/sitemap-index.xml

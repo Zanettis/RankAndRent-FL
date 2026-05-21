@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../config';
+---
+
+<BaseLayout
+  title="Privacy Policy | Gulf Blvd Landscaping"
+  description="Privacy policy for Gulf Blvd Landscaping. Learn how we collect, use, and protect your information."
+>
+  <section class="bg-primary text-white py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold">Privacy Policy</h1>
+      <p class="text-white/80 mt-2">Last updated: May 2026</p>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Information We Collect</h2>
+      <p>
+        When you submit a quote request through our website, we collect your name, phone number,
+        email address, and any details you provide about your landscaping project. We do not
+        collect payment information through our website.
+      </p>
+
+      <h2>How We Use Your Information</h2>
+      <p>
+        We use the information you submit solely to respond to your inquiry, provide you with
+        a quote, and schedule service if you choose to proceed. We do not sell, rent, or share
+        your personal information with third parties for marketing purposes.
+      </p>
+
+      <h2>Communications</h2>
+      <p>
+        By submitting a quote request, you consent to being contacted by {SITE_CONFIG.name} via
+        phone or email to discuss your project. You may opt out of further communications at
+        any time by replying to any email with "unsubscribe" or by calling us directly.
+      </p>
+
+      <h2>Data Security</h2>
+      <p>
+        We take reasonable steps to protect your personal information from unauthorized access.
+        Form submissions are transmitted securely and stored only as long as necessary to
+        fulfill your service request.
+      </p>
+
+      <h2>Cookies & Analytics</h2>
+      <p>
+        Our website uses Google Analytics to understand how visitors interact with our site.
+        This data is collected anonymously and does not include personally identifiable information.
+        You can opt out of Google Analytics by using the Google Analytics Opt-out Browser Add-on.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        If you have questions about this privacy policy, contact us at{' '}
+        <a href={`mailto:${SITE_CONFIG.email}`}>{SITE_CONFIG.email}</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

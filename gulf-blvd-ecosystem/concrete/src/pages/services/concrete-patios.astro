@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Concrete Patios',
+  name: 'Concrete Patios & Outdoor Living — Gulf Blvd, FL',
+  description: 'Custom concrete patios for coastal Florida outdoor living — stamped, colored, and decorative options. Licensed and insured. Free estimates.',
+  provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
+  areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_CONFIG.domain}/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Concrete Patios', item: `${SITE_CONFIG.domain}/services/concrete-patios/` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Concrete Patios Gulf Blvd FL | Custom Outdoor Living Spaces"
+  description="Custom concrete patios and outdoor living spaces along Gulf Boulevard, FL. Stamped, colored, and decorative concrete rated for Florida's coastal climate. Free estimates."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline="Concrete Patios & Outdoor Living on Gulf Blvd, FL"
+    subheadline="Custom concrete patios built for Gulf Coast outdoor living — stamped, colored, or clean brushed finish, rated for Florida humidity, UV, and salt air."
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/services" class="hover:text-primary">Services</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Concrete Patios & Outdoor Living</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Concrete Patios for Gulf Coast Properties</h2>
+      <p>
+        A concrete patio on a Gulf Blvd property needs to handle Florida's full outdoor
+        environment — intense summer sun that heats surfaces to 130°F+, afternoon thunderstorms,
+        salt-air humidity, and the occasional hurricane. We design and pour patios specifically
+        for this environment, not the same specs used for a patio in Central Florida.
+      </p>
+
+      <h2>Patio Design Options</h2>
+      <ul>
+        <li><strong>Stamped concrete:</strong> Mimics the look of travertine, brick, slate, or cobblestone. Extremely popular in coastal FL for its resort aesthetic.</li>
+        <li><strong>Colored concrete:</strong> Integral or surface-applied color that matches your home's palette or the coastal environment.</li>
+        <li><strong>Brushed/broom finish:</strong> Clean, classic look with excellent slip resistance — the most durable low-maintenance option.</li>
+        <li><strong>Exposed aggregate:</strong> Natural stone aggregate embedded in the surface for texture and visual interest.</li>
+      </ul>
+
+      <h2>Outdoor Kitchen and Entertainment Concrete</h2>
+      <p>
+        We pour concrete bases and surfaces for outdoor kitchens, bar areas, and entertainment
+        spaces — including reinforced concrete countertops and grill surrounds. All work is
+        sealed appropriately for outdoor Florida exposure.
+      </p>
+
+      <h2>Patio Cost on Gulf Blvd</h2>
+      <p>
+        Plain concrete patios start at $6–$10 per square foot installed. Stamped or decorative
+        concrete runs $12–$20 per square foot depending on pattern complexity and color.
+        We provide free written estimates with itemized costs before any work begins.
+      </p>
+
+      <h2>Serving All of Gulf Boulevard</h2>
+      <p>
+        We install concrete patios throughout Indian Rocks Beach, Indian Shores, Redington
+        Shores, Redington Beach, Madeira Beach, Treasure Island, St. Pete Beach, and
+        Clearwater Beach.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Other Services We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.filter(s => s.href !== '/services/concrete-patios').slice(0, 3).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading="Get Your Free Patio Estimate" />
+    </div>
+  </div>
+</BaseLayout>

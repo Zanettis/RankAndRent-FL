@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SITE_CONFIG } from '../../config';
+
+const city = 'Treasure Island';
+const citySlug = 'treasure-island';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: `How much does lanai screen repair cost in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Lanai screen repair in ${city} typically costs $75–$200 per panel for individual repairs. Full lanai rescreening runs $800–$2,500 depending on size and mesh type. We provide free on-site estimates with no obligation.` } },
+    { '@type': 'Question', name: `Do you offer pool cage rescreening in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Yes — pool cage rescreening is our most common service in ${city}. We use coastal-grade mesh rated for Gulf Blvd salt air exposure and inspect all fasteners during the estimate visit. Full cage rescreening typically takes 1–2 days.` } },
+    { '@type': 'Question', name: `Can you repair screen damage for vacation rentals in ${city}?`, acceptedAnswer: { '@type': 'Answer', text: `Absolutely. ${city} is a major vacation rental market on Gulf Blvd. We offer priority scheduling for property managers who need fast turnaround between guest check-outs and check-ins.` } },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_CONFIG.domain },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: `${SITE_CONFIG.domain}/cities/` },
+    { '@type': 'ListItem', position: 3, name: city, item: `${SITE_CONFIG.domain}/cities/${citySlug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={`Screen Repair ${city} FL | Lanai & Pool Cage Rescreening`}
+  description={`Pool cage rescreening and lanai screen repair in ${city}, FL. Storm damage, pet screen, and fastener replacement along Gulf Blvd. Free estimates. Licensed & insured.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Hero
+    headline={`Pool Cage & Screen Repair in ${city}, FL`}
+    subheadline={`Trusted screen repair for ${city} homeowners and vacation rentals. Lanai rescreening, pool cage repair, and storm damage service along Gulf Blvd — we answer the phone and show up.`}
+    ctaText="Get a Free Estimate"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">{city}</span>
+    </nav>
+
+    <div class="prose prose-lg max-w-none prose-headings:text-primary">
+      <h2>Screen Repair in {city}, FL</h2>
+      <p>
+        {city} is a Gulf Blvd barrier island community with a mix of long-term residents and
+        high-end vacation rentals. The 7-mile-long island sits between the Gulf of Mexico and
+        Boca Ciega Bay, creating salt air exposure from two directions that accelerates corrosion
+        on aluminum pool cages and screen enclosures.
+      </p>
+
+      <h2>Airbnb & Vacation Rental Screen Repair in {city}</h2>
+      <p>
+        {city}'s vacation rental market is competitive. Properties with a torn pool screen or
+        mosquito-accessible lanai lose reviews quickly — and reviews are revenue. We work with
+        {city} property managers to provide same-week repair service after guest damage or storm events.
+      </p>
+
+      <h2>Services Available in {city}</h2>
+      <ul>
+        <li><a href="/services/pool-cage-rescreening">Full Pool Cage Rescreening</a></li>
+        <li><a href="/services/screen-panel-repair">Individual Panel Repair</a></li>
+        <li><a href="/services/lanai-porch-screening">Lanai & Porch Screening</a></li>
+        <li><a href="/services/storm-damage-repair">Storm Damage Repair</a></li>
+        <li><a href="/services/pet-screen-installation">Pet Screen Installation</a></li>
+        <li><a href="/services/screw-fastener-replacement">Screw & Fastener Replacement</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SITE_CONFIG.services.slice(0, 6).map((s) => (
+          <ServiceCard title={s.title} description={s.description} href={s.href} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-8">Frequently Asked Questions — {city}</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((item) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {item.name}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{item.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <LeadForm heading={`Get a Free Estimate in ${city}`} />
+    </div>
+  </div>
+</BaseLayout>
