@@ -1,13 +1,5 @@
 {
   "buildCommand": "npm run build",
   "installCommand": "cd ../.. && npm install",
-  "framework": "astro",
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.gulfblvdconcrete.com" }],
-      "destination": "https://gulfblvdconcrete.com/:path*",
-      "permanent": true
-    }
-  ]
+  "framework": "astro"
 }
