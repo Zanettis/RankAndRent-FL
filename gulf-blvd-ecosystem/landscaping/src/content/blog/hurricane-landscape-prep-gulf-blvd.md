@@ -27,7 +27,7 @@ The Gulf Blvd corridor is exposed in ways that inland Pinellas County properties
 
 The three main landscape storm hazards on Gulf Blvd:
 
-1. **Loose mulch:** Standard fine shredded wood mulch becomes airborne at sustained winds above 40–45 mph. This creates both landscape damage (beds stripped bare, washing into storm drains) and projectile hazards for windows and screen enclosures.
+1. **Loose mulch:** Standard fine shredded wood mulch becomes airborne at sustained winds above 40–45 mph. This creates both landscape damage (beds stripped bare, washing into storm drains) and projectile hazards for windows and screen enclosures. Pool cage enclosures are especially vulnerable — pre-season [screen and fastener inspection](https://gulfblvdrescreening.com/services/storm-damage-repair) can prevent post-storm damage claims.
 
 2. **Overgrown ornamentals:** A large Bougainvillea or Bird of Paradise with its full summer canopy has significant wind resistance. At 60–80 mph winds, the force on a full-canopy ornamental is enough to dislodge root systems, tear beds apart, and pull irrigation lines.
 
@@ -46,7 +46,7 @@ The myth that severely trimmed palms survive hurricanes better is false. Studies
 
 ### Ornamentals: Canopy Reduction, Not Aesthetic Pruning
 
-The goal of pre-season ornamental work is to reduce wind resistance, not to make the plant look good. These are different objectives that often require different cuts.
+The goal of pre-season ornamental work is to reduce wind resistance, not to make the plant look good. These are different objectives that often require different cuts. For overhanging branches and crown reduction on trees, work with a licensed [ISA-certified arborist on Gulf Blvd](https://gulfblvdtreeexperts.com/services/tree-trimming) — proper crown thinning before a storm reduces wind resistance by up to 40%.
 
 - **Bougainvillea:** Reduce canopy size by 30–50%. Remove long extending canes that are not supported. Leave the core structure intact.
 - **Bird of Paradise (*Strelitzia reginae*):** Remove tall flower stalks and any dead or damaged fronds. Reduce by about one-third overall.

@@ -14,6 +14,7 @@ const serviceSchema = {
   provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
   areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
   offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: '4000', maxPrice: '12000', priceCurrency: 'USD' } },
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.service-description'] },
 };
 
 const breadcrumbSchema = {

@@ -13,6 +13,7 @@ const serviceSchema = {
   description: '24/7 storm cleanup and pre-season landscape hardening. Palm frond trimming, securing loose mulch, cutting back overgrowth before June 1st. Post-storm debris removal.',
   provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
   areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.service-description'] },
 };
 
 const breadcrumbSchema = {

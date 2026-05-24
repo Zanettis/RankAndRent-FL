@@ -13,6 +13,7 @@ const serviceSchema = {
   description: 'Stamped, colored, and decorative concrete for driveways, patios, and pool decks along Gulf Boulevard, FL. Coastal-rated materials and sealers.',
   provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
   areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.service-description'] },
 };
 
 const breadcrumbSchema = {

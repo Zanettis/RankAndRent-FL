@@ -13,6 +13,7 @@ const serviceSchema = {
   description: 'Concrete foundations poured to Florida Building Code standards for hurricane-zone Pinellas County. Proper mix design, reinforcement, and inspection compliance.',
   provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
   areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.service-description'] },
 };
 
 const breadcrumbSchema = {

@@ -13,6 +13,7 @@ const serviceSchema = {
   description: 'Replace rusted steel pool cage screws with Nylo-Tec or stainless fasteners rated for Gulf Coast salt air. Structural safety upgrade. Free estimates.',
   provider: { '@type': 'LocalBusiness', name: SITE_CONFIG.name, url: SITE_CONFIG.domain, telephone: SITE_CONFIG.phone },
   areaServed: SITE_CONFIG.locations.map(l => ({ '@type': 'City', name: l.city })),
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.service-description'] },
 };
 
 const breadcrumbSchema = {

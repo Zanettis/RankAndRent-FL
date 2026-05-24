@@ -1,0 +1,130 @@
+---
+interface Props {
+  magnetId: string;
+  title: string;
+  description: string;
+  ctaText?: string;
+  accentColor?: string;
+}
+
+const {
+  magnetId,
+  title,
+  description,
+  ctaText = 'Send Me the Free Guide',
+} = Astro.props;
+
+const formId = `lm-form-${magnetId}`;
+---
+
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 max-w-lg">
+  <h3 class="text-xl font-bold text-primary mb-1">{title}</h3>
+  <p class="text-gray-600 text-sm mb-5">{description}</p>
+
+  <form id={formId} class="space-y-3" novalidate>
+    <input type="hidden" name="magnetId" value={magnetId} />
+
+    <div>
+      <label for={`${formId}-email`} class="block text-sm font-medium text-gray-700 mb-1">
+        Email Address <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="email"
+        id={`${formId}-email`}
+        name="email"
+        required
+        placeholder="you@example.com"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+      />
+    </div>
+
+    <div>
+      <label for={`${formId}-name`} class="block text-sm font-medium text-gray-700 mb-1">
+        First Name <span class="text-gray-400 font-normal">(optional)</span>
+      </label>
+      <input
+        type="text"
+        id={`${formId}-name`}
+        name="name"
+        placeholder="John"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+      />
+    </div>
+
+    <div id={`${formId}-error`} class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2.5"></div>
+
+    <button
+      type="submit"
+      id={`${formId}-submit`}
+      class="w-full bg-cta text-white py-3 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
+    >
+      {ctaText}
+    </button>
+
+    <p class="text-xs text-gray-400 text-center">No spam. Unsubscribe anytime.</p>
+  </form>
+
+  <div id={`${formId}-success`} class="hidden text-center py-6">
+    <div class="text-4xl mb-3">✓</div>
+    <p class="font-bold text-primary text-lg">Check your inbox!</p>
+    <p class="text-sm text-gray-500 mt-1">The guide is on its way to your email.</p>
+  </div>
+</div>
+
+<script define:vars={{ formId, magnetId }}>
+  const form = document.getElementById(formId);
+  const submitBtn = document.getElementById(`${formId}-submit`);
+  const errorBox = document.getElementById(`${formId}-error`);
+  const successBox = document.getElementById(`${formId}-success`);
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !submitBtn || !errorBox || !successBox) return;
+
+    const emailInput = form.elements.namedItem('email');
+    const nameInput = form.elements.namedItem('name');
+
+    const email = emailInput ? emailInput.value.trim() : '';
+    const name = nameInput ? nameInput.value.trim() : '';
+
+    if (!email || !email.includes('@')) {
+      errorBox.textContent = 'Please enter a valid email address.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    errorBox.classList.add('hidden');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/api/lead-magnet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name, magnetId }),
+      });
+      const json = await res.json();
+
+      if (json.success) {
+        form.classList.add('hidden');
+        successBox.classList.remove('hidden');
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'lead_magnet_signup', {
+            event_category: 'lead_magnet',
+            event_label: magnetId,
+          });
+        }
+      } else {
+        errorBox.textContent = json.error ?? 'Something went wrong. Please try again.';
+        errorBox.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Me the Free Guide';
+      }
+    } catch {
+      errorBox.textContent = 'Network error. Please check your connection and try again.';
+      errorBox.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Me the Free Guide';
+    }
+  });
+</script>

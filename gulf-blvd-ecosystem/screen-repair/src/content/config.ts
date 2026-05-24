@@ -7,6 +7,7 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     author: z.string().default('Gulf Blvd Screen Repair'),
+    updatedDate: z.string().optional(),
     tags: z.array(z.string()).optional(),
     featured: z.boolean().default(false),
     howToSteps: z.array(z.object({ name: z.string(), text: z.string() })).optional(),

@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import LeadForm from '../components/LeadForm.astro';
+import LeadMagnetForm from '../components/LeadMagnetForm.astro';
 import CrossLinkWidget from '../components/CrossLinkWidget.astro';
 import { SITE_CONFIG } from '../config';
 
@@ -354,6 +355,17 @@ const testimonials = [
           <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
         </details>
       ))}
+    </div>
+  </section>
+
+  <section class="bg-gray-50 py-12 px-4">
+    <div class="max-w-xl mx-auto">
+      <LeadMagnetForm
+        magnetId="hurricane-checklist"
+        title="Free: Pool Cage Storm Prep Checklist"
+        description="Download our pre-season inspection guide used by Gulf Blvd homeowners before every hurricane season."
+        ctaText="Send Me the Free Checklist"
+      />
     </div>
   </section>
 

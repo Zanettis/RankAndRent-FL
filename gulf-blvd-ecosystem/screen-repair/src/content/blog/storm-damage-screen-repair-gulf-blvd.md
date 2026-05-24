@@ -70,7 +70,7 @@ Post-storm repair costs depend entirely on the extent of damage:
 - **Extensive damage requiring full rescreen:** $1,200–$3,500+
 - **Frame damage requiring structural repair + rescreen:** $1,500–$5,000+
 
-If the damage is covered by insurance, we provide written damage assessments that can be submitted with your claim. We don't inflate assessments — we document what's there accurately.
+If the damage is covered by insurance, we provide written damage assessments that can be submitted with your claim. We don't inflate assessments — we document what's there accurately. If the pool deck was also damaged by falling debris, [concrete pool deck repair](https://gulfblvdconcrete.com/services/concrete-repair) should be addressed at the same time to avoid separate mobilization costs.
 
 ## How We Prioritize Storm Response Along Gulf Blvd
 
@@ -89,6 +89,15 @@ The best storm damage response is prevention. Before each storm season:
 1. **Inspect mesh for weaknesses** — panels that are already degraded or holding by a thread will fail in the first significant storm
 2. **Inspect fasteners** — rusted screws that are holding in calm weather may not hold in storm wind loading
 3. **Check door hardware** — screen doors with damaged spring mechanisms can fly open in storms and cause panel damage
-4. **Clear debris near the cage** — lawn furniture, potted plants, and other items that can become projectiles in high winds
+4. **Clear debris near the cage** — lawn furniture, potted plants, and other items that can become projectiles in high winds. Storm damage often starts with tree limbs impacting the pool cage frame — if you have overhanging branches, schedule [pre-season tree trimming](https://gulfblvdtreeexperts.com/services/tree-trimming) before hurricane season.
 
 A pre-storm inspection is included at no charge with any estimate visit. If you're in Indian Rocks Beach, Indian Shores, Madeira Beach, Treasure Island, or St. Pete Beach and haven't had your cage inspected recently, it's worth a call before storm season.
+
+---
+
+<div style="background:#f0f7ff;border:1px solid #bdd7f0;border-radius:10px;padding:20px 24px;margin-top:24px">
+  <p style="font-size:18px;font-weight:700;color:#0D5C8A;margin:0 0 6px 0">Free: Pool Cage Hurricane Readiness Checklist</p>
+  <p style="color:#444;margin:0 0 14px 0;font-size:14px">Get our pre-season inspection guide — covers screen panels, fasteners, frame stress points, and insurance documentation. Sent to your inbox instantly.</p>
+  <a href="/contact" style="display:inline-block;background:#FF6B35;color:#fff;font-weight:700;padding:10px 22px;border-radius:6px;text-decoration:none;font-size:14px">Get the Free Checklist →</a>
+  <p style="margin:10px 0 0 0;font-size:12px;color:#777">Or call us directly: <a href="tel:(727)555-0100" style="color:#0D5C8A">(727) 555-0100</a></p>
+</div>

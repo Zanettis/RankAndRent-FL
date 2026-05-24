@@ -7,6 +7,7 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     author: z.string().default('Gulf Blvd Concrete Works'),
+    updatedDate: z.string().optional(),
     tags: z.array(z.string()).optional(),
     howToSteps: z
       .array(

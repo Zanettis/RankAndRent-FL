@@ -120,7 +120,7 @@ if (typeof (window as any).gtag === 'function') {
 **IDs GA4 por site:**
 | Site | ID |
 |---|---|
-| screen-repair | `G-XXXXXXXXXX` ← **PLACEHOLDER — substituir antes do go-live** |
+| screen-repair | `G-VBVV680FN3` |
 | concrete | `G-XXXXXXXXXX` ← **PLACEHOLDER — substituir antes do go-live** |
 
 ---
@@ -142,7 +142,7 @@ O default no `BaseLayout.astro` do screen-repair é `ogImage = '/images/hero.jpg
 
 #### screen-repair
 - [ ] Substituir `(727) 555-0100` pelo número real em `screen-repair/src/config.ts`
-- [ ] Substituir `G-XXXXXXXXXX` pelo ID real do GA4 em `screen-repair/src/layouts/BaseLayout.astro` (2 ocorrências)
+- [x] GA4 instalado: `G-VBVV680FN3` em `screen-repair/src/layouts/BaseLayout.astro`
 - [ ] Criar `screen-repair/public/images/hero.jpg` (foto real 1200×630px — pool cage ou Gulf Coast)
 - [ ] Configurar `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `LEAD_EMAIL`, `OWNER_EMAIL` no dashboard do Vercel (não commitar `.env` com chaves reais)
 - [ ] Adicionar arquivo de verificação do Google Search Console em `screen-repair/public/`

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A5C2A"/>
+      <stop offset="100%" style="stop-color:#0f3518"/>
+    </linearGradient>
+    <pattern id="wave" x="0" y="0" width="60" height="20" patternUnits="userSpaceOnUse">
+      <path d="M0 10 Q15 0 30 10 Q45 20 60 10" stroke="rgba(255,255,255,0.04)" stroke-width="1" fill="none"/>
+    </pattern>
+  </defs>
+  <!-- Background gradient -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Wave pattern overlay -->
+  <rect width="1200" height="630" fill="url(#wave)"/>
+  <!-- Decorative accent bar -->
+  <rect x="0" y="0" width="8" height="630" fill="#5CBF6E" opacity="0.8"/>
+  <!-- Decorative circle -->
+  <circle cx="980" cy="315" r="260" fill="rgba(92,191,110,0.07)"/>
+  <circle cx="980" cy="315" r="180" fill="rgba(92,191,110,0.06)"/>
+  <!-- Main headline -->
+  <text x="100" y="240" font-family="Georgia, 'Times New Roman', serif" font-size="68" font-weight="bold" fill="#FFFFFF" letter-spacing="-1">Lawn Care &amp; Landscape Design</text>
+  <!-- Subheadline -->
+  <text x="100" y="320" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="rgba(255,255,255,0.85)" letter-spacing="0.5">Gulf Blvd &#x2022; Pinellas County, FL</text>
+  <!-- Divider line -->
+  <rect x="100" y="350" width="120" height="4" fill="#5CBF6E" rx="2"/>
+  <!-- Phone number -->
+  <text x="100" y="420" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="bold" fill="#5CBF6E" letter-spacing="1">(727) 555-0400</text>
+  <!-- Tagline -->
+  <text x="100" y="480" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="rgba(255,255,255,0.65)">Licensed &amp; Insured &#x2022; Free Estimates &#x2022; Fertilizer Blackout Compliant</text>
+  <!-- Domain -->
+  <text x="100" y="580" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="rgba(255,255,255,0.45)">gulfblvdlandscape.com</text>
+</svg>
