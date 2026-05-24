@@ -5,8 +5,8 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.gulfblvdscreenrepair.com" }],
-      "destination": "https://gulfblvdscreenrepair.com/:path*",
+      "has": [{ "type": "host", "value": "www.gulfblvdrescreening.com" }],
+      "destination": "https://gulfblvdrescreening.com/:path*",
       "permanent": true
     }
   ]

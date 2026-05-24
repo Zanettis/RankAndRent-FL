@@ -2,9 +2,9 @@ export const SITE_CONFIG = {
   name: 'Gulf Blvd Landscaping',
   shortName: 'Gulf Blvd Landscaping',
   phone: '(727) 555-0400',
-  email: 'leads@gulfblvdlandscaping.com',
+  email: 'leads@gulfblvdlandscape.com',
   address: 'Indian Rocks Beach, FL 33785',
-  domain: 'https://gulfblvdlandscaping.com',
+  domain: 'https://gulfblvdlandscape.com',
   description: 'Professional lawn care, landscape design, hurricane prep, and irrigation along Gulf Boulevard — Indian Rocks Beach to St. Pete Beach. Year-round service. Licensed & insured. Free estimates.',
   services: [
     {

@@ -12,11 +12,11 @@ All content, copy, components, page text, meta descriptions, blog posts, and com
 
 | Site | Porta dev | Domínio | Config central |
 |---|---|---|---|
-| `screen-repair` | 4324 | gulfblvdscreenrepair.com | `screen-repair/src/config.ts` |
+| `screen-repair` | 4324 | gulfblvdrescreening.com | `screen-repair/src/config.ts` |
 | `concrete` | 4325 | gulfblvdconcrete.com | `concrete/src/config.ts` |
 | `tree-service` | 4326 | gulfblvdtreeexperts.com | `tree-service/src/config.ts` |
 | *(site 4 — TBD)* | 4327 | TBD | TBD |
-| `landscaping` | 4328 | gulfblvdlandscaping.com | `landscaping/src/config.ts` |
+| `landscaping` | 4328 | gulfblvdlandscape.com | `landscaping/src/config.ts` |
 
 O ecossistema está crescendo. Quando novos sites forem adicionados, atualizar esta tabela e registrar a porta de dev (usar 4325, 4326, ... em sequência).
 
@@ -146,7 +146,7 @@ O default no `BaseLayout.astro` do screen-repair é `ogImage = '/images/hero.jpg
 - [ ] Criar `screen-repair/public/images/hero.jpg` (foto real 1200×630px — pool cage ou Gulf Coast)
 - [ ] Configurar `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `LEAD_EMAIL`, `OWNER_EMAIL` no dashboard do Vercel (não commitar `.env` com chaves reais)
 - [ ] Adicionar arquivo de verificação do Google Search Console em `screen-repair/public/`
-- [ ] Confirmar domínio definitivo e atualizar `site:` no `screen-repair/astro.config.mjs`
+- [x] Domínio `gulfblvdrescreening.com` confirmado e configurado em `screen-repair/astro.config.mjs`
 
 #### concrete
 - [ ] Substituir `(727) 555-0200` pelo número real em `concrete/src/config.ts`
@@ -172,7 +172,7 @@ O default no `BaseLayout.astro` do screen-repair é `ogImage = '/images/hero.jpg
 - [ ] Criar `landscaping/public/images/hero.jpg` (foto real 1200×630px — jardim tropical Gulf Coast)
 - [ ] Configurar `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `LEAD_EMAIL`, `OWNER_EMAIL` no dashboard do Vercel
 - [ ] Adicionar arquivo de verificação do Google Search Console em `landscaping/public/`
-- [ ] Confirmar domínio `gulfblvdlandscaping.com` e atualizar `site:` no `landscaping/astro.config.mjs`
+- [x] Domínio `gulfblvdlandscape.com` confirmado e configurado em `landscaping/astro.config.mjs`
 - [ ] Configurar projeto Vercel: Root Directory = `gulf-blvd-ecosystem/landscaping`, enable "files outside root"
 
 **⚠️ Segurança:** Nunca commitar `.env` com valores reais. O `.gitignore` já exclui `.env*`. Usar variáveis de ambiente no dashboard do Vercel para produção.
@@ -373,8 +373,8 @@ Cada site tem seu próprio projeto na Vercel. Configurações obrigatórias em c
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.gulfblvdscreenrepair.com" }],
-      "destination": "https://gulfblvdscreenrepair.com/:path*",
+      "has": [{ "type": "host", "value": "www.gulfblvdrescreening.com" }],
+      "destination": "https://gulfblvdrescreening.com/:path*",
       "permanent": true
     }
   ]

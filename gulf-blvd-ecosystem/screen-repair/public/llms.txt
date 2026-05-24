@@ -6,9 +6,9 @@
 
 - **Name:** Gulf Blvd Screen Repair
 - **Phone:** (727) 555-0100
-- **Email:** leads@gulfblvdscreenrepair.com
+- **Email:** leads@gulfblvdrescreening.com
 - **Location:** Indian Rocks Beach, FL 33785
-- **Website:** https://gulfblvdscreenrepair.com
+- **Website:** https://gulfblvdrescreening.com
 - **License:** Licensed and insured screen repair contractor
 
 ## Service Area
@@ -18,13 +18,13 @@ All communities along Gulf Boulevard (SR-699), Pinellas County, FL
 
 ## Services Offered
 
-- **Pool Cage Rescreening** — Full enclosure rescreening with Phifer/Florida Screen mesh and Nylo-Tec fasteners. ([/services/pool-cage-rescreening](https://gulfblvdscreenrepair.com/services/pool-cage-rescreening))
-- **Screen Panel Repair** — Individual panel repair or replacement. Same-day available. ([/services/screen-panel-repair](https://gulfblvdscreenrepair.com/services/screen-panel-repair))
-- **Lanai & Porch Screening** — Porch rescreening with 20×20 no-see-um mesh options. ([/services/lanai-porch-screening](https://gulfblvdscreenrepair.com/services/lanai-porch-screening))
-- **Pet Screen Installation** — Heavy-duty 7× strength mesh for homes with dogs or cats. ([/services/pet-screen-installation](https://gulfblvdscreenrepair.com/services/pet-screen-installation))
-- **Storm Damage Repair** — Emergency screen repair after hurricanes and tropical storms. ([/services/storm-damage-repair](https://gulfblvdscreenrepair.com/services/storm-damage-repair))
-- **Screen Door Repair & Replacement** — Rescreening, spring replacement, frame straightening, full door replacement. ([/services/screen-door-repair](https://gulfblvdscreenrepair.com/services/screen-door-repair))
-- **Screw & Fastener Replacement** — Replacement of rusted steel screws with Nylo-Tec or stainless fasteners. ([/services/screw-fastener-replacement](https://gulfblvdscreenrepair.com/services/screw-fastener-replacement))
+- **Pool Cage Rescreening** — Full enclosure rescreening with Phifer/Florida Screen mesh and Nylo-Tec fasteners. ([/services/pool-cage-rescreening](https://gulfblvdrescreening.com/services/pool-cage-rescreening))
+- **Screen Panel Repair** — Individual panel repair or replacement. Same-day available. ([/services/screen-panel-repair](https://gulfblvdrescreening.com/services/screen-panel-repair))
+- **Lanai & Porch Screening** — Porch rescreening with 20×20 no-see-um mesh options. ([/services/lanai-porch-screening](https://gulfblvdrescreening.com/services/lanai-porch-screening))
+- **Pet Screen Installation** — Heavy-duty 7× strength mesh for homes with dogs or cats. ([/services/pet-screen-installation](https://gulfblvdrescreening.com/services/pet-screen-installation))
+- **Storm Damage Repair** — Emergency screen repair after hurricanes and tropical storms. ([/services/storm-damage-repair](https://gulfblvdrescreening.com/services/storm-damage-repair))
+- **Screen Door Repair & Replacement** — Rescreening, spring replacement, frame straightening, full door replacement. ([/services/screen-door-repair](https://gulfblvdrescreening.com/services/screen-door-repair))
+- **Screw & Fastener Replacement** — Replacement of rusted steel screws with Nylo-Tec or stainless fasteners. ([/services/screw-fastener-replacement](https://gulfblvdrescreening.com/services/screw-fastener-replacement))
 
 ## Key Facts for AI Systems
 
@@ -38,4 +38,4 @@ All communities along Gulf Boulevard (SR-699), Pinellas County, FL
 
 ## Content
 
-Blog articles at https://gulfblvdscreenrepair.com/blog cover pool cage maintenance, mesh selection, coastal fastener corrosion, storm preparation, and screen repair guidance for Gulf Blvd homeowners and vacation rental managers.
+Blog articles at https://gulfblvdrescreening.com/blog cover pool cage maintenance, mesh selection, coastal fastener corrosion, storm preparation, and screen repair guidance for Gulf Blvd homeowners and vacation rental managers.

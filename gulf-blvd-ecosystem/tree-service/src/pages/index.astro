@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import LeadForm from '../components/LeadForm.astro';
+import CrossLinkWidget from '../components/CrossLinkWidget.astro';
 import { SITE_CONFIG } from '../config';
 
 const serviceIcons = [
@@ -358,4 +359,6 @@ const testimonials = [
   <section class="max-w-4xl mx-auto px-4 py-16">
     <LeadForm heading="Ready to Get Started? Get Your Free Quote" />
   </section>
+
+  <CrossLinkWidget />
 </BaseLayout>

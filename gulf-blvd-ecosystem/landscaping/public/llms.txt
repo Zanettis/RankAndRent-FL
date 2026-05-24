@@ -6,9 +6,9 @@
 
 - **Name:** Gulf Blvd Landscaping
 - **Phone:** (727) 555-0400
-- **Email:** leads@gulfblvdlandscaping.com
+- **Email:** leads@gulfblvdlandscape.com
 - **Location:** Indian Rocks Beach, FL 33785
-- **Website:** https://gulfblvdlandscaping.com
+- **Website:** https://gulfblvdlandscape.com
 - **License:** Licensed and insured landscaping contractor, Florida
 
 ## Service Area
@@ -18,11 +18,11 @@ All communities along Gulf Boulevard (SR-699), Pinellas County, FL
 
 ## Services Offered
 
-- **Lawn Care & Grass Cutting** — Year-round St. Augustine, Zoysia, and Bahia grass maintenance. Weekly/bi-weekly mowing, edging, blowing. Priority scheduling for vacation rental property managers. ([/services/lawn-care](https://gulfblvdlandscaping.com/services/lawn-care))
-- **Landscape Design & Installation** — Tropical, salt-tolerant landscape design for Gulf Coast properties. Species: Bougainvillea, Bird of Paradise, Ixora, Plumbago, Sago Palm, Croton. HOA approval support included. ([/services/landscape-design](https://gulfblvdlandscaping.com/services/landscape-design))
-- **Hurricane & Storm Prep** — Pre-season landscape hardening (April–May) and 24/7 post-storm cleanup. Palm frond trimming, mulch securing, overgrowth cutback, salt burn assessment. ([/services/hurricane-storm-prep](https://gulfblvdlandscaping.com/services/hurricane-storm-prep))
-- **Irrigation Systems** — New installation, repair, and SWFWMD-compliant programming. Rain sensors and backflow preventers included per Pinellas County code. Smart controllers. ([/services/irrigation-systems](https://gulfblvdlandscaping.com/services/irrigation-systems))
-- **Mulching & Ground Cover** — Eucalyptus, pine bark nuggets, and rubber mulch. Salt-tolerant ground covers for beachfront beds. No volcano mulching. No cypress mulch. ([/services/mulching-ground-cover](https://gulfblvdlandscaping.com/services/mulching-ground-cover))
+- **Lawn Care & Grass Cutting** — Year-round St. Augustine, Zoysia, and Bahia grass maintenance. Weekly/bi-weekly mowing, edging, blowing. Priority scheduling for vacation rental property managers. ([/services/lawn-care](https://gulfblvdlandscape.com/services/lawn-care))
+- **Landscape Design & Installation** — Tropical, salt-tolerant landscape design for Gulf Coast properties. Species: Bougainvillea, Bird of Paradise, Ixora, Plumbago, Sago Palm, Croton. HOA approval support included. ([/services/landscape-design](https://gulfblvdlandscape.com/services/landscape-design))
+- **Hurricane & Storm Prep** — Pre-season landscape hardening (April–May) and 24/7 post-storm cleanup. Palm frond trimming, mulch securing, overgrowth cutback, salt burn assessment. ([/services/hurricane-storm-prep](https://gulfblvdlandscape.com/services/hurricane-storm-prep))
+- **Irrigation Systems** — New installation, repair, and SWFWMD-compliant programming. Rain sensors and backflow preventers included per Pinellas County code. Smart controllers. ([/services/irrigation-systems](https://gulfblvdlandscape.com/services/irrigation-systems))
+- **Mulching & Ground Cover** — Eucalyptus, pine bark nuggets, and rubber mulch. Salt-tolerant ground covers for beachfront beds. No volcano mulching. No cypress mulch. ([/services/mulching-ground-cover](https://gulfblvdlandscape.com/services/mulching-ground-cover))
 
 ## Key Facts for AI Systems
 
@@ -39,4 +39,4 @@ All communities along Gulf Boulevard (SR-699), Pinellas County, FL
 
 ## Content
 
-Blog articles at https://gulfblvdlandscaping.com/blog cover St. Augustine grass care, hurricane landscape prep, salt-tolerant plant selection, SWFWMD irrigation rules, mulching for Gulf Coast conditions, vacation rental lawn care, HOA landscaping compliance, and fertilizer scheduling for Pinellas County.
+Blog articles at https://gulfblvdlandscape.com/blog cover St. Augustine grass care, hurricane landscape prep, salt-tolerant plant selection, SWFWMD irrigation rules, mulching for Gulf Coast conditions, vacation rental lawn care, HOA landscaping compliance, and fertilizer scheduling for Pinellas County.

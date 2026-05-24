@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
-  site: 'https://gulfblvdlandscaping.com',
+  site: 'https://gulfblvdlandscape.com',
   output: 'hybrid',
   adapter: vercel(),
   integrations: [

@@ -2,9 +2,9 @@ export const SITE_CONFIG = {
   name: 'Gulf Blvd Screen Repair',
   shortName: 'Gulf Blvd Screen Repair',
   phone: '(727) 555-0100',
-  email: 'leads@gulfblvdscreenrepair.com',
+  email: 'leads@gulfblvdrescreening.com',
   address: 'Indian Rocks Beach, FL 33785',
-  domain: 'https://gulfblvdscreenrepair.com',
+  domain: 'https://gulfblvdrescreening.com',
   description: 'Pool cage rescreening, lanai screen repair, and screen panel replacement along Gulf Blvd — Indian Rocks Beach to St. Pete Beach. Licensed & insured. Free estimates.',
   services: [
     { title: 'Pool Cage Rescreening', href: '/services/pool-cage-rescreening', description: 'Full pool enclosure rescreening using 18×14 or 20×20 mesh. Rated for Florida coastal conditions.' },

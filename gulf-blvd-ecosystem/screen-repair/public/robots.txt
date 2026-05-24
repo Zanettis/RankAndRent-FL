@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gulfblvdscreenrepair.com/sitemap-index.xml
+Sitemap: https://gulfblvdrescreening.com/sitemap-index.xml
