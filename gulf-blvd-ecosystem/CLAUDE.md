@@ -121,7 +121,7 @@ if (typeof (window as any).gtag === 'function') {
 | Site | ID |
 |---|---|
 | screen-repair | `G-VBVV680FN3` |
-| concrete | `G-XXXXXXXXXX` ← **PLACEHOLDER — substituir antes do go-live** |
+| concrete | `G-LZRQQJ2RJ7` |
 
 ---
 
@@ -150,7 +150,7 @@ O default no `BaseLayout.astro` do screen-repair é `ogImage = '/images/hero.jpg
 
 #### concrete
 - [ ] Substituir `(727) 555-0200` pelo número real em `concrete/src/config.ts`
-- [ ] Substituir `G-XXXXXXXXXX` pelo ID real do GA4 em `concrete/src/layouts/BaseLayout.astro` (2 ocorrências)
+- [x] GA4 instalado: `G-LZRQQJ2RJ7` em `concrete/src/layouts/BaseLayout.astro`
 - [ ] Criar `concrete/public/images/hero.jpg` (foto real 1200×630px — pool deck ou driveway FL)
 - [ ] Configurar `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `LEAD_EMAIL`, `OWNER_EMAIL` no dashboard do Vercel
 - [ ] Adicionar arquivo de verificação do Google Search Console em `concrete/public/`

@@ -1,0 +1,221 @@
+# Gulf Blvd FL Ecosystem — Launch Guides
+
+## Google Business Profile Setup
+
+### Why GBP is Critical
+Google Business Profile is the primary driver of **Local Pack rankings** (the 3-result map box that appears above organic results). Local Pack captures 30–40% of all local search clicks. Without GBP profiles, all 4 sites are invisible in Local Pack for every keyword.
+
+---
+
+### Step-by-Step: Create GBP for Each Business
+
+Do this 4 times — one per service site.
+
+#### Step 1: Go to Google Business Profile
+https://business.google.com → "Add your business"
+
+#### Step 2: Business Details (use these exact values per site)
+
+**Site 1 — Screen Repair**
+- Business name: `Gulf Blvd Screen Repair`
+- Category: **Screen Enclosure Service** (primary) + Window Screen Service (secondary)
+- Address: Use your real service address in Indian Rocks Beach, FL 33785
+- Phone: Your real tracking number (replace (727) 555-0100)
+- Website: `https://gulfblvdrescreening.com`
+- Service area: Indian Rocks Beach, Indian Shores, Redington Shores, Redington Beach, Madeira Beach, Treasure Island, St. Pete Beach, Clearwater Beach
+
+**Site 2 — Concrete**
+- Business name: `Gulf Blvd Concrete Works`
+- Category: **Concrete Contractor** (primary) + Paving Contractor (secondary)
+- Phone: Your real tracking number (replace (727) 555-0200)
+- Website: `https://gulfblvdconcrete.com`
+- Service area: Same 8 cities
+
+**Site 3 — Tree Service**
+- Business name: `Gulf Blvd Tree Experts`
+- Category: **Tree Service** (primary) + Arborist (secondary)
+- Phone: Your real tracking number (replace (727) 555-0326)
+- Website: `https://gulfblvdtreeexperts.com`
+- Service area: Same 8 cities
+
+**Site 4 — Landscaping**
+- Business name: `Gulf Blvd Landscaping`
+- Category: **Landscaping Service** (primary) + Lawn Care Service (secondary)
+- Phone: Your real tracking number (replace (727) 555-0400)
+- Website: `https://gulfblvdlandscape.com`
+- Service area: Same 8 cities
+
+#### Step 3: Verify Business
+Google will send a postcard to your address (5–7 days) or offer phone/video verification for service-area businesses.
+
+#### Step 4: Complete the Profile (do all of these)
+
+After verification, complete each profile:
+- **Photos**: Upload 10–15 photos (exterior, team at work, before/after, logo)
+- **Business hours**: Set regular hours (e.g., Mon–Sat 7am–6pm)
+- **Services**: Add each individual service with a description and price range
+- **Description**: 750 characters, keyword-rich, Gulf Coast specific
+- **Attributes**: "Identifies as veteran-owned", "Licensed", "Insured" if applicable
+
+**Sample GBP description for screen-repair:**
+```
+Pool cage rescreening and screen repair specialists along Gulf Boulevard from Indian Rocks Beach to Clearwater Beach. We handle full rescreening, panel repair, pet screen upgrades, storm damage repair, and rusted fastener replacement. Stainless steel and Nylo-Tec fasteners available — built for Florida's salt air environment. Licensed & insured. Free estimates. Same-week scheduling available.
+```
+
+#### Step 5: Add GBP Link to Schema (after you have the URL)
+
+Once GBP is live, get the Google Maps CID link (from your GBP dashboard → Share → Copy link). Then update each site's `BaseLayout.astro`:
+
+Find this placeholder (added during this project):
+```json
+"sameAs": [
+  "https://www.google.com/maps?cid=PLACEHOLDER",
+  "https://www.yelp.com/biz/PLACEHOLDER",
+  "https://www.facebook.com/PLACEHOLDER"
+]
+```
+
+Replace `PLACEHOLDER` values with real URLs.
+
+---
+
+### GBP Ongoing Maintenance (Monthly)
+
+- **Post weekly**: Add Google Posts (news, specials, seasonal tips) — every post is indexed
+- **Respond to reviews**: Reply to every review within 48 hours
+- **Add photos**: At least 2 new photos per month
+- **Answer Q&A**: Monitor and answer questions in the Q&A section
+- **Update seasonal hours**: Update hours around holidays
+
+---
+
+## Google Search Console Setup
+
+### Step 1: Add Properties for All 4 Domains
+
+Go to https://search.google.com/search-console/
+
+Add these 4 properties (as **Domain** properties, not URL prefix):
+- `gulfblvdrescreening.com`
+- `gulfblvdconcrete.com`
+- `gulfblvdtreeexperts.com`
+- `gulfblvdlandscape.com`
+
+**Domain property** (recommended): Tracks all subdomains, all protocols. Requires DNS TXT record verification.
+
+**URL prefix property** (alternative): Easier to verify (HTML file upload), but only tracks exact URL pattern.
+
+### Step 2: Verify Ownership
+
+**Method A — HTML file (easier)**
+1. GSC gives you a file like `google123abc456.html`
+2. Place it in `gulf-blvd-ecosystem/{site}/public/`
+3. Deploy to Vercel
+4. Click Verify in GSC
+
+**Method B — DNS TXT record**
+1. GSC gives you a TXT record value
+2. Add it in your domain registrar's DNS settings
+3. Click Verify in GSC (may take 24–48 hours)
+
+### Step 3: Submit Sitemaps
+
+After verification, for each property:
+1. Click **Sitemaps** in the left sidebar
+2. Enter: `sitemap-index.xml`
+3. Click **Submit**
+
+The sitemap will be at `https://{domain}/sitemap-index.xml` (auto-generated by @astrojs/sitemap).
+
+### Step 4: Monitor These Reports Weekly
+
+| Report | What to Watch |
+|--------|---------------|
+| **Coverage** | Indexed vs. excluded pages — catch crawl errors |
+| **Performance** | Impressions, clicks, avg position by query |
+| **Core Web Vitals** | LCP, INP, CLS — must be "Good" for ranking |
+| **Enhancements** | Rich results (FAQ, Breadcrumbs, Speakable) |
+| **Links** | Who links to you; internal link counts |
+
+### Step 5: Request Indexing for New Pages
+
+For each new blog post or page added:
+1. Go to URL Inspection tool in GSC
+2. Enter the full URL
+3. Click "Request Indexing"
+
+---
+
+## Resend API Setup (for Lead Forms)
+
+All 4 sites' lead forms (contact + lead magnets) need these env vars in Vercel:
+
+### Vercel Dashboard → Settings → Environment Variables
+
+Set for each site's Vercel project:
+
+| Variable | Value |
+|----------|-------|
+| `RESEND_API_KEY` | Your Resend API key from resend.com |
+| `RESEND_FROM_EMAIL` | e.g., `leads@gulfblvdrescreening.com` |
+| `LEAD_EMAIL` | Where leads are forwarded (your email) |
+| `OWNER_EMAIL` | Same or separate notification email |
+
+Get your Resend API key at: https://resend.com/api-keys
+
+**Note:** Domain verification required in Resend for custom from-address (e.g., `leads@gulfblvdrescreening.com`). Add the DNS records Resend provides to your domain registrar.
+
+---
+
+## GA4 Setup (When Ready)
+
+For each site, create a GA4 property at https://analytics.google.com:
+
+1. Create Account → Create Property
+2. Property name: e.g., "Gulf Blvd Screen Repair"
+3. Get the Measurement ID (G-XXXXXXXXXX)
+4. Update `BaseLayout.astro` in each site — replace `G-XXXXXXXXXX` with the real ID (2 occurrences per file)
+
+Custom events already configured in the code:
+- `generate_lead` — fires on contact form submission
+- `lead_magnet_signup` — fires on lead magnet form submission
+- `phone_click` — fires when phone number is clicked
+
+---
+
+## Phone Number Setup Recommendations
+
+For tracking which site generates which calls, use call tracking numbers:
+
+**Option 1 — CallRail** ($45/month, 4 numbers)
+- Each site gets a unique tracking number
+- Calls forward to your real number
+- Detailed call analytics + recordings
+
+**Option 2 — Google Call Ads** (free with GA4)
+- Use Google forwarding numbers in GBP
+- Tracks calls from Google specifically
+
+**Option 3 — Simple forwarding** (cheapest)
+- Get 4 numbers from Google Voice ($0) or Twilio
+- Forward all to your main number
+
+After getting numbers, update `gulf-blvd-ecosystem/{site}/src/config.ts`:
+```typescript
+phone: '(727) XXX-XXXX',  // replace 555-xxxx with real number
+```
+
+---
+
+## Priority Action Checklist (Do in This Order)
+
+- [ ] 1. Get real phone numbers → update `config.ts` in all 4 sites → deploy
+- [ ] 2. Set up GBP for all 4 businesses (verification takes 5–7 days)
+- [ ] 3. Set up Search Console for all 4 domains
+- [ ] 4. Set up Resend + verify domains → test lead forms
+- [ ] 5. Deploy all sites to Vercel with correct Root Directory settings
+- [ ] 6. Submit sitemaps in Search Console
+- [ ] 7. Set up GA4 properties → update IDs in BaseLayout.astro
+- [ ] 8. Request indexing for all key pages in Search Console
+- [ ] 9. Build backlinks: submit to Yelp, Angi, HomeAdvisor, BBB, local chambers
+- [ ] 10. Start posting weekly on GBP for each business
