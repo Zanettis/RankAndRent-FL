@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: 'Gulf Blvd Concrete Works',
   shortName: 'Concrete Gulf Blvd',
-  phone: '(727) 555-0200',
+  phone: '(727) 346-8556',
   email: 'info@gulfblvdconcrete.com',
   address: 'Indian Rocks Beach, FL 33785',
   domain: 'https://gulfblvdconcrete.com',

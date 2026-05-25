@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: 'Gulf Blvd Landscaping',
   shortName: 'Gulf Blvd Landscaping',
-  phone: '(727) 555-0400',
+  phone: '(727) 346-8556',
   email: 'leads@gulfblvdlandscape.com',
   address: 'Indian Rocks Beach, FL 33785',
   domain: 'https://gulfblvdlandscape.com',

@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: 'Gulf Blvd Tree Experts',
   shortName: 'Gulf Blvd Tree Experts',
-  phone: '(727) 555-0326',
+  phone: '(727) 346-8556',
   email: 'leads@gulfblvdtreeexperts.com',
   address: 'Indian Rocks Beach, FL 33785',
   domain: 'https://gulfblvdtreeexperts.com',

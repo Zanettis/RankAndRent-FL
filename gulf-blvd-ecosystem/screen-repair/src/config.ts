@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: 'Gulf Blvd Screen Repair',
   shortName: 'Gulf Blvd Screen Repair',
-  phone: '(727) 555-0100',
+  phone: '(727) 346-8556',
   email: 'leads@gulfblvdrescreening.com',
   address: 'Indian Rocks Beach, FL 33785',
   domain: 'https://gulfblvdrescreening.com',
