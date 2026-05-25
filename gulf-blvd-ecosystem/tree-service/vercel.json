@@ -1,5 +1,13 @@
 {
   "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "framework": "astro"
+  "installCommand": "cd ../.. && npm install",
+  "framework": "astro",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.gulfblvdtreeexperts.com" }],
+      "destination": "https://gulfblvdtreeexperts.com/:path*",
+      "permanent": true
+    }
+  ]
 }
