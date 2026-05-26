@@ -25,14 +25,26 @@ const breadcrumbSchema = {
     { '@type': 'ListItem', position: 3, name: 'Screw & Fastener Replacement', item: `${SITE_CONFIG.domain}/services/screw-fastener-replacement/` },
   ],
 };
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'How much does pool cage fastener replacement cost?', acceptedAnswer: { '@type': 'Answer', text: 'Fastener replacement typically runs $300–$800 for a full cage depending on cage size and fastener type chosen. Nylo-Tec fasteners cost less than stainless steel but are still dramatically more corrosion-resistant than standard steel screws. We provide a written estimate after a free inspection.' } },
+    { '@type': 'Question', name: 'How many screws does a typical pool cage have?', acceptedAnswer: { '@type': 'Answer', text: 'A standard residential pool cage on Gulf Blvd typically has 150–400 fasteners depending on cage size and frame design. Larger cages with multiple sections, screen doors, and hip/valley framing will have more connection points and require more fasteners.' } },
+    { '@type': 'Question', name: 'Is Nylo-Tec or stainless steel better for my pool cage?', acceptedAnswer: { '@type': 'Answer', text: 'Nylo-Tec is the industry standard for Florida pool cage work and is an excellent choice for most Gulf Blvd homes. Stainless steel offers maximum corrosion resistance and is worth the extra cost for direct beachfront properties with the highest salt spray exposure. We recommend stainless for homes within a block of the Gulf.' } },
+  ],
+};
 ---
 
 <BaseLayout
   title="Pool Cage Screw Replacement Gulf Blvd FL | Nylo-Tec & Stainless Fasteners"
   description="Replace rusted pool cage screws with Nylo-Tec or stainless steel fasteners rated for Gulf Coast salt air. Structural safety upgrade along Gulf Blvd, FL. Free estimates."
+  aggregateRating={{ ratingValue: '4.9', reviewCount: '94' }}
 >
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <Hero
     headline="Pool Cage Screw & Fastener Replacement on Gulf Blvd"
     subheadline="Rusted steel screws are the hidden structural threat in Gulf Coast pool cages. We replace corroded fasteners with Nylo-Tec or stainless steel hardware rated for salt-air environments."
@@ -104,6 +116,25 @@ const breadcrumbSchema = {
         a fastener inspection before the next storm season. A free estimate takes 15–20 minutes
         and gives you a clear picture of your cage's structural integrity.
       </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-primary mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'How much does pool cage fastener replacement cost?', a: 'Fastener replacement typically runs $300–$800 for a full cage depending on cage size and fastener type chosen. Nylo-Tec fasteners cost less than stainless steel but are still dramatically more corrosion-resistant than standard steel screws. We provide a written estimate after a free inspection.' },
+          { q: 'How many screws does a typical pool cage have?', a: 'A standard residential pool cage on Gulf Blvd typically has 150–400 fasteners depending on cage size and frame design. Larger cages with multiple sections, screen doors, and hip/valley framing will have more connection points and require more fasteners.' },
+          { q: 'Is Nylo-Tec or stainless steel better for my pool cage?', a: 'Nylo-Tec is the industry standard for Florida pool cage work and is an excellent choice for most Gulf Blvd homes. Stainless steel offers maximum corrosion resistance and is worth the extra cost for direct beachfront properties with the highest salt spray exposure. We recommend stainless for homes within a block of the Gulf.' },
+        ].map(({ q, a }) => (
+          <details class="border border-gray-200 rounded-xl overflow-hidden group">
+            <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-primary hover:bg-gray-50 list-none">
+              {q}
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{a}</div>
+          </details>
+        ))}
+      </div>
     </div>
 
     <div class="mt-12">

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://gulfblvdlandscape.com/sitemap-index.xml
