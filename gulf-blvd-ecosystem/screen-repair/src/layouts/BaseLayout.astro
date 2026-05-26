@@ -10,9 +10,10 @@ interface Props {
   canonicalUrl?: string;
   ogImage?: string;
   aggregateRating?: { ratingValue: string; reviewCount: string };
+  robots?: string;
 }
 
-const { title, description, canonicalUrl, ogImage = '/images/hero.svg', aggregateRating } = Astro.props;
+const { title, description, canonicalUrl, ogImage = '/images/hero.svg', aggregateRating, robots } = Astro.props;
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).href;
 const ogImageAbsolute = new URL(ogImage, SITE_CONFIG.domain).href;
 
@@ -61,7 +62,7 @@ const schema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots ?? 'index, follow'} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
